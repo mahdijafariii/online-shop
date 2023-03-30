@@ -9,7 +9,7 @@ public class AdminModel extends AccountModel{
     private ArrayList<ProductsModel> productsOfStore;
 
     private static AdminModel admin ;
-    AdminModel(String name,String email ,String phoneNumber , String password){
+    public AdminModel(String name,String email ,String phoneNumber , String password){
         super(name,email,phoneNumber,password);
         productsOfStore = new ArrayList<>();
     }
