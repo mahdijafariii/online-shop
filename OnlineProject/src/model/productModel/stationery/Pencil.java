@@ -16,6 +16,7 @@ public class Pencil extends StationeryProduct{
         this.type = type;
     }
 
+
     public typeOfPencil getType() {
         return type;
     }

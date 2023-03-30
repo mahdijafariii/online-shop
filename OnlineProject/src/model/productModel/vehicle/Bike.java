@@ -4,7 +4,7 @@ import model.productModel.CategoryModel;
 
 public class Bike extends VehiclesProduct{
 
-    enum typeOfBike{
+    private enum typeOfBike{
         MOUNTAIN_TYPE,ROAD_TYPE,HYBRID_TYPE,CITY_TYPE;
 
     }
@@ -20,7 +20,7 @@ public class Bike extends VehiclesProduct{
     }
 
     public typeOfBike getType() {
-        return type;
+        return this.type;
     }
 
     @Override

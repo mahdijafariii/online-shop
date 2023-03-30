@@ -100,6 +100,10 @@ public abstract class ProductsModel {
         return countInCapacity;
     }
 
+    public CategoryModel getTypeCategory() {
+        return type;
+    }
+
     @Override
     public String toString(){
         return "Name:"+ name +" -- Price:"+price +" -- ID:"+productID+ " -- Category:"+type+" -- Score:"+averageOfScores;
