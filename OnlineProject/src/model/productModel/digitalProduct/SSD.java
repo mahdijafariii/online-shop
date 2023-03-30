@@ -4,9 +4,30 @@ import model.productModel.CategoryModel;
 public class SSD extends StorageEquipment{
     private int readingSpeed;
     private int writingSpeed;
-    SSD(String productID,String name ,double price ,boolean inventoryStatus ,double averageOfScores  ,CategoryModel type,double weight , String dimensions,double capacity,int readingSpeed,int writingSpeed){
-        super(productID,name,price,inventoryStatus,averageOfScores,type ,weight,dimensions,capacity);
+    SSD(String name ,double price ,int countInCapacity ,double averageOfScores  ,CategoryModel type,double weight , String dimensions,double capacity,int readingSpeed,int writingSpeed){
+        super(name,price,countInCapacity ,averageOfScores,type ,weight,dimensions,capacity);
         this.readingSpeed=readingSpeed;
         this.writingSpeed=writingSpeed;
+    }
+
+    public void setReadingSpeed(int readingSpeed) {
+        this.readingSpeed = readingSpeed;
+    }
+
+    public void setWritingSpeed(int writingSpeed) {
+        this.writingSpeed = writingSpeed;
+    }
+
+    public int getReadingSpeed() {
+        return readingSpeed;
+    }
+
+    public int getWritingSpeed() {
+        return writingSpeed;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString()+" --Reading and writing speed:"+readingSpeed+"~~"+writingSpeed;
     }
 }

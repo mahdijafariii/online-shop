@@ -2,12 +2,33 @@ package model.productModel.digitalProduct;
 import model.productModel.ProductsModel;
 import model.productModel.CategoryModel;
 public class PersonalComputer extends DigitalProducts{
-    String modelOfCPU;
-    int RAM;
-    PersonalComputer(String productID,String name ,double price ,boolean inventoryStatus ,double averageOfScores  ,CategoryModel type,double weight , String dimensions,String modelOfCPU,int RAM){
-        super(productID,name,price,inventoryStatus,averageOfScores,type,weight,dimensions);
+    private String modelOfCPU;
+    private int RAM;
+    PersonalComputer(String name ,double price ,int countInCapacity ,double averageOfScores  ,CategoryModel type,double weight , String dimensions,String modelOfCPU,int RAM){
+        super(name,price,countInCapacity,averageOfScores,type,weight,dimensions);
         this.modelOfCPU=modelOfCPU;
         this.RAM=RAM;
+    }
+
+    public void setModelOfCPU(String modelOfCPU) {
+        this.modelOfCPU = modelOfCPU;
+    }
+
+    public void setRAM(int RAM) {
+        this.RAM = RAM;
+    }
+
+    public int getRAM() {
+        return RAM;
+    }
+
+    public String getModelOfCPU() {
+        return modelOfCPU;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString()+" --CPU:"+modelOfCPU+" --RAM:"+RAM;
     }
 
 
