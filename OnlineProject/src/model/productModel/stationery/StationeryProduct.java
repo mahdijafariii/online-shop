@@ -5,9 +5,22 @@ import model.productModel.ProductsModel;
 
 public abstract class StationeryProduct extends ProductsModel {
     private String creatorCountry;
-    StationeryProduct(String productID, String name , double price , boolean inventoryStatus , double averageOfScores  , CategoryModel type , String creatorCountry){
-        super(productID,name,price,inventoryStatus,averageOfScores,type);
+    StationeryProduct( String name , double price , int countInCapacity , double averageOfScores  , CategoryModel type , String creatorCountry){
+        super(name,price,countInCapacity,averageOfScores,type);
         this.creatorCountry=creatorCountry;
+    }
+
+    public void setCreatorCountry(String creatorCountry) {
+        this.creatorCountry = creatorCountry;
+    }
+
+    public String getCreatorCountry() {
+        return creatorCountry;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString()+" -- Country of developing:"+creatorCountry;
     }
 
 }

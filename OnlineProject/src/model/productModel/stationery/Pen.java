@@ -4,9 +4,22 @@ import model.productModel.ProductsModel;
 
 public class Pen extends StationeryProduct{
     private String colorOfPen;
-    Pen(String productID, String name , double price , boolean inventoryStatus , double averageOfScores  , CategoryModel type,String creatorCountry,String colorOfPen){
-        super(productID,name,price,inventoryStatus,averageOfScores,type,creatorCountry);
+    public Pen( String name , double price , int countInCapacity , double averageOfScores  , CategoryModel type,String creatorCountry,String colorOfPen){
+        super(name,price,countInCapacity,averageOfScores,type,creatorCountry);
         this.colorOfPen=colorOfPen;
+    }
+
+    public void setColorOfPen(String colorOfPen) {
+        this.colorOfPen = colorOfPen;
+    }
+
+    public String getColorOfPen() {
+        return colorOfPen;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString()+" -- Color:"+colorOfPen;
     }
 
 
