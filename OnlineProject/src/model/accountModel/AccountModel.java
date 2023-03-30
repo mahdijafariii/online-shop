@@ -39,7 +39,5 @@ abstract class AccountModel {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    
 }
 
