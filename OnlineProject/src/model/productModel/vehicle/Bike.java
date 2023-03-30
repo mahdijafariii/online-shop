@@ -10,9 +10,22 @@ public class Bike extends VehiclesProduct{
     }
     private typeOfBike type;
 
-    Bike(String productID, String name , double price , boolean inventoryStatus , double averageOfScores  , CategoryModel type, String nameOfCreator,typeOfBike typeOfBike){
-        super(productID,name,price,inventoryStatus,averageOfScores,type,nameOfCreator);
+    Bike( String name , double price , int countInCapacity , double averageOfScores  , CategoryModel type, String nameOfCreator,typeOfBike typeOfBike){
+        super(name,price,countInCapacity,averageOfScores,type,nameOfCreator);
         this.type=typeOfBike;
+    }
+
+    public void setType(typeOfBike type) {
+        this.type = type;
+    }
+
+    public typeOfBike getType() {
+        return type;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString()+" --Type of bike:"+type;
     }
 
 }
