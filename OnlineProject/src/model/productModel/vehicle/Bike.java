@@ -19,8 +19,8 @@ public class Bike extends VehiclesProduct{
         this.type = type;
     }
 
-    public typeOfBike getType() {
-        return this.type;
+    public String getType() {
+        return type.name();
     }
 
     @Override
