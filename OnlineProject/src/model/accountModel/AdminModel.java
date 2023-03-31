@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class AdminModel extends AccountModel{
 
     private ArrayList<ProductsModel> productsOfStore;
-    private ArrayList<String> comments;
+    private ArrayList<OpinionModel> comments;
 
 
 
@@ -33,7 +33,7 @@ public class AdminModel extends AccountModel{
         return productsOfStore;
     }
 
-    public ArrayList<String> getComments() {
+    public ArrayList<OpinionModel> getComments() {
         return comments;
     }
 }
