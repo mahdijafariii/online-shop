@@ -3,6 +3,10 @@ package controller;
 import model.accountModel.CustomerModel;
 import model.productModel.CategoryModel;
 import model.productModel.ProductsModel;
+import model.productModel.stationery.NoteBook;
+import model.productModel.stationery.Pen;
+import model.productModel.stationery.Pencil;
+import model.productModel.stationery.StationeryProduct;
 import model.productModel.vehicle.Bike;
 import model.productModel.vehicle.Vehicle;
 
@@ -55,6 +59,8 @@ public class UserController {
         else
             return false;
     }
+    //--------------------------------------------------------filter product as category
+
     public ArrayList<ProductsModel> filterCategory(ArrayList<ProductsModel> products, CategoryModel type){
         ArrayList<ProductsModel> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
@@ -64,7 +70,7 @@ public class UserController {
         }
     return newProducts;}//filter as a category !
 
-    //--------------------------------------------------------Bike filtering
+    //--------------------------------------------------------filter vehicle as bike and type of bike
     public ArrayList<Bike> filterBike(ArrayList<ProductsModel> products){
         ArrayList<Bike> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
@@ -84,7 +90,7 @@ public class UserController {
 
 
 
-    //--------------------------------------------------------filter as vehicle
+    //--------------------------------------------------------filter as vehicle as volume and automatic and manual
     public ArrayList<Vehicle> filterVehicle(ArrayList<ProductsModel> products){
         ArrayList<Vehicle> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
@@ -121,7 +127,74 @@ public class UserController {
         return newProducts;}
 
 
-    //--------------------------------------------------------
+    //--------------------------------------------------------filter as Stationery!
+    public ArrayList<StationeryProduct> filterStationery(ArrayList<ProductsModel> products){
+        ArrayList<StationeryProduct> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof StationeryProduct){
+                newProducts.add((StationeryProduct) products.get(i));
+            }
+        }
+        return newProducts;}
+    //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*filter stationery as pen and pen color
+
+    public ArrayList<Pen> filterStationeryAsPen(ArrayList<StationeryProduct> products ){
+        ArrayList<Pen> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof Pen){
+                newProducts.add((Pen)products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<Pen> filterPenAsColor(ArrayList<Pen> products ,String color ){
+        ArrayList<Pen> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(color.toLowerCase().compareTo(products.get(i).getColorOfPen().toLowerCase())==0){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+
+
+    //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-filter stationery as pencil and type of pencil
+
+    public ArrayList<Pencil> filterStationeryAsPencil(ArrayList<StationeryProduct> products ){
+        ArrayList<Pencil> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof Pencil){
+                newProducts.add((Pencil) products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<Pencil> filterPencilAsType(ArrayList<Pencil> products ,String type ){
+        ArrayList<Pencil> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(type.toLowerCase().compareTo(products.get(i).getType().toLowerCase())==0){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+
+    //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-filter stationery as NoteBook and number of leaves of NoteBook
+    public ArrayList<NoteBook> filterStationeryAsNoteBook(ArrayList<StationeryProduct> products ){
+        ArrayList<NoteBook> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof NoteBook){
+                newProducts.add((NoteBook) products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<NoteBook> filterNoteBookAsNumberLeaves(ArrayList<NoteBook> products,int minLeaves,int maxLeaves ){
+        ArrayList<NoteBook> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getNumberOfLeaves()>minLeaves && products.get(i).getNumberOfLeaves()<maxLeaves){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+
+
+    //--------------------------------------------------------filter as a capacity of product
 
 
     public ArrayList<ProductsModel> filterَAsCapacity(ArrayList<ProductsModel> products){
@@ -131,8 +204,8 @@ public class UserController {
                 newProducts.add(products.get(i));
             }
         }
-        return newProducts;}//filter as a capacity of product
-    // --------------------------------------------------------
+        return newProducts;}
+    //--------------------------------------------------------filter as a price of product
 
 
     public ArrayList<ProductsModel> filterَAsPrice(ArrayList<ProductsModel> products,double minPrice,double maxPrice){
@@ -143,6 +216,8 @@ public class UserController {
             }
         }
         return newProducts;}
+    //--------------------------------------------------------filter as a score of product
+
     public ArrayList<ProductsModel> filterَAsScore(ArrayList<ProductsModel> products,double minScore,double maxScore){
         ArrayList<ProductsModel> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
@@ -153,15 +228,7 @@ public class UserController {
         return newProducts;}
 
 
-    public ArrayList<ProductsModel> filterَAsFieldInCategory(ArrayList<ProductsModel> products){
-        ArrayList<ProductsModel> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
 
-            if(){
-                newProducts.add(products.get(i));
-            }
-        }
-        return newProducts;}//you should give the list of filterAsCategory to this function
 
 
 
