@@ -1,6 +1,9 @@
 package controller;
 
+import model.accountModel.AdminModel;
 import model.accountModel.CustomerModel;
+import model.accountModel.OpinionModel;
+import model.accountModel.ScoreModel;
 import model.productModel.CategoryModel;
 import model.productModel.ProductsModel;
 import model.productModel.digitalProduct.*;
@@ -329,32 +332,100 @@ public class UserController {
     //---------------------------------------------------------search by name
     public ArrayList<ProductsModel> searchInProduct(ArrayList<ProductsModel> products,String test){
         ArrayList<ProductsModel> newProducts= new ArrayList<>();
-        char search[] ;
-        search= test.toCharArray();
-
-
+        char[] search = test.toCharArray();
         int count=0;
-
-
         for(int i=0;i<products.size();i++){
-            for(int j=0 ; j<search.length;j++) {
-                if(products.get(i).getName().contains(search[j])){
-                    count++;
+            for(int j=0 ; j<products.get(i).getName().length();j++) {
+                for(int k=0;k<search.length;k++){
+                    if(products.get(i).getName().charAt(j)==search[k]){
+                        count++;
+                        break;
+                    }
+                }
+                if (count>(search.length/2)){
+                    newProducts.add(products.get(i));
                 }
 
             }
-
-
-           newProducts.add(products.get(i));
         }
         return newProducts;}
+    //---------------------------------------------------------view of cart
+    public String seeCart(CustomerModel user){
+        StringBuilder test = new StringBuilder();
+        for(int i=0;i<user.getCart().size();i++){
+            test.append((i+1)+")");
+            test.append(user.getCart().get(i).getName());
+            test.append("    "+"price:"+user.getCart().get(i).getPrice()+"    "+"ID:"+user.getCart().get(i).getProductID()+"\n");
+        }
+    return test.toString();}
+    //---------------------------------------------------------buy product
+    public void buyProduct(CustomerModel user ,ProductsModel product){
+        user.getCart().add(product);
+    }
+    //---------------------------------------------------------comment
+    public void comment(CustomerModel user, String IdProduct , AdminModel admin,String comment){
+        OpinionModel opinion=new OpinionModel(user,IdProduct,comment);
+        for (int i =0;i<user.getPurchaseHistory().size();i++){
+            if(user.getPurchaseHistory().get(i).getProductID()==IdProduct){
+                opinion.setUserBuyProduct(true);
+                break;
+            }
+        }
+        admin.getComments().add(opinion);
+    }
+    //---------------------------------------------------------set score
+    public void setScore(CustomerModel user, double newScore,ProductsModel productsModel){
+        ScoreModel score=new ScoreModel(user,newScore,productsModel);
+        for(int j=0;j<user.getPurchaseHistory().size();j++){
+            if(user.getPurchaseHistory().get(j).getName()==productsModel.getName()){
+                score.setScore((score.getProducts().getAverageOfScores()+newScore)/2);
+                break;
+            }
+        }
+    }
+//-------------------------------------------------------------charging account
+    public int chargeBalance(CustomerModel user,double charge , String cardNumber,String cvv2 ,String cardPass){
+        if(!(checkCardNumber(cardNumber))) {
+            return -1;
+        }
+        else if(!(checkCvv2(cvv2))){
+            return -2;
+        }
+        else if(!(checkPassOfCard(cardPass))){
+            return -3;
+        }
+        else  {
+            double balance=user.getBalance();
+            user.setBalance(balance+charge);
+            return 1;
+        }
 
-
-
-
-
-
-
+    }
+    //-----------------------------------------------------------all of regex
+    public boolean checkCardNumber(String cardNumber){
+        Pattern pattern = Pattern.compile("^[0-9]{16}$");
+        Matcher matcher = pattern.matcher(cardNumber);
+        if(matcher.find()){
+            return true;
+        }
+        else return false;
+    }
+    public boolean checkCvv2(String cardNumber){
+        Pattern pattern = Pattern.compile("^[0-9]{4}$");
+        Matcher matcher = pattern.matcher(cardNumber);
+        if(matcher.find()){
+            return true;
+        }
+        else return false;
+    }
+    public boolean checkPassOfCard(String cardNumber){
+        Pattern pattern = Pattern.compile("^[0-9]{6}$");
+        Matcher matcher = pattern.matcher(cardNumber);
+        if(matcher.find()){
+            return true;
+        }
+        else return false;
+    }
 
 
     public boolean checkPasswordRegex(String passwordCheck)
