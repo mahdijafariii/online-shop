@@ -17,8 +17,8 @@ public class Pencil extends StationeryProduct{
     }
 
 
-    public typeOfPencil getType() {
-        return type;
+    public String getType() {
+        return type.name();
     }
 
     @Override
