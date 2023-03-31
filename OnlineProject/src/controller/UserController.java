@@ -3,6 +3,8 @@ package controller;
 import model.accountModel.CustomerModel;
 import model.productModel.CategoryModel;
 import model.productModel.ProductsModel;
+import model.productModel.digitalProduct.*;
+import model.productModel.foods.Food;
 import model.productModel.stationery.NoteBook;
 import model.productModel.stationery.Pen;
 import model.productModel.stationery.Pencil;
@@ -10,6 +12,7 @@ import model.productModel.stationery.StationeryProduct;
 import model.productModel.vehicle.Bike;
 import model.productModel.vehicle.Vehicle;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -127,6 +130,103 @@ public class UserController {
         return newProducts;}
 
 
+
+
+    //--------------------------------------------------------filter as Digital product!
+    public ArrayList<DigitalProducts> filterDigitalProduct(ArrayList<ProductsModel> products){
+        ArrayList<DigitalProducts> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof DigitalProducts){
+                newProducts.add((DigitalProducts) products.get(i));
+            }
+        }
+        return newProducts;}
+
+    //--------------------------------------------------------filter Digital product as capacity of ssd and usb!
+    public ArrayList<DigitalProducts> filterDigitalProductAsCapacity(ArrayList<DigitalProducts> products,int min,int max ){
+        ArrayList<DigitalProducts> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof StorageEquipment){
+                if(((StorageEquipment) products.get(i)).getCapacity()>min && ((StorageEquipment)products.get(i)).getCapacity()<max){
+                    newProducts.add((StorageEquipment) products.get(i));
+                }
+            }
+        }
+        return newProducts;}
+    //--------------------------------------------------------filter Digital product as personal computer
+    public ArrayList<PersonalComputer> filterDigitalProductAsPc(ArrayList<DigitalProducts> products ){
+        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof PersonalComputer){
+                newProducts.add((PersonalComputer) products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<PersonalComputer> filterPcAsRAM(ArrayList<PersonalComputer> products ,int minRAM,int maxRAM ){
+        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getRAM()>minRAM && products.get(i).getRAM()<maxRAM){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<PersonalComputer> searchPcAsCpu(ArrayList<PersonalComputer> products ,String cpu ){
+        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getModelOfCPU().compareTo(cpu)==0){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+
+    //--------------------------------------------------------filter Digital product as Usb!
+    public ArrayList<Usb> filterDigitalProductAsUsb(ArrayList<DigitalProducts> products ){
+        ArrayList<Usb> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof Usb){
+                newProducts.add((Usb) products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<Usb> filterUsbAsVersion(ArrayList<Usb> products ,int version ){
+        ArrayList<Usb> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if((products.get(i).getUsbVersion())==version){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+
+
+    //--------------------------------------------------------filter Digital product as SSD!
+    public ArrayList<SSD> filterDigitalProductAsSSD(ArrayList<DigitalProducts> products ){
+        ArrayList<SSD> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof SSD){
+                newProducts.add((SSD) products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<SSD> filterSSDAsRead(ArrayList<SSD> products ,int minReadingSpeed ,int maxReadingSpeed ,int  minWritingSpeed ,int  maxWritingSpeed  ){
+        ArrayList<SSD> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if((products.get(i).getReadingSpeed()>minReadingSpeed &&products.get(i).getReadingSpeed()<maxReadingSpeed && products.get(i).getWritingSpeed()>minWritingSpeed && products.get(i).getWritingSpeed()<maxWritingSpeed)){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+
+    //--------------------------------------------------------filter as Food!
+    public ArrayList<Food> filterFood(ArrayList<ProductsModel> products){
+        ArrayList<Food> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof Food){
+                newProducts.add((Food) products.get(i));
+            }
+        }
+        return newProducts;}
+
+
     //--------------------------------------------------------filter as Stationery!
     public ArrayList<StationeryProduct> filterStationery(ArrayList<ProductsModel> products){
         ArrayList<StationeryProduct> newProducts= new ArrayList<>();
@@ -224,6 +324,28 @@ public class UserController {
             if(products.get(i).getAverageOfScores()<maxScore && products.get(i).getAverageOfScores()>minScore){
                 newProducts.add(products.get(i));
             }
+        }
+        return newProducts;}
+    //---------------------------------------------------------search by name
+    public ArrayList<ProductsModel> searchInProduct(ArrayList<ProductsModel> products,String test){
+        ArrayList<ProductsModel> newProducts= new ArrayList<>();
+        char search[] ;
+        search= test.toCharArray();
+
+
+        int count=0;
+
+
+        for(int i=0;i<products.size();i++){
+            for(int j=0 ; j<search.length;j++) {
+                if(products.get(i).getName().contains(search[j])){
+                    count++;
+                }
+
+            }
+
+
+           newProducts.add(products.get(i));
         }
         return newProducts;}
 
