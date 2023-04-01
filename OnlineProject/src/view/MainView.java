@@ -9,7 +9,8 @@ public class MainView {
 
     public void mainPage(){
         System.out.println("Select number: \n" +
-                "1)admin panel:");
+                "1)admin panel:\n" +
+                "2)Sign In:\n");
         int whatToDo=in.nextInt();
         switch (whatToDo){
             case 1:
@@ -17,6 +18,9 @@ public class MainView {
                 adminView.adminView();
                 break;
             case 2:
+                SignInPanelView signInPanelView = new SignInPanelView();
+                signInPanelView.SignInPanelView();
+                break;
         }
 
 
