@@ -1,6 +1,6 @@
 package model.accountModel;
 
-public class OpinionModel {
+public class OpinionRequestModel {
     private CustomerModel user ;
     private String productId;
     private static int opinionNumber=0;
@@ -8,7 +8,7 @@ public class OpinionModel {
     private String opinion;
     private int opinionStatus;// this is that the opinion is accepted or rejected or admin do not answer yet! //0:waiting 1:accepted -1:rejected
     private boolean IsUserBuyProduct;
-    public OpinionModel(CustomerModel user, String productId, String opinion){
+    public OpinionRequestModel(CustomerModel user, String productId, String opinion){
         this.user=user;
         this.productId=productId;
         this.opinion=opinion;
@@ -55,5 +55,8 @@ public class OpinionModel {
 
     public int getOpinionNumb() {
         return opinionNumb;
+    }
+    public String toString(){
+        return "Product ID:" + getProductId() +"  --  opinion number:"+ getOpinionNumb()+"  -- text:"+ getOpinion();
     }
 }
