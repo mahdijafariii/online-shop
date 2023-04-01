@@ -19,7 +19,7 @@ public class ChargeRequestModel {
 
     }
     public String toString(){
-        return "Name:"+customer.getUserName()+"  --  card number:"+cardNumber+"  --  cvv2:"+cvv2+"  --  card pass:"+cardPass+"  --  charge amount:"+amount;
+        return "Name:"+customer.getUserName()+"  --  card number:"+cardNumber+"  --  cvv2:"+cvv2+"  --  card pass:"+cardPass+"  --  charge amount:"+amount+"  --  Number request:"+numberRequest;
     }
 
 }
