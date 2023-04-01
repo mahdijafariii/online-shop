@@ -5,17 +5,26 @@ import model.productModel.ProductsModel;
 import java.util.ArrayList;
 
 public class AdminModel extends AccountModel{
-
-    private ArrayList<ProductsModel> productsOfStore;
-    private ArrayList<OpinionModel> comments;
+    private static AdminModel admin = AdminModel.getAdmin("admin","admin@gmail.com","09022022022","admin");
 
 
 
-    private static AdminModel admin ;
+
+    private  ArrayList<ProductsModel> productsOfStore;
+    private  ArrayList<OpinionRequestModel> comments;
+    private ArrayList<CustomerModel> allCostumers;
+    private ArrayList<ChargeRequestModel> chargeRequest;
+    private ArrayList<SignUpRequestModel> signUpRequest;
+
+
+
     public AdminModel(String name,String email ,String phoneNumber , String password){
         super(name,email,phoneNumber,password);
         productsOfStore = new ArrayList<>();
         comments =new ArrayList<>();
+        allCostumers=new ArrayList<>();
+        chargeRequest=new ArrayList<>();
+        signUpRequest=new ArrayList<>();
     }
 
     public static AdminModel getAdmin(String name,String email ,String phoneNumber , String password) {
@@ -33,7 +42,19 @@ public class AdminModel extends AccountModel{
         return productsOfStore;
     }
 
-    public ArrayList<OpinionModel> getComments() {
+    public ArrayList<OpinionRequestModel> getComments() {
         return comments;
+    }
+
+    public ArrayList<CustomerModel> getAllCostumers() {
+        return allCostumers;
+    }
+
+    public ArrayList<ChargeRequestModel> getChargeRequest() {
+        return chargeRequest;
+    }
+
+    public ArrayList<SignUpRequestModel> getSignUpRequest() {
+        return signUpRequest;
     }
 }

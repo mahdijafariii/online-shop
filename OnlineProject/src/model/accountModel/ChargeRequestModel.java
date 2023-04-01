@@ -22,4 +22,15 @@ public class ChargeRequestModel {
         return "Name:"+customer.getUserName()+"  --  card number:"+cardNumber+"  --  cvv2:"+cvv2+"  --  card pass:"+cardPass+"  --  charge amount:"+amount+"  --  Number request:"+numberRequest;
     }
 
+    public int getNumberRequest() {
+        return numberRequest;
+    }
+
+    public CustomerModel getCustomer() {
+        return customer;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
 }
