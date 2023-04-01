@@ -5,7 +5,7 @@ import model.productModel.CategoryModel;
 public class Vehicle extends VehiclesProduct{
     private boolean automatic;
     private int engineVolume;
-    Vehicle( String name , double price , int countInCapacity, double averageOfScores  , CategoryModel type,String nameOfCreator,boolean automatic,int engineVolume){
+    public Vehicle(String name, double price, int countInCapacity, double averageOfScores, CategoryModel type, String nameOfCreator, boolean automatic, int engineVolume){
         super(name,price,countInCapacity,averageOfScores,type,nameOfCreator);
         this.engineVolume=engineVolume;
         this.automatic=automatic;

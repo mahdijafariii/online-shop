@@ -4,7 +4,7 @@ import model.productModel.CategoryModel;
 
 public class Usb extends StorageEquipment{
     private int usbVersion;
-    Usb(String name ,double price ,int countInCapacity ,double averageOfScores  ,CategoryModel type,double weight , String dimensions,double capacity,int usbVersion){
+    public Usb(String name, double price, int countInCapacity, double averageOfScores, CategoryModel type, double weight, String dimensions, double capacity, int usbVersion){
         super(name,price,countInCapacity,averageOfScores,type ,weight,dimensions,capacity);
         this.usbVersion=usbVersion;
     }

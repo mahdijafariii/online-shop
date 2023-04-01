@@ -5,7 +5,7 @@ import model.productModel.ProductsModel;
 public class NoteBook extends StationeryProduct{
     private int numberOfLeaves;
     private String typeOfLeaves;
-    NoteBook( String name , double price , int countInCapacity , double averageOfScores  , CategoryModel type,String creatorCountry ,int numberOfLeaves,String typeOfLeaves){
+    public NoteBook(String name, double price, int countInCapacity, double averageOfScores, CategoryModel type, String creatorCountry, int numberOfLeaves, String typeOfLeaves){
         super(name,price,countInCapacity,averageOfScores,type,creatorCountry);
         this.numberOfLeaves=numberOfLeaves;
         this.typeOfLeaves=typeOfLeaves;

@@ -5,7 +5,7 @@ import model.productModel.CategoryModel;
 public class Food extends ProductsModel{
     private int dateOfProduction;
     private int dateOfExpiration;
-    Food( String name , double price , int countInCapacity , double averageOfScores  , CategoryModel type,int dateOfProduction,int dateOfExpiration){
+    public Food(String name, double price, int countInCapacity, double averageOfScores, CategoryModel type, int dateOfProduction, int dateOfExpiration){
         super(name,price,countInCapacity,averageOfScores,type);
         this.dateOfExpiration=dateOfExpiration;
         this.dateOfProduction=dateOfProduction;
