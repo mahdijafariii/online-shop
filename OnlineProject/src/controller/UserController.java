@@ -1,9 +1,6 @@
 package controller;
 
-import model.accountModel.AdminModel;
-import model.accountModel.CustomerModel;
-import model.accountModel.OpinionModel;
-import model.accountModel.ScoreModel;
+import model.accountModel.*;
 import model.productModel.CategoryModel;
 import model.productModel.ProductsModel;
 import model.productModel.digitalProduct.*;
@@ -15,7 +12,6 @@ import model.productModel.stationery.StationeryProduct;
 import model.productModel.vehicle.Bike;
 import model.productModel.vehicle.Vehicle;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -364,7 +360,7 @@ public class UserController {
     }
     //---------------------------------------------------------comment
     public void comment(CustomerModel user, String IdProduct , AdminModel admin,String comment){
-        OpinionModel opinion=new OpinionModel(user,IdProduct,comment);
+        OpinionRequestModel opinion=new OpinionRequestModel(user,IdProduct,comment);
         for (int i =0;i<user.getPurchaseHistory().size();i++){
             if(user.getPurchaseHistory().get(i).getProductID()==IdProduct){
                 opinion.setUserBuyProduct(true);
@@ -384,7 +380,7 @@ public class UserController {
         }
     }
 //-------------------------------------------------------------charging account
-    public int chargeBalance(CustomerModel user,double charge , String cardNumber,String cvv2 ,String cardPass){
+    public int chargeBalance(CustomerModel user,String charge , String cardNumber,String cvv2 ,String cardPass,AdminModel admin){
         if(!(checkCardNumber(cardNumber))) {
             return -1;
         }
@@ -395,8 +391,8 @@ public class UserController {
             return -3;
         }
         else  {
-            double balance=user.getBalance();
-            user.setBalance(balance+charge);
+            ChargeRequestModel test = new ChargeRequestModel(user, cardNumber,cardPass,cvv2,charge);
+            admin.getChargeRequest().add(test);
             return 1;
         }
 
