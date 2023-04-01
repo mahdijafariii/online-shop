@@ -86,14 +86,12 @@ public class AdminController {
     public void addFood(String name, double price, int countInCapacity, int dateProduction, int dateExpiration) {
         Food test = new Food(name, price, countInCapacity, 10, CategoryModel.FOODS, dateProduction, dateExpiration);
         admin.getProductsOfStore().add(test);
-
     }
 
     //*************************************************************add digital product
     public void addPersonalComputer(String name, double price, int countInCapacity, double weight, String dimension, String modelCpu, int RAM) {
         PersonalComputer test = new PersonalComputer(name, price, countInCapacity, 10, CategoryModel.DIGITAL_PRODUCTS, weight, dimension, modelCpu, RAM);
         admin.getProductsOfStore().add(test);
-        
     }
 
     public void addSSD(String name, double price, int countInCapacity, double weight, String dimension, double capacity, int reading, int writing) {
