@@ -1,6 +1,7 @@
 package controller;
 
 import model.accountModel.AdminModel;
+import model.accountModel.CustomerModel;
 import model.productModel.CategoryModel;
 import model.productModel.digitalProduct.PersonalComputer;
 import model.productModel.digitalProduct.SSD;
@@ -17,6 +18,8 @@ import javax.xml.stream.events.Comment;
 
 public class AdminController {
     AdminModel admin = AdminModel.getAdmin();
+
+
 
     //*************************************************************add vehicle
 
@@ -187,12 +190,32 @@ public class AdminController {
         }
 
     }
+    //*************************************************************sign up requests
+    public void acceptSignUp(int numberInList){
+        for(int i =0; i<admin.getSignUpRequest().size();i++){
+            if(admin.getSignUpRequest().get(i).getNumberOfRequest()==numberInList){
+                CustomerModel test = new CustomerModel(admin.getSignUpRequest().get(i).getUserName(),admin.getSignUpRequest().get(i).getEmail(),admin.getSignUpRequest().get(i).getPhoneNumber(),admin.getSignUpRequest().get(i).getPassWord(),admin.getSignUpRequest().get(i).getFullName());
+                admin.getAllCostumers().add(test);
+                admin.getSignUpRequest().remove(admin.getSignUpRequest().get(i));
+                break;
+            }
+        }
+    }
+    public void rejectSignUp(int numberInList){
+        for(int i =0; i<admin.getSignUpRequest().size();i++){
+            if(admin.getSignUpRequest().get(i).getNumberOfRequest()==numberInList){
+                admin.getSignUpRequest().remove(admin.getSignUpRequest().get(i));
+                break;
+            }
+        }
+    }
+
 
     //*************************************************************see costumers
     public String costumers(){
         StringBuilder test = new StringBuilder();
         for (int j = 0 ; j<admin.getAllCostumers().size();j++){
-            test.append((j+1)+")"+admin.getAllCostumers().get(j).toString()+"\n");
+            test.append((j+1)+")"+admin.getAllCostumers().get(j).toString()+"  --  phone number:"+admin.getAllCostumers().get(j).getPhoneNumber()+"\n");
         }
         return test.toString();
     }
@@ -202,6 +225,15 @@ public class AdminController {
         StringBuilder test = new StringBuilder();
         for (int j = 0 ; j<admin.getComments().size();j++){
             test.append((j+1)+")"+admin.getComments().get(j).toString()+"\n");
+        }
+        return test.toString();
+    }
+    //************************************************************see list of sign up
+    public String listOfSignUp(){
+
+        StringBuilder test = new StringBuilder();
+        for (int j = 0 ; j<admin.getSignUpRequest().size();j++){
+            test.append((j+1)+")"+admin.getSignUpRequest().get(j).toString()+"\n");
         }
         return test.toString();
     }
@@ -216,5 +248,13 @@ public class AdminController {
         return test.toString();
     }
     //*************************************************************
-
+    public int checkUserNamePass(String userName, String password){
+        for(int i=0; i<admin.getAllCostumers().size();i++){
+            if(admin.getAllCostumers().get(i).getUserName().equals(userName)){
+                if(admin.getAllCostumers().get(i).getPassword().equals(password)){
+                    return i;
+                }
+            }
+        }
+    return -1;}
 }
