@@ -10,9 +10,9 @@ public class CustomerModel extends AccountModel{
     final private ArrayList<ProductsModel> cart ;
     final private ArrayList<ProductsModel> purchaseHistory;
     private double balance ;
-    public CustomerModel(String name, String email, String phoneNumber, String password, double balance, String fullName){
+    public CustomerModel(String name, String email, String phoneNumber, String password, String fullName){
         super(name,email,phoneNumber,password);
-        this.balance=balance;
+        this.balance=0;
         cart = new ArrayList<>();
         purchaseHistory=new ArrayList<>();
         this.fullName=fullName;
