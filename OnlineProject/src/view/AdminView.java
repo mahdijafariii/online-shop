@@ -58,6 +58,7 @@ public class AdminView {
                                 case "pencil":
                                     if (splitCommand.length - 2 == 6) {
                                         adminController.addPencil(splitCommand[2], Double.parseDouble(splitCommand[3]), Integer.parseInt(splitCommand[4]), splitCommand[5], splitCommand[6], Integer.parseInt(splitCommand[7]));
+
                                     } else {
                                         System.out.println("please enter help and see correct command!!");
                                     }
@@ -97,16 +98,16 @@ public class AdminView {
                             adminController.editInfo(splitCommand[1], splitCommand[2], splitCommand[3]);
                             break;
                         case "showCustomers":
-                            adminController.costumers();
+                            System.out.println(adminController.costumers());
                             break;
                         case "showChargeRequests":
-                            adminController.listChargeRequest();
+                            System.out.println(adminController.listChargeRequest());
                             break;
                         case "showCommentRequests":
-                            adminController.listCommentsOfProduct();
+                            System.out.println(adminController.listCommentsOfProduct());
                             break;
                         case "showSignUpRequests":
-                            adminController.listOfSignUp();
+                            System.out.println(adminController.listOfSignUp());
                             break;
                         case "remove":
                             adminController.removeProduct(splitCommand[1]);
@@ -170,7 +171,7 @@ public class AdminView {
                             System.out.println("-------------------------------------------------------For showing charge requests--------------------------------------------------------");
                             System.out.println("showChargeRequests");
                             System.out.println("-------------------------------------------------------For showing sign up requests-------------------------------------------------------");
-                            System.out.println("showSignUpRequest");
+                            System.out.println("showSignUpRequests");
                             System.out.println("-----------------------------------------------------------For removing items-------------------------------------------------------------");
                             System.out.println("remove -product ID-\n" +
                                     "remove x5-VEHI-1");
