@@ -53,82 +53,55 @@ public class UserController {
             return false;
     }
 
-    public boolean changePhoneNumber(CustomerModel costumer,String userName , String password,String newPhoneNumber) {
+    public void changePhoneNumber(CustomerModel costumer, String userName , String password, String newPhoneNumber) {
         if(userName.compareTo(costumer.getUserName())==0 && password.compareTo(costumer.getPassword())==0){
             costumer.setPhoneNumber(newPhoneNumber);
-            return true;
         }
-        else
-            return false;
     }
     //--------------------------------------------------------filter product as category
 
-    public ArrayList<ProductsModel> filterCategory(ArrayList<ProductsModel> products, CategoryModel type){
+    public String filterCategory(ArrayList<ProductsModel> products, String typeOfCategory){
         ArrayList<ProductsModel> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
-            if(products.get(i).getTypeCategory().name().toUpperCase().compareTo(type.toString().toLowerCase())==0){
+            if(products.get(i).getTypeCategory().name().toLowerCase().compareTo(typeOfCategory.toLowerCase())==0){
                 newProducts.add(products.get(i));
             }
         }
-    return newProducts;}//filter as a category !
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+    return test.toString();}//filter as a category !
 
     //--------------------------------------------------------filter vehicle as bike and type of bike
-    public ArrayList<Bike> filterBike(ArrayList<ProductsModel> products){
+    public String filterBike(ArrayList<ProductsModel> products){
         ArrayList<Bike> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof Bike){
                 newProducts.add((Bike) products.get(i));
             }
         }
-        return newProducts;}
-    public ArrayList<Bike> filterBikeAsType(ArrayList<Bike> products,String typeOfBike){
-        ArrayList<Bike> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(typeOfBike.toLowerCase().compareTo(products.get(i).getType().toLowerCase())==0){
-                newProducts.add(products.get(i));
-            }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
         }
-        return newProducts;}
+        return test.toString();}
 
 
 
     //--------------------------------------------------------filter as vehicle as volume and automatic and manual
-    public ArrayList<Vehicle> filterVehicle(ArrayList<ProductsModel> products){
+    public String filterVehicle(ArrayList<ProductsModel> products){
         ArrayList<Vehicle> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(products.get(i) instanceof Vehicle){
+        for(int i=0;i<products.size();i++) {
+            if (products.get(i) instanceof Vehicle) {
                 newProducts.add((Vehicle) products.get(i));
             }
         }
-        return newProducts;}
-    public ArrayList<Vehicle> filterVehicleAsVolumeEngine(ArrayList<Vehicle> products,int minVolume,int maxVolume ){
-        ArrayList<Vehicle> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(products.get(i).getEngineVolume()>minVolume && products.get(i).getEngineVolume()<maxVolume){
-                newProducts.add(products.get(i));
+            StringBuilder test = new StringBuilder();
+            for(int j=0;j<newProducts.size();j++){
+                test.append(newProducts.get(j).toString()+"  \n");
             }
-        }
-        return newProducts;}
-
-    public ArrayList<Vehicle> filterVehicleAsAutomatic(ArrayList<Vehicle> products ){
-        ArrayList<Vehicle> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(products.get(i).isAutomatic()){
-                newProducts.add(products.get(i));
-            }
-        }
-        return newProducts;}
-
-    public ArrayList<Vehicle> filterVehicleAsManual(ArrayList<Vehicle> products ){
-        ArrayList<Vehicle> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(!(products.get(i).isAutomatic())){
-                newProducts.add(products.get(i));
-            }
-        }
-        return newProducts;}
-
-
+        return test.toString();}
 
 
     //--------------------------------------------------------filter as Digital product!
@@ -141,8 +114,9 @@ public class UserController {
         }
         return newProducts;}
 
+
     //--------------------------------------------------------filter Digital product as capacity of ssd and usb!
-    public ArrayList<DigitalProducts> filterDigitalProductAsCapacity(ArrayList<DigitalProducts> products,int min,int max ){
+    public String filterDigitalProductAsCapacity(ArrayList<DigitalProducts> products,int min,int max ){
         ArrayList<DigitalProducts> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof StorageEquipment){
@@ -151,79 +125,69 @@ public class UserController {
                 }
             }
         }
-        return newProducts;}
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();}
     //--------------------------------------------------------filter Digital product as personal computer
-    public ArrayList<PersonalComputer> filterDigitalProductAsPc(ArrayList<DigitalProducts> products ){
+    public String filterDigitalProductAsPc(ArrayList<DigitalProducts> products ){
         ArrayList<PersonalComputer> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof PersonalComputer){
                 newProducts.add((PersonalComputer) products.get(i));
             }
         }
-        return newProducts;}
-    public ArrayList<PersonalComputer> filterPcAsRAM(ArrayList<PersonalComputer> products ,int minRAM,int maxRAM ){
-        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(products.get(i).getRAM()>minRAM && products.get(i).getRAM()<maxRAM){
-                newProducts.add(products.get(i));
-            }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
         }
-        return newProducts;}
-    public ArrayList<PersonalComputer> searchPcAsCpu(ArrayList<PersonalComputer> products ,String cpu ){
-        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(products.get(i).getModelOfCPU().compareTo(cpu)==0){
-                newProducts.add(products.get(i));
-            }
-        }
-        return newProducts;}
+        return test.toString();}
+
 
     //--------------------------------------------------------filter Digital product as Usb!
-    public ArrayList<Usb> filterDigitalProductAsUsb(ArrayList<DigitalProducts> products ){
+    public String filterDigitalProductAsUsb(ArrayList<DigitalProducts> products ){
         ArrayList<Usb> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof Usb){
                 newProducts.add((Usb) products.get(i));
             }
         }
-        return newProducts;}
-    public ArrayList<Usb> filterUsbAsVersion(ArrayList<Usb> products ,int version ){
-        ArrayList<Usb> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if((products.get(i).getUsbVersion())==version){
-                newProducts.add(products.get(i));
-            }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
         }
-        return newProducts;}
+        return test.toString();}
 
 
     //--------------------------------------------------------filter Digital product as SSD!
-    public ArrayList<SSD> filterDigitalProductAsSSD(ArrayList<DigitalProducts> products ){
+    public String filterDigitalProductAsSSD(ArrayList<DigitalProducts> products ){
         ArrayList<SSD> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof SSD){
                 newProducts.add((SSD) products.get(i));
             }
         }
-        return newProducts;}
-    public ArrayList<SSD> filterSSDAsRead(ArrayList<SSD> products ,int minReadingSpeed ,int maxReadingSpeed ,int  minWritingSpeed ,int  maxWritingSpeed  ){
-        ArrayList<SSD> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if((products.get(i).getReadingSpeed()>minReadingSpeed &&products.get(i).getReadingSpeed()<maxReadingSpeed && products.get(i).getWritingSpeed()>minWritingSpeed && products.get(i).getWritingSpeed()<maxWritingSpeed)){
-                newProducts.add(products.get(i));
-            }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
         }
-        return newProducts;}
+        return test.toString();}
+
 
     //--------------------------------------------------------filter as Food!
-    public ArrayList<Food> filterFood(ArrayList<ProductsModel> products){
+    public String filterFood(ArrayList<ProductsModel> products){
         ArrayList<Food> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof Food){
                 newProducts.add((Food) products.get(i));
             }
         }
-        return newProducts;}
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();}
 
 
     //--------------------------------------------------------filter as Stationery!
@@ -234,99 +198,99 @@ public class UserController {
                 newProducts.add((StationeryProduct) products.get(i));
             }
         }
+
         return newProducts;}
     //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*filter stationery as pen and pen color
 
-    public ArrayList<Pen> filterStationeryAsPen(ArrayList<StationeryProduct> products ){
+    public String filterStationeryAsPen(ArrayList<StationeryProduct> products ){
         ArrayList<Pen> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof Pen){
                 newProducts.add((Pen)products.get(i));
             }
         }
-        return newProducts;}
-    public ArrayList<Pen> filterPenAsColor(ArrayList<Pen> products ,String color ){
-        ArrayList<Pen> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(color.toLowerCase().compareTo(products.get(i).getColorOfPen().toLowerCase())==0){
-                newProducts.add(products.get(i));
-            }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
         }
-        return newProducts;}
-
+        return test.toString();}
 
     //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-filter stationery as pencil and type of pencil
 
-    public ArrayList<Pencil> filterStationeryAsPencil(ArrayList<StationeryProduct> products ){
+    public String filterStationeryAsPencil(ArrayList<StationeryProduct> products ){
         ArrayList<Pencil> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof Pencil){
                 newProducts.add((Pencil) products.get(i));
             }
         }
-        return newProducts;}
-    public ArrayList<Pencil> filterPencilAsType(ArrayList<Pencil> products ,String type ){
-        ArrayList<Pencil> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(type.toLowerCase().compareTo(products.get(i).getType().toLowerCase())==0){
-                newProducts.add(products.get(i));
-            }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
         }
-        return newProducts;}
+        return test.toString();}
+
 
     //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-filter stationery as NoteBook and number of leaves of NoteBook
-    public ArrayList<NoteBook> filterStationeryAsNoteBook(ArrayList<StationeryProduct> products ){
+    public String filterStationeryAsNoteBook(ArrayList<StationeryProduct> products ){
         ArrayList<NoteBook> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i) instanceof NoteBook){
                 newProducts.add((NoteBook) products.get(i));
             }
         }
-        return newProducts;}
-    public ArrayList<NoteBook> filterNoteBookAsNumberLeaves(ArrayList<NoteBook> products,int minLeaves,int maxLeaves ){
-        ArrayList<NoteBook> newProducts= new ArrayList<>();
-        for(int i=0;i<products.size();i++){
-            if(products.get(i).getNumberOfLeaves()>minLeaves && products.get(i).getNumberOfLeaves()<maxLeaves){
-                newProducts.add(products.get(i));
-            }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
         }
-        return newProducts;}
-
+        return test.toString();}
 
     //--------------------------------------------------------filter as a capacity of product
 
 
-    public ArrayList<ProductsModel> filterَAsCapacity(ArrayList<ProductsModel> products){
+    public String filterَAsCapacity(ArrayList<ProductsModel> products){
         ArrayList<ProductsModel> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i).getCountInCapacity()>0){
                 newProducts.add(products.get(i));
             }
         }
-        return newProducts;}
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();}
     //--------------------------------------------------------filter as a price of product
 
 
-    public ArrayList<ProductsModel> filterَAsPrice(ArrayList<ProductsModel> products,double minPrice,double maxPrice){
+    public String filterَAsPrice(ArrayList<ProductsModel> products,double minPrice,double maxPrice){
         ArrayList<ProductsModel> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
             if(products.get(i).getPrice()<maxPrice && products.get(i).getPrice()>minPrice){
                 newProducts.add(products.get(i));
             }
         }
-        return newProducts;}
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();}
     //--------------------------------------------------------filter as a score of product
 
-    public ArrayList<ProductsModel> filterَAsScore(ArrayList<ProductsModel> products,double minScore,double maxScore){
+    public String filterَAsScore(ArrayList<ProductsModel> products,double minScore,double maxScore){
         ArrayList<ProductsModel> newProducts= new ArrayList<>();
         for(int i=0;i<products.size();i++){
-            if(products.get(i).getAverageOfScores()<maxScore && products.get(i).getAverageOfScores()>minScore){
+            if(products.get(i).getAverageOfScores()<=maxScore && products.get(i).getAverageOfScores()>=minScore){
                 newProducts.add(products.get(i));
             }
         }
-        return newProducts;}
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();}
     //---------------------------------------------------------search by name
-    public ArrayList<ProductsModel> searchInProduct(ArrayList<ProductsModel> products,String test){
+    public String searchInProduct(ArrayList<ProductsModel> products,String test){
         ArrayList<ProductsModel> newProducts= new ArrayList<>();
         char[] search = test.toCharArray();
         int count=0;
@@ -338,26 +302,88 @@ public class UserController {
                         break;
                     }
                 }
-                if (count>(search.length/2)){
-                    newProducts.add(products.get(i));
-                }
 
             }
+            if (count>(search.length/2+1)){
+                newProducts.add(products.get(i));
+                count=0;
+            }
         }
-        return newProducts;}
+            StringBuilder show = new StringBuilder();
+            for(int j=0;j<newProducts.size();j++){
+                show.append(newProducts.get(j).toString()+"  \n");
+            }
+
+        return show.toString();}
+    public String searchExactInProduct(ArrayList<ProductsModel> products,String iD){
+        for(int i=0 ;i<products.size();i++){
+            if(products.get(i).getName().equals(iD)){
+                return products.get(i).toString()+"\n\n";
+            }
+            else {
+                return "We do not have product with this id!!";
+            }
+        }
+
+
+
+
+    return }
     //---------------------------------------------------------view of cart
     public String seeCart(CustomerModel user){
         StringBuilder test = new StringBuilder();
+        if(user.getCart().get(0)==null){
+            System.out.println("you do not have add any product to your cart!!!");
+        }
         for(int i=0;i<user.getCart().size();i++){
             test.append((i+1)+")");
             test.append(user.getCart().get(i).getName());
             test.append("    "+"price:"+user.getCart().get(i).getPrice()+"    "+"ID:"+user.getCart().get(i).getProductID()+"\n");
         }
+
     return test.toString();}
-    //---------------------------------------------------------buy product
-    public void buyProduct(CustomerModel user ,ProductsModel product){
-        user.getCart().add(product);
+    //---------------------------------------------------------getPurchasedHistory!
+    public String getPurchasedHistory(CustomerModel customerModel){
+        StringBuilder test =new StringBuilder();
+        for(int i=0;i<customerModel.getPurchaseHistory().size();i++){
+            test.append((i+1)+"Name:"+customerModel.getPurchaseHistory().get(i).getName()+"  --  ID:");
+            test.append(customerModel.getPurchaseHistory().get(i).getProductID()+"  -- Price:");
+            test.append(customerModel.getPurchaseHistory().get(i).getPrice()+"  \n\n");
+        }
+        if(test.toString()==null){
+            return "you dose not have any buy!!";
+        }
+        else{
+            return test.toString();
+        }
     }
+
+
+
+
+
+
+
+
+
+
+    //---------------------------------------------------------buy product
+    public int buyProductByID(CustomerModel user ,String Id,AdminModel admin,int count){
+        for(int i =0 ; i<admin.getProductsOfStore().size();i++){
+            if(admin.getProductsOfStore().get(i).getProductID().equals(Id)){
+                if(admin.getProductsOfStore().get(i).getCountInCapacity()>count){
+                    for(int j=0;j<count;j++) {
+                        user.getCart().add(admin.getProductsOfStore().get(i));
+                    }
+                    return 1;//add successfully
+                }
+                else {
+                    return -2;//we do not have this volume of product
+                }
+            }
+
+        }
+    return -1;}//we do not have product with this id in our products!!
     //---------------------------------------------------------comment
     public void comment(CustomerModel user, String IdProduct , AdminModel admin,String comment){
         OpinionRequestModel opinion=new OpinionRequestModel(user,IdProduct,comment);
@@ -370,14 +396,24 @@ public class UserController {
         admin.getComments().add(opinion);
     }
     //---------------------------------------------------------set score
-    public void setScore(CustomerModel user, double newScore,ProductsModel productsModel){
-        ScoreModel score=new ScoreModel(user,newScore,productsModel);
+    public int setScore(CustomerModel user, double newScore, AdminModel admin,String id){
+        int check=-1;
+        for (int i =0;i<admin.getProductsOfStore().size();i++){
+            admin.getProductsOfStore().get(i).getProductID().equals(id);
+            check=i;
+            break;
+        }
+        if(check==-1){
+            return -1;
+        }
+        ScoreModel score=new ScoreModel(user,newScore,admin.getProductsOfStore().get(check));
         for(int j=0;j<user.getPurchaseHistory().size();j++){
-            if(user.getPurchaseHistory().get(j).getName()==productsModel.getName()){
+            if(user.getPurchaseHistory().get(j).getName()==id){
                 score.setScore((score.getProducts().getAverageOfScores()+newScore)/2);
-                break;
+                return 1;
             }
         }
+        return -2;
     }
 //-------------------------------------------------------------charging account
     public int chargeBalance(CustomerModel user,String charge , String cardNumber,String cvv2 ,String cardPass,AdminModel admin){
