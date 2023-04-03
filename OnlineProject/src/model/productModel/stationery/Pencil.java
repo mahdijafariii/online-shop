@@ -3,6 +3,7 @@ import model.productModel.CategoryModel;
 import model.productModel.ProductsModel;
 
 public class Pencil extends StationeryProduct{
+    private String colorOfPen;
      public enum typeOfPencil {
         HB,B,F,H,H2;
     }
@@ -10,6 +11,7 @@ public class Pencil extends StationeryProduct{
     public Pencil(String name, double price, int countInCapacity, double averageOfScores, CategoryModel type, String creatorCountry, String colorOfPen, typeOfPencil typeOfPenceil){
         super(name,price,countInCapacity,averageOfScores,type,creatorCountry);
         this.type=typeOfPenceil;
+        this.colorOfPen=colorOfPen;
     }
 
     public void setType(typeOfPencil type) {
@@ -23,6 +25,6 @@ public class Pencil extends StationeryProduct{
 
     @Override
     public String toString(){
-        return super.toString()+" --Type of pencil:"+type;
+        return super.toString()+" --Type of pencil:"+type+"  --Color:"+colorOfPen;
     }
 }
