@@ -14,8 +14,8 @@ public class InvoiceController {
         test =invoice.getListOfShoppingItem();
         double price=0;
         for(int i=0;i<test.size();i++){
-            test.get(0).getPrice();
-            price=test.get(0).getPrice()+price;
+            test.get(i).getPrice();
+            price=test.get(i).getPrice()+price;
         }
     return price;}
     public int deductFromBalance(InvoiceModel invoiceModel, CustomerModel customerModel) {

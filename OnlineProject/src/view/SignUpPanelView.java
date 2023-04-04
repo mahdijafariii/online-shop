@@ -14,8 +14,6 @@ public class SignUpPanelView {
     private final Pattern email = Pattern.compile("^[_A-Za-z0-9-+]+\\.?[_A-Za-z0-9-+]+@gmail.com$");
     private final Pattern password = Pattern.compile("(\\S){8,}");
     private final Pattern password2 = Pattern.compile("(.*[a-z])(.*[0-9])[a-z0-9#.!@$*&_]");
-    AdminModel admin = AdminModel.getAdmin();
-
     public void SignInPanelView() {
         System.out.println("-------------------------Sign In Panel-------------------------");
         while(true) {

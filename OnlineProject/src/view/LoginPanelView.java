@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class LoginPanelView {
     CustomerModel mahdi = new CustomerModel("mahdi25", "mahdi@gmail.com", "09162390873", "mahdi25@@", "Mahdi Jafari");
 
-    AdminModel admin = AdminModel.getAdmin();
-    AdminController adminController = new AdminController();
-    UserController userController = new UserController();
+    private AdminModel admin = AdminModel.getAdmin();
+    private AdminController adminController = new AdminController();
+    private UserController userController = new UserController();
     private Scanner in = new Scanner(System.in);
 
     public void loginPanel() {
@@ -38,24 +38,25 @@ public class LoginPanelView {
         }
         boolean stayInLogin=true;
         while(stayInLogin){
-            int whatToDo = 10;
+            int whatToDo = 11;
             if (count != 3) {//now line 39 do not run and program do not crash!
                 System.out.println("Hi " + admin.getAllCostumers().get(check).getFullName() + " what do you want to do:\n" +
-                        "1)edit info!\n" +
-                        "2)see product!\n" +
-                        "3)buy with id in any number!\n" +
-                        "4)see purchased history!\n" +
-                        "5)comment!\n" +
-                        "6)set score!!\n" +
-                        "7)see cart!!\n" +
-                        "8)finalize buy!!\n" +
-                        "9)request for charge balance!!\n" +
-                        "10)exit!!");
+                        "1)Edit info!\n" +
+                        "2)See product!\n" +
+                        "3)Buy with id in any number!\n" +
+                        "4)See purchased history!\n" +
+                        "5)Comment!\n" +
+                        "6)Set score!!\n" +
+                        "7)See cart!!\n" +
+                        "8)Finalize buy!!\n" +
+                        "9)Request for charge balance!!\n" +
+                        "10)See invoices!!\n" +
+                        "11)Exit!!");
                 whatToDo = in.nextInt();
             }
 
             if (count == 3) {
-                whatToDo = 10;
+                whatToDo = 11;
             }
             switch (whatToDo) {
                 case 1:
@@ -115,43 +116,50 @@ public class LoginPanelView {
                 case 6:
                     System.out.println("This is your purchased buy from us bring up id !!");
                     System.out.println(userController.getPurchasedHistory(admin.getAllCostumers().get(check)));
-                    System.out.println("what is your score for this product!!(score should <10)");
+                    System.out.println("What is your score for this product!!(score should <10)");
                     double score=in.nextInt();
                     if(score>10){
-                        System.out.println("score is upper than 10");
+                        System.out.println("Score is upper than 10");
                         break;
                     }
                     in.nextLine();
                     System.out.println("Enter Id:");
                     int checkScore=userController.setScore(admin.getAllCostumers().get(check),score,AdminModel.getAdmin(),in.nextLine());
                     if(checkScore==-1){
-                        System.out.println("we do not have product with this id!!");
+                        System.out.println("We do not have product with this id!!");
                     }
                     else if(checkScore==-2){
                         System.out.println("Operation failed");
                     }
                     else{
-                        System.out.println("successfully!!!");
+                        System.out.println("Successfully!!!");
                     }
                     break;
                 case 7:
                     System.out.println("-------------------------------------This is your cart-------------------------------------!");
-                    System.out.println(userController.seeCart(admin.getAllCostumers().get(check))+"\n\n");
+                    if(admin.getAllCostumers().get(check).getCart()!=null){
+                        System.out.println(userController.seeCart(admin.getAllCostumers().get(check))+"\n\n");
+                    }
+                    else{
+                        System.out.println("You do not have anything in your cart!!");
+                    }
+
                     break;
                 case 8:
-                    System.out.println("Now you want to finalize your buy!!");
+                    System.out.println("------------------------------Now you want to finalize your buy---------------------!!");
                     System.out.println("-------------------------------------This is your cart-------------------------------------!");
                     System.out.println(userController.seeCart(admin.getAllCostumers().get(check))+"\n\n");
                     int checkFinalize=userController.finalizeBuy(admin.getAllCostumers().get(check),AdminModel.getAdmin());
                     if(checkFinalize==-5){
-                        System.out.println("one of the product is not in capacity!!!");
+                        System.out.println("One of the product is not in capacity!!!");
                     }
                     else if(checkFinalize==1){
-                        System.out.println("success");
                         System.out.println(admin.getAllCostumers().get(check).getInvoiceHistory().get(admin.getAllCostumers().get(check).getInvoiceHistory().size()-1).toString());
+                        admin.getAllCostumers().get(check).setCart(new ArrayList<>());
+                        System.out.println("Success");
                     }
                     else if(checkFinalize==-1){
-                        System.out.println("you do not have enough money first please charge your account !!");
+                        System.out.println("You do not have enough money first please charge your account !!");
                     }
                     break;
                 case 9:
@@ -162,7 +170,7 @@ public class LoginPanelView {
                         String cardNumber = in.nextLine();
                         System.out.println("Please enter your cvv2:");
                         String cvv2 = in.nextLine();
-                        System.out.println("please enter your password of card :");
+                        System.out.println("Please enter your password of card :");
                         String cardPassword = in.nextLine();
                         System.out.println("Enter amount of charge:");
                         String charge = in.nextLine();
@@ -171,17 +179,20 @@ public class LoginPanelView {
                             System.out.println("Your request was send for admin system when accept your balance will be charge!!!");
                         }
                         else if(checkCharge==-2){
-                            System.out.println("your format of cvv2 is not correct!!(3 digit --> 123)");
+                            System.out.println("Your format of cvv2 is not correct!!(3 digit --> 123)");
                         }
                         else if(checkCharge==-3){
-                            System.out.println("your password format is not correct !!!(6 digit --> 546489)");
+                            System.out.println("Your password format is not correct !!!(6 digit --> 546489)");
                         }
                         else if(checkCharge==-1){
-                            System.out.println("your format of card number is not correct !!! (16 digit -->6280231331312323)");
+                            System.out.println("Your format of card number is not correct !!! (16 digit -->6280231331312323)");
                         }
                     }while (checkCharge!=1);
                     break;
                 case 10:
+                    System.out.println(userController.beforeInvoice(admin.getAllCostumers().get(check)));
+                    break;
+                case 11:
                     stayInLogin=false;
                     break;
 
@@ -207,21 +218,7 @@ public class LoginPanelView {
                 admin.getAllCostumers().get(numberInList).getCart().add(products.get(j));
             }
         }
-//        else {
-//            admin.getAllCostumers().get(numberInList).setCart(products);
-//            System.out.println("Now you want to finalize your buy!!");
-//            System.out.println("-------------------------------------This is your cart-------------------------------------!");
-//            System.out.println(userController.seeCart(admin.getAllCostumers().get(numberInList)) + "\n\n");
-//            int checkFinalize = userController.finalizeBuy(admin.getAllCostumers().get(numberInList), AdminModel.getAdmin());
-//            if (checkFinalize == -5) {
-//                System.out.println("one of the product is not in capacity!!!");
-//            } else if (checkFinalize == 1) {
-//                System.out.println("success");
-//                System.out.println(admin.getAllCostumers().get(numberInList).getInvoiceHistory().get(admin.getAllCostumers().get(numberInList).getInvoiceHistory().size() - 1).toString());
-//            } else if (checkFinalize == -1) {
-//                System.out.println("you do not have enough money first please charge your account !!");
-//            }
-//        }
+
     }
 
 }

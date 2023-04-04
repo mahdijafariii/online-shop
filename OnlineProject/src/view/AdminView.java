@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class AdminView {
     private Scanner in = new Scanner(System.in);
-    AdminController adminController = new AdminController();
+    private AdminController adminController = new AdminController();
     private AdminModel admin=AdminModel.getAdmin();
 
 
@@ -18,7 +18,7 @@ public class AdminView {
             String adminName = in.nextLine();
             System.out.println("please enter your password:");
             String adminPassword = in.nextLine();
-            if (adminName.equals("admin") && adminPassword.equals(adminPassword)) {
+            if (adminName.equals("admin") && adminPassword.equals("admin")) {
                 boolean exiting1 = true;
                 while (exiting1) {
                     System.out.println("Enter command ://for help enter help");

@@ -17,9 +17,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserController {
-    Pattern email = Pattern.compile("[_A-Za-z0-9-+]+\\.?[_A-Za-z0-9-+]+@gmail.com$");
-    Pattern password = Pattern.compile("(\\S){8,}");
-    Pattern password2 = Pattern.compile("(.*[a-z])(.*[0-9])[a-z0-9#.!@$*&_]");
+    private Pattern email = Pattern.compile("[_A-Za-z0-9-+]+\\.?[_A-Za-z0-9-+]+@gmail.com$");
+    private Pattern password = Pattern.compile("(\\S){8,}");
+    private Pattern password2 = Pattern.compile("(.*[a-z])(.*[0-9])[a-z0-9#.!@$*&_]");
     public boolean changeName(CustomerModel costumer,String userName , String password,String newFullName) {
         if(userName.compareTo(costumer.getUserName())==0 && password.compareTo(costumer.getPassword())==0){
             costumer.setFullName(newFullName);
@@ -339,7 +339,7 @@ public class UserController {
     public String getPurchasedHistory(CustomerModel customerModel){
         StringBuilder test =new StringBuilder();
         for(int i=0;i<customerModel.getPurchaseHistory().size();i++){
-            test.append((i+1)+"Name:"+customerModel.getPurchaseHistory().get(i).getName()+"  --  ID:");
+            test.append((i+1)+")Name:"+customerModel.getPurchaseHistory().get(i).getName()+"  --  ID:");
             test.append(customerModel.getPurchaseHistory().get(i).getProductID()+"  -- Price:");
             test.append(customerModel.getPurchaseHistory().get(i).getPrice()+"  \n\n");
         }
@@ -354,15 +354,15 @@ public class UserController {
     public int finalizeBuy(CustomerModel customerModel ,AdminModel admin) {
         InvoiceController invoiceController = new InvoiceController();
         InvoiceModel test = new InvoiceModel(customerModel.getCart());
-        test.setTotalPrice(invoiceController.calculateInvoice(test));
-        int checkBalance = invoiceController.deductFromBalance(test, customerModel);
+        test.setTotalPrice(invoiceController.calculateInvoice(test));//you should set it manual and function is in invoice controller
+        int checkBalance = invoiceController.deductFromBalance(test, customerModel);//check balance manual and mines price of product from balance
         if (checkBalance == 1) {
             customerModel.getInvoiceHistory().add(test);
             for(int i =0 ; i <admin.getProductsOfStore().size();i++){
                 for(int j=0;j<customerModel.getCart().size();j++){
                     if(admin.getProductsOfStore().get(i).getProductID().equals(customerModel.getCart().get(j).getProductID())){
-                        if(admin.getProductsOfStore().get(i).getCountInCapacity()!=0) {
-                            admin.getProductsOfStore().get(i).setCountInCapacity(admin.getProductsOfStore().get(i).getCountInCapacity() - 1);
+                        if(admin.getProductsOfStore().get(i).getCountInCapacity()!=0) {//check balance of product in capacity
+                            admin.getProductsOfStore().get(i).setCountInCapacity(admin.getProductsOfStore().get(i).getCountInCapacity() - 1);//mines balance !!
                             customerModel.getPurchaseHistory().add(customerModel.getCart().get(j));//when you want to set score it is in purchased history!!
                             customerModel.getCart().remove(j);
                         }
@@ -381,15 +381,6 @@ public class UserController {
         }
 
     }
-
-
-
-
-
-
-
-
-
 
     //---------------------------------------------------------buy product
     public int buyProductByID(CustomerModel user ,String Id,AdminModel admin,int count){
@@ -423,9 +414,11 @@ public class UserController {
     public int setScore(CustomerModel user, double newScore, AdminModel admin,String id){
         int check=-1;
         for (int i =0;i<admin.getProductsOfStore().size();i++){
-            admin.getProductsOfStore().get(i).getProductID().equals(id);
-            check=i;
-            break;
+            if(admin.getProductsOfStore().get(i).getProductID().equals(id)) {
+                check = i;
+                break;
+            }
+
         }
         if(check==-1){
             return -1;//we do not have this product in our store!!
@@ -433,7 +426,8 @@ public class UserController {
         ScoreModel score=new ScoreModel(user,newScore,admin.getProductsOfStore().get(check));
         for(int j=0;j<user.getPurchaseHistory().size();j++){
             if(user.getPurchaseHistory().get(j).getProductID().equals(id)){
-                score.setScore((score.getProducts().getAverageOfScores()+newScore)/2);
+                double beforeScore=admin.getProductsOfStore().get(check).getAverageOfScores();
+                admin.getProductsOfStore().get(check).setAverageOfScores(((beforeScore+newScore)/2));
                 return 1;
             }
         }
@@ -457,6 +451,16 @@ public class UserController {
         }
 
     }
+    //----------------------------------------------------------see before invoices
+    public String beforeInvoice(CustomerModel customerModel){
+        StringBuilder test = new StringBuilder();
+        for(int i = 0 ; i <customerModel.getInvoiceHistory().size(); i++){
+            test.append((i+1)+")"+customerModel.getPurchaseHistory().get(0).toString()+"\n\n");
+        }
+    return test.toString();}
+
+
+
     //-----------------------------------------------------------all of regex
     public boolean checkCardNumber(String cardNumber){
         Pattern pattern = Pattern.compile("^[0-9]{16}$");

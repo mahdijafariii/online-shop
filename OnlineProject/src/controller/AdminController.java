@@ -17,7 +17,7 @@ import javax.xml.stream.events.Comment;
 
 
 public class AdminController {
-    AdminModel admin = AdminModel.getAdmin();
+    private AdminModel admin = AdminModel.getAdmin();
 
 
 
@@ -160,17 +160,15 @@ public class AdminController {
                 findProductAddComment=admin.getComments().get(i).getProductId();
                 break;
                 }
+        }
             for(int j = 0 ; j<admin.getProductsOfStore().size();j++){
                 if(admin.getProductsOfStore().get(j).getProductID().equals(findProductAddComment)){
                     numberOfProduct=j;
                     break;
                 }
             }
-
                 admin.getProductsOfStore().get(numberOfProduct).getCommentsOfProduct().add(admin.getComments().get(numberOfComment));
-                admin.getComments().remove(i);
-                break;
-            }
+                admin.getComments().remove(numberOfComment);
         }
 
     public void rejectComment(int opinionNumb){
