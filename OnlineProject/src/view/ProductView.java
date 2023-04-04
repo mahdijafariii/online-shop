@@ -131,16 +131,20 @@ public class ProductView {
                             "filter digital_product!!\n" +
                             "filter digital_product min max(as a capacity)!!\n" +
                             "filter digital_product pc!!\n" +
+                            "filter digital_product pc ram min max!!\n" +
                             "filter digital_product usb!!\n " +
                             "filter digital_product ssd!!\n" +
                             "filter stationery!!\n" +
                             "filter stationery pen!!\n" +
+                            "filter stationery prn color type(type-->red*green*black*blue*and...)!!\n" +
                             "filter stationery noteBook !!\n" +
                             "filter stationery pencil !!\n" +
                             "filter food!!\n" +
                             "filter Vehicle!!\n" +
                             "filter Vehicle bike!!\n" +
                             "filter Vehicle vehicle!!\n" +
+                            "filter Vehicle vehicle manual!!\n" +
+                            "filter Vehicle vehicle engine min max!!\n" +
                             "filter capacity!!(show you our product that have we have in capacity)!!\n" +
                             "filter score min max!!\n" +
                             "filter price min max!! (filter price 5000 50000)\n" +
@@ -158,11 +162,16 @@ public class ProductView {
                                         if(splitCommand.length==2){
                                             System.out.println(userController.filterCategory(admin.getProductsOfStore(),"digital_products"));
                                         }
-                                        else if(true) {
+                                        else  {
                                             if (splitCommand[2].equals("usb")) {
                                                 System.out.println(userController.filterDigitalProductAsUsb(userController.filterDigitalProduct(admin.getProductsOfStore())));
                                             } else if (splitCommand[2] .equals("pc") ) {
-                                                System.out.println(userController.filterDigitalProductAsPc((userController.filterDigitalProduct(admin.getProductsOfStore()))));
+                                                if(splitCommand[3].equals("ram")){
+                                                    System.out.println(userController.filterPcAsRAM(userController.filterPcReturnArray((userController.filterDigitalProduct(admin.getProductsOfStore()))),Integer.parseInt(splitCommand[4]),Integer.parseInt(splitCommand[5])));
+                                                }
+                                                else {
+                                                    System.out.println(userController.filterDigitalProductAsPc((userController.filterDigitalProduct(admin.getProductsOfStore()))));
+                                                }
                                             } else if (splitCommand[2] .equals( "ssd")) {
                                                 System.out.println(userController.filterDigitalProductAsSSD((userController.filterDigitalProduct(admin.getProductsOfStore()))));
                                             }
@@ -180,8 +189,18 @@ public class ProductView {
                                             if (splitCommand[2] .equals("bike") ) {
                                                 System.out.println(userController.filterBike(admin.getProductsOfStore()));
 
-                                            } else if (splitCommand[2] .equals("vehicle") ) {
-                                                System.out.println(userController.filterVehicle(admin.getProductsOfStore()));
+                                            }
+                                            else if (splitCommand[2] .equals("vehicle") )
+                                            {
+                                                if(splitCommand[3].equals("engine")){
+                                                    System.out.println(userController.filterVehicleAsVolumeEngine(userController.filterVehicleReturnArray(admin.getProductsOfStore()),Integer.parseInt(splitCommand[4]),Integer.parseInt(splitCommand[5])));
+                                                }
+                                                else if(splitCommand[3].equals("manual")){
+                                                    System.out.println(userController.filterVehicleAsManual(userController.filterVehicleReturnArray(admin.getProductsOfStore())));
+                                                }
+                                                else{
+                                                    System.out.println(userController.filterVehicle(admin.getProductsOfStore()));
+                                                }
                                             }
                                         }
                                         break;
@@ -197,7 +216,15 @@ public class ProductView {
                                                 System.out.println(userController.filterStationeryAsNoteBook(userController.filterStationery(admin.getProductsOfStore())));
                                             }
                                             else if(splitCommand[2].equals("pen")){
-                                                System.out.println(userController.filterStationeryAsPen(userController.filterStationery(admin.getProductsOfStore())));
+                                                if(splitCommand[3].equals("color"))
+                                                {
+                                                    System.out.println(userController.filterPenAsColor(userController.filterPenReturnArray(userController.filterStationery(admin.getProductsOfStore())),splitCommand[4]));
+
+                                                }
+                                                else{
+                                                    System.out.println(userController.filterStationeryAsPen(userController.filterStationery(admin.getProductsOfStore())));
+
+                                                }
 
                                             }
                                             else if(splitCommand[2].equals("pencil")){

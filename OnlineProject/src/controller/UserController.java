@@ -86,6 +86,65 @@ public class UserController {
             test.append(newProducts.get(j).toString()+"  \n");
         }
         return test.toString();}
+    //-----------------------------------------------------------filter as engine volume !!
+
+    public String filterVehicleAsVolumeEngine(ArrayList<Vehicle> products,int minVolume,int maxVolume ){
+        ArrayList<Vehicle> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getEngineVolume()>minVolume && products.get(i).getEngineVolume()<maxVolume){
+                newProducts.add(products.get(i));
+            }
+        }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();}
+
+    //-----------------------------------------------------------filter vehicle as manual !!
+
+    public String filterVehicleAsManual(ArrayList<Vehicle> products ){
+        ArrayList<Vehicle> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(!(products.get(i).isAutomatic())){
+                newProducts.add(products.get(i));
+            }
+        }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();}
+    //-----------------------------------------------------------filter ram of pc !!
+
+    public String filterPcAsRAM(ArrayList<PersonalComputer> products ,int minRAM,int maxRAM ){
+        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getRAM()>minRAM && products.get(i).getRAM()<maxRAM){
+                newProducts.add(products.get(i));
+            }
+        }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();}
+    //-----------------------------------------------------------filter pen as color !!
+
+
+    public String filterPenAsColor(ArrayList<Pen> products ,String color ){
+        ArrayList<Pen> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(color.toLowerCase().compareTo(products.get(i).getColorOfPen().toLowerCase())==0){
+                newProducts.add(products.get(i));
+            }
+        }
+        StringBuilder test = new StringBuilder();
+        for(int j=0;j<newProducts.size();j++){
+            test.append(newProducts.get(j).toString()+"  \n");
+        }
+        return test.toString();
+       }
 
 
 
@@ -102,6 +161,18 @@ public class UserController {
                 test.append(newProducts.get(j).toString()+"  \n");
             }
         return test.toString();}
+
+
+    public ArrayList filterVehicleReturnArray(ArrayList<ProductsModel> products){
+        ArrayList<Vehicle> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++) {
+            if (products.get(i) instanceof Vehicle) {
+                newProducts.add((Vehicle) products.get(i));
+            }
+        }
+        return newProducts;}
+
+
 
 
     //--------------------------------------------------------filter as Digital product!
@@ -143,6 +214,14 @@ public class UserController {
             test.append(newProducts.get(j).toString()+"  \n");
         }
         return test.toString();}
+    public ArrayList<PersonalComputer> filterPcReturnArray(ArrayList<DigitalProducts> products ){
+        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof PersonalComputer){
+                newProducts.add((PersonalComputer) products.get(i));
+            }
+        }
+        return newProducts;}
 
 
     //--------------------------------------------------------filter Digital product as Usb!
@@ -214,6 +293,23 @@ public class UserController {
             test.append(newProducts.get(j).toString()+"  \n");
         }
         return test.toString();}
+    public ArrayList<Pen> filterPenReturnArray(ArrayList<StationeryProduct> products ){
+        ArrayList<Pen> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i) instanceof Pen){
+                newProducts.add((Pen)products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<StationeryProduct> filterCategoryReArray(ArrayList<ProductsModel> products, String typeOfCategory){
+        ArrayList<StationeryProduct> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getTypeCategory().name().toLowerCase().compareTo(typeOfCategory.toLowerCase())==0){
+                newProducts.add((StationeryProduct) products.get(i));
+            }
+        }
+
+        return newProducts;}//filter as a category !
 
     //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-filter stationery as pencil and type of pencil
 
