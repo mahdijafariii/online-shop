@@ -1,0 +1,57 @@
+add vehicle peraid 200000000 50 saipa false 8000
+add vehicle samand 300000000 20 iran_khodro false 10000
+add vehicle quick 350000000 30 saipa false 9000
+add vehicle pars 500000000 16 iran_khodro false 12000
+add vehicle x5 40000000000 3 saipa true 150000
+add vehicle x4 30000000000 1 saipa true 120000
+add vehicle sonata 1500000000 5  true 50000
+add vehicle 405 400000000 18 iran_khodro false 10000
+add vehicle peikan 50000000 10 iran_khodro false 3000
+add bike viva 16000000 15 1 china
+add bike cannondale 30000000 15 2 china
+add bike overlord 22000000 1 3 china
+add bike cannondale 25000000 18 2 china
+add bike overlord 18000000 20 4 china
+add bike cannondale 16000000 5 1 china
+add noteBook irani 15000 800 iran 100 leaves
+add noteBook english 17000 450 iran 100 leaves
+add noteBook art 25000 900 iran 150 leaves
+add noteBook art 32000 60 iran 150 leaves
+add noteBook art 14000 50 iran 80 leaves
+add noteBook english 15000 800 iran 100 leaves
+add noteBook art 15000 300 iran 100 leaves
+add noteBook english 65000 200 iran 300 leaves
+add noteBook english 18000 120 iran 100 leaves
+add pen bluePen 6000 5000 kian blue
+add pen blackPen 6000 2020 kian black
+add pen redPen 6000 1800 kian red
+add pen bluePen 6000 2000 x6 blue
+add pen bluePen 12000 2000 panter blue
+add pen greenPen 6000 2000 kian green
+add pen bluePen 9000 2000 x3 blue
+add pencil fabercaster 10000 120 iran red 1
+add pencil fabercaster 1250 0 iran black 1
+add pencil fabercaster 10000 200 iran black 2
+add pencil fabercaster 10000 300 iran black 3
+add ssd siliconSort 2000000 20 120 20*40 2000 100 120
+add ssd silicon 3500000 10 10 31*40 3000 150 120
+add ssd siliconBig 2000000 20 5 30*40 2000 100 120
+add ssd siliconSmall 3000000 20 16 35*40 2000 100 120
+add ssd asusPc 1500000 20 80 36*40 1000 100 120
+add ssd silicon 1000000 20 0 30*40 1000 100 120
+add ssd hp 2000000 20 90 32*40 2000 100 120
+add usb silicon 180000 50 0.02 0.02*0.06 32 2
+add PC ideaPad 42000000 5 2 0.4*0.3 12700H 16
+add PC asus 40000000 5 2 0.4*0.3 11750 32
+add pencil fabercaster 10000 120 iran red 1
+add food hyebye 10000 130 1400 1403
+add food bisquite 150 35 1400 1403
+add food milk 15000 10 1400 1403
+add food tea 10000 100 1400 1403
+add food cofee 10000 30 1400 1406
+add food gooday 15000 50 1400 1406
+add food torobika 15000 500 1400 1406
+add food water 10000 150 1400 1405
+add food cocaMilk 12000 50 1400 1401
+
+

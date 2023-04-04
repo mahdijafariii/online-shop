@@ -1,0 +1,97 @@
+public ArrayList<Bike> filterBikeAsType(ArrayList<Bike> products,String typeOfBike){
+        ArrayList<Bike> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(typeOfBike.toLowerCase().compareTo(products.get(i).getType().toLowerCase())==0){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+------------------------------------------------------------------------------------------------
+public ArrayList<Vehicle> filterVehicleAsVolumeEngine(ArrayList<Vehicle> products,int minVolume,int maxVolume ){
+        ArrayList<Vehicle> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getEngineVolume()>minVolume && products.get(i).getEngineVolume()<maxVolume){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+------------------------------------------------------------------------------------------------
+   public ArrayList<Vehicle> filterVehicleAsAutomatic(ArrayList<Vehicle> products ){
+        ArrayList<Vehicle> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).isAutomatic()){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+
+    public ArrayList<Vehicle> filterVehicleAsManual(ArrayList<Vehicle> products ){
+        ArrayList<Vehicle> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(!(products.get(i).isAutomatic())){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+------------------------------------------------------------------------------------------------
+public ArrayList<PersonalComputer> filterPcAsRAM(ArrayList<PersonalComputer> products ,int minRAM,int maxRAM ){
+        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getRAM()>minRAM && products.get(i).getRAM()<maxRAM){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+    public ArrayList<PersonalComputer> searchPcAsCpu(ArrayList<PersonalComputer> products ,String cpu ){
+        ArrayList<PersonalComputer> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getModelOfCPU().compareTo(cpu)==0){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+----------------------------------------------------------------------------------------------------
+public ArrayList<Usb> filterUsbAsVersion(ArrayList<Usb> products ,int version ){
+        ArrayList<Usb> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if((products.get(i).getUsbVersion())==version){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+----------------------------------------------------------------------------------------------------
+public ArrayList<SSD> filterSSDAsRead(ArrayList<SSD> products ,int minReadingSpeed ,int maxReadingSpeed ,int  minWritingSpeed ,int  maxWritingSpeed  ){
+        ArrayList<SSD> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if((products.get(i).getReadingSpeed()>minReadingSpeed &&products.get(i).getReadingSpeed()<maxReadingSpeed && products.get(i).getWritingSpeed()>minWritingSpeed && products.get(i).getWritingSpeed()<maxWritingSpeed)){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+----------------------------------------------------------------------------------------------------
+public ArrayList<Pen> filterPenAsColor(ArrayList<Pen> products ,String color ){
+        ArrayList<Pen> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(color.toLowerCase().compareTo(products.get(i).getColorOfPen().toLowerCase())==0){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+----------------------------------------------------------------------------------------------------
+public ArrayList<Pencil> filterPencilAsType(ArrayList<Pencil> products ,String type ){
+        ArrayList<Pencil> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(type.toLowerCase().compareTo(products.get(i).getType().toLowerCase())==0){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
+----------------------------------------------------------------------------------------------------
+public ArrayList<NoteBook> filterNoteBookAsNumberLeaves(ArrayList<NoteBook> products,int minLeaves,int maxLeaves ){
+        ArrayList<NoteBook> newProducts= new ArrayList<>();
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getNumberOfLeaves()>minLeaves && products.get(i).getNumberOfLeaves()<maxLeaves){
+                newProducts.add(products.get(i));
+            }
+        }
+        return newProducts;}
