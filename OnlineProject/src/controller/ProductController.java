@@ -29,9 +29,9 @@ public class ProductController {
     public String showProductInfo(int numberInList){
         StringBuilder test = new StringBuilder();
         test.append("---------------------------"+admin.getProductsOfStore().get(numberInList-1).toString()+"---------------------------\n\n");
-        test.append("--------------------------------------------------------comment-----------------------------------------------------");
+        test.append("---------------------------------------------------------------------------------------comment-----------------------------------------------------------------------------------------------------\n"+admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().size());
         for(int j=0 ;j<admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().size();j++ ){
-            test.append((j+1)+")"+admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().get(j).getText()+"----------------\n");
+            test.append((j+1)+")"+admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().get(j).getOpinion()+"----------------\n");
         }
 
     return test.toString();}

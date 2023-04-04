@@ -320,19 +320,12 @@ public class UserController {
             if(products.get(i).getName().equals(iD)){
                 return products.get(i).toString()+"\n\n";
             }
-            else {
-                return "We do not have product with this id!!";
-            }
         }
-
-
-
-
-    return }
+        return "We do not have product with this id!!";}
     //---------------------------------------------------------view of cart
     public String seeCart(CustomerModel user){
         StringBuilder test = new StringBuilder();
-        if(user.getCart().get(0)==null){
+        if(user.getCart().size()==0){
             System.out.println("you do not have add any product to your cart!!!");
         }
         for(int i=0;i<user.getCart().size();i++){
@@ -356,6 +349,37 @@ public class UserController {
         else{
             return test.toString();
         }
+    }
+    //----------------------------------------------------------finalize buy!!
+    public int finalizeBuy(CustomerModel customerModel ,AdminModel admin) {
+        InvoiceController invoiceController = new InvoiceController();
+        InvoiceModel test = new InvoiceModel(customerModel.getCart());
+        test.setTotalPrice(invoiceController.calculateInvoice(test));
+        int checkBalance = invoiceController.deductFromBalance(test, customerModel);
+        if (checkBalance == 1) {
+            customerModel.getInvoiceHistory().add(test);
+            for(int i =0 ; i <admin.getProductsOfStore().size();i++){
+                for(int j=0;j<customerModel.getCart().size();j++){
+                    if(admin.getProductsOfStore().get(i).getProductID().equals(customerModel.getCart().get(j).getProductID())){
+                        if(admin.getProductsOfStore().get(i).getCountInCapacity()!=0) {
+                            admin.getProductsOfStore().get(i).setCountInCapacity(admin.getProductsOfStore().get(i).getCountInCapacity() - 1);
+                            customerModel.getPurchaseHistory().add(customerModel.getCart().get(j));//when you want to set score it is in purchased history!!
+                            customerModel.getCart().remove(j);
+                        }
+                        else{
+                            return -5;//one of the product is not in capacity!!
+                        }
+
+                    }
+                }
+            }
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+
     }
 
 
@@ -404,11 +428,11 @@ public class UserController {
             break;
         }
         if(check==-1){
-            return -1;
+            return -1;//we do not have this product in our store!!
         }
         ScoreModel score=new ScoreModel(user,newScore,admin.getProductsOfStore().get(check));
         for(int j=0;j<user.getPurchaseHistory().size();j++){
-            if(user.getPurchaseHistory().get(j).getName()==id){
+            if(user.getPurchaseHistory().get(j).getProductID().equals(id)){
                 score.setScore((score.getProducts().getAverageOfScores()+newScore)/2);
                 return 1;
             }
@@ -427,7 +451,7 @@ public class UserController {
             return -3;
         }
         else  {
-            ChargeRequestModel test = new ChargeRequestModel(user, cardNumber,cardPass,cvv2,charge);
+            ChargeRequestModel test = new ChargeRequestModel(user, charge,cvv2,cardNumber,cardPass);
             admin.getChargeRequest().add(test);
             return 1;
         }
@@ -443,7 +467,7 @@ public class UserController {
         else return false;
     }
     public boolean checkCvv2(String cardNumber){
-        Pattern pattern = Pattern.compile("^[0-9]{4}$");
+        Pattern pattern = Pattern.compile("^[0-9]{3}$");
         Matcher matcher = pattern.matcher(cardNumber);
         if(matcher.find()){
             return true;

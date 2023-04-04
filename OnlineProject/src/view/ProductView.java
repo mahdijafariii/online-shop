@@ -14,7 +14,8 @@ public class ProductView {
     private Scanner in = new Scanner(System.in);
     ProductController productController = new ProductController();
     AdminModel admin =AdminModel.getAdmin();
-    ArrayList<ProductsModel> gustCart=new ArrayList<>();
+
+    static ArrayList<ProductsModel> gustCart;
     UserController userController=new UserController();
     public String productPanel(String userName,String password){
         System.out.println("-------------------------------------------------------------This is our product hope you enjoy--------------------------------------");
@@ -22,9 +23,12 @@ public class ProductView {
         ArrayList<String> test = new ArrayList<>();
         test=productController.showProduct();
         int count =0;
+        if(gustCart==null) {
+            gustCart = new ArrayList<>();
+        }
         do{
             System.out.println(test.get(count));
-            System.out.println("What do you want to do:\n1)Next page!!\n2)Previous page!!\n3)see info of product and buy!!\n4)see cart and remove product from it!!\n5)comment for product!!\n6)filter and search!!\n7)exit!! ");
+            System.out.println("What do you want to do:\n1)Next page!!\n2)Previous page!!\n3)see info of product and buy!!\n4)see cart and remove product from it!!\n5)comment for product!!\n6)filter and search!!\n7)finalize buy!!\n8)exit!! ");
             int whatToDo= in.nextInt();
             switch (whatToDo) {
                 case 1:
@@ -42,46 +46,18 @@ public class ProductView {
                         int choose = in.nextInt();
                         if (choose == 1) {
                             in.nextLine();
-                            if (userName.equals("Gust") && password.equals("Gust")) {
-                                SignUpController gust = new SignUpController();
-                                System.out.println("User name \n" +
-                                        "Email:\n" +
-                                        "Password:\n" +
-                                        "Full name:\n" +
-                                        "Phone number:");
-                                while (true) {
-                                    int checkSignUP = gust.addUser(in.nextLine(), in.nextLine(), in.nextLine(), in.nextLine(), in.nextLine());
-                                    if (checkSignUP == -1) {
-                                        System.out.println("We have this user name in our store please enter another user name: Enter every thing again!!");
-                                    } else if (checkSignUP == -2) {
-                                        System.out.println("We have this email in our store please enter another user name: Enter every thing again!!");
-                                    } else if (checkSignUP == -4) {
-                                        System.out.println("This format of password is not accepted (correct format -->start with English letter+ at least one digit + at least one sign(#.!@$*&_)+letters+more than 8 letter! Enter every thing again!!");
-
-                                    } else if (checkSignUP == -3) {
-                                        System.out.println("This format of email is not accepted! (correct format --> correct@gmail.com) Enter every thing again!!");
-
-
-                                    } else if (checkSignUP == 1) {
-                                        System.out.println("We send your request for admin if admin accept your request soon you can login with your user name and password!!!");
-                                        userName = "false";// now you can buy product as a gust without set user and... again!
-                                        break;
-                                    }
-                                }
-                            }
                             boolean isUser= false;
                             for (int i = 0; i < admin.getAllCostumers().size(); i++) {
                                 if (admin.getAllCostumers().get(i).getUserName().equals(userName) && admin.getAllCostumers().get(i).getPassword().equals(password)) {
                                     admin.getAllCostumers().get(i).getCart().add(admin.getProductsOfStore().get(showProduct-1));
-                                    System.out.println("your product was added!! ");
-
+                                    System.out.println("Your product was added!! ");
                                     isUser=true;
                                     break;
                                 }
                             }
                             if(!isUser) {
                                 gustCart.add(admin.getProductsOfStore().get(showProduct - 1));
-                                System.out.println("your product was added!!");
+                                System.out.println("Your product was added!!");
                             }
                         }
                     }
@@ -105,8 +81,9 @@ public class ProductView {
                         }
                     }
                     if(!isUser) {
+                        if(gustCart!=null){
                         for(int j=0 ; j<gustCart.size();j++) {
-                            System.out.println((j+1)+"Name:"+gustCart.get(j).getName()+"  --  product Id:"+gustCart.get(j).getProductID()+"  --  price:"+gustCart.get(j).getPrice()+"\n");
+                            System.out.println((j+1)+")Name:"+gustCart.get(j).getName()+"  --  product Id:"+gustCart.get(j).getProductID()+"  --  price:"+gustCart.get(j).getPrice()+"\n");
                         }
                         System.out.println("If you want to remove product press number of it in list else press -1:");
                         int removeProduct=in.nextInt();
@@ -115,6 +92,7 @@ public class ProductView {
                         }
                         gustCart.remove(removeProduct-1);
                         break;
+                        }
                     }
                 break;
                 case 5:
@@ -251,10 +229,25 @@ public class ProductView {
 
 
                     break;
-
                 case 7:
+                    if(gustCart!=null){
+                    in.nextLine();
+                    LoginPanelView loginPanelView=new LoginPanelView();
+                    System.out.println("What is your name!!");
+                    String nameUser=in.nextLine();
+                    System.out.println("What it is your password!!");
+                    String passwordUser=in.nextLine();
+                    loginPanelView.finalizeForGust(nameUser,passwordUser,AdminModel.getAdmin(),gustCart);
+                    loginPanelView.loginPanel();
+                    gustCart=null;
+                        System.out.println("We emptied your cart!!!");
+                    }
+                    break;
+
+                case 8:
                     checkProduct=false;
                     break;
+
 
 
                     }

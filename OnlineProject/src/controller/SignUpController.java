@@ -3,6 +3,7 @@ package controller;
 import model.accountModel.AdminModel;
 import model.accountModel.CustomerModel;
 import model.accountModel.SignUpRequestModel;
+import model.productModel.ProductsModel;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,14 +34,6 @@ public class SignUpController {
             return 1;
         }
     }
-
-
-
-
-
-
-
-
 
     public boolean checkPasswordRegex(String passwordCheck)
     {

@@ -151,14 +151,28 @@ public class AdminController {
     }
     //*************************************************************comment
     public void acceptComment(int opinionNumb){
-        for(int i =0 ; i <admin.getComments().size();i++){
+        int numberOfComment=0;
+        int numberOfProduct=0;
+        String findProductAddComment=null;
+        for(int i=0 ; i <admin.getComments().size(); i++){
             if(admin.getComments().get(i).getOpinionNumb()==opinionNumb){
-                admin.getProductsOfStore().get(i).getCommentsOfProduct().add((Comment) admin.getComments().get(i));
+                numberOfComment=i;
+                findProductAddComment=admin.getComments().get(i).getProductId();
+                break;
+                }
+            for(int j = 0 ; j<admin.getProductsOfStore().size();j++){
+                if(admin.getProductsOfStore().get(j).getProductID().equals(findProductAddComment)){
+                    numberOfProduct=j;
+                    break;
+                }
+            }
+
+                admin.getProductsOfStore().get(numberOfProduct).getCommentsOfProduct().add(admin.getComments().get(numberOfComment));
                 admin.getComments().remove(i);
                 break;
             }
         }
-    }
+
     public void rejectComment(int opinionNumb){
         for(int i =0 ; i <admin.getComments().size();i++){
             if(admin.getComments().get(i).getOpinionNumb()==opinionNumb){

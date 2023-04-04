@@ -4,7 +4,9 @@ import controller.AdminController;
 import controller.UserController;
 import model.accountModel.AdminModel;
 import model.accountModel.CustomerModel;
+import model.productModel.ProductsModel;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoginPanelView {
@@ -93,13 +95,17 @@ public class LoginPanelView {
                     if(checkBuy==1){
                         in.nextLine();
                         System.out.println("Now please give me a ID and count of you want to buy of this product !! (x5-VEHI-5 3)");
-                        userController.buyProductByID(admin.getAllCostumers().get(check),in.nextLine(),AdminModel.getAdmin(),Integer.parseInt(in.nextLine()));
+                        String id =in.nextLine();
+                        System.out.println("Count of you want to buy of this product:");
+                        String countProduct=in.nextLine();
+                        userController.buyProductByID(admin.getAllCostumers().get(check),id,AdminModel.getAdmin(),Integer.parseInt(countProduct));
                     }
                     break;
                 case 4:
                     System.out.println(userController.getPurchasedHistory(admin.getAllCostumers().get(check)));
                     break;
                 case 5:
+                    in.nextLine();
                     System.out.println("what is id of product:");
                     String id=in.nextLine();
                     System.out.println("Enter your opinion about this product!!");
@@ -136,9 +142,44 @@ public class LoginPanelView {
                     System.out.println("Now you want to finalize your buy!!");
                     System.out.println("-------------------------------------This is your cart-------------------------------------!");
                     System.out.println(userController.seeCart(admin.getAllCostumers().get(check))+"\n\n");
-
+                    int checkFinalize=userController.finalizeBuy(admin.getAllCostumers().get(check),AdminModel.getAdmin());
+                    if(checkFinalize==-5){
+                        System.out.println("one of the product is not in capacity!!!");
+                    }
+                    else if(checkFinalize==1){
+                        System.out.println("success");
+                        System.out.println(admin.getAllCostumers().get(check).getInvoiceHistory().get(admin.getAllCostumers().get(check).getInvoiceHistory().size()-1).toString());
+                    }
+                    else if(checkFinalize==-1){
+                        System.out.println("you do not have enough money first please charge your account !!");
+                    }
                     break;
                 case 9:
+                    int checkCharge;
+                    do {
+                        in.nextLine();
+                        System.out.println("Please enter your card number:");
+                        String cardNumber = in.nextLine();
+                        System.out.println("Please enter your cvv2:");
+                        String cvv2 = in.nextLine();
+                        System.out.println("please enter your password of card :");
+                        String cardPassword = in.nextLine();
+                        System.out.println("Enter amount of charge:");
+                        String charge = in.nextLine();
+                        checkCharge = userController.chargeBalance(admin.getAllCostumers().get(check), charge, cardNumber, cvv2, cardPassword, AdminModel.getAdmin());
+                        if (checkCharge==1){
+                            System.out.println("Your request was send for admin system when accept your balance will be charge!!!");
+                        }
+                        else if(checkCharge==-2){
+                            System.out.println("your format of cvv2 is not correct!!(3 digit --> 123)");
+                        }
+                        else if(checkCharge==-3){
+                            System.out.println("your password format is not correct !!!(6 digit --> 546489)");
+                        }
+                        else if(checkCharge==-1){
+                            System.out.println("your format of card number is not correct !!! (16 digit -->6280231331312323)");
+                        }
+                    }while (checkCharge!=1);
                     break;
                 case 10:
                     stayInLogin=false;
@@ -150,6 +191,37 @@ public class LoginPanelView {
         }
 
 
+    }
+    public void finalizeForGust(String userName , String password, AdminModel admin , ArrayList<ProductsModel> products){
+        int numberInList=-1;//number gust in customer list!!
+        for(int i=0;i<admin.getAllCostumers().size();i++){
+            if(admin.getAllCostumers().get(i).getUserName().equals(userName)&&admin.getAllCostumers().get(i).getPassword().equals(password)){
+                numberInList=i;
+            }
+        }
+        if(numberInList==-1){
+            System.out.println("We do not have customer with this information !!!");
+        }
+        else{
+            for(int j=0;j<products.size();j++){
+                admin.getAllCostumers().get(numberInList).getCart().add(products.get(j));
+            }
+        }
+//        else {
+//            admin.getAllCostumers().get(numberInList).setCart(products);
+//            System.out.println("Now you want to finalize your buy!!");
+//            System.out.println("-------------------------------------This is your cart-------------------------------------!");
+//            System.out.println(userController.seeCart(admin.getAllCostumers().get(numberInList)) + "\n\n");
+//            int checkFinalize = userController.finalizeBuy(admin.getAllCostumers().get(numberInList), AdminModel.getAdmin());
+//            if (checkFinalize == -5) {
+//                System.out.println("one of the product is not in capacity!!!");
+//            } else if (checkFinalize == 1) {
+//                System.out.println("success");
+//                System.out.println(admin.getAllCostumers().get(numberInList).getInvoiceHistory().get(admin.getAllCostumers().get(numberInList).getInvoiceHistory().size() - 1).toString());
+//            } else if (checkFinalize == -1) {
+//                System.out.println("you do not have enough money first please charge your account !!");
+//            }
+//        }
     }
 
 }

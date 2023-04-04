@@ -1,5 +1,7 @@
 package model.productModel;
 
+import model.accountModel.OpinionRequestModel;
+
 import javax.xml.stream.events.Comment;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ public abstract class ProductsModel {
     private double price;
     private int countInCapacity;
     private double averageOfScores;
-    private ArrayList<Comment> commentsOfProduct;
+    private ArrayList<OpinionRequestModel> commentsOfProduct;
     private CategoryModel type;
     private StringBuilder creatId;
     private char test[];
@@ -85,7 +87,7 @@ public abstract class ProductsModel {
         this.averageOfScores = averageOfScores;
     }
 
-    public ArrayList<Comment> getCommentsOfProduct() {
+    public ArrayList<OpinionRequestModel> getCommentsOfProduct() {
         return commentsOfProduct;
     }
 

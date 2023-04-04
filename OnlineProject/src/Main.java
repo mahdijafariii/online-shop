@@ -10,8 +10,14 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) {
         MainView mainView = new MainView();
-        boolean exit = true; // change exit for finish project
 
+
+
+
+        System.out.println();
+
+
+        boolean exit = true;
         do {
             mainView.mainPage();
 
