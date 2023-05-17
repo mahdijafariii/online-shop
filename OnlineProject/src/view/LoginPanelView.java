@@ -203,22 +203,6 @@ public class LoginPanelView {
 
 
     }
-    public void finalizeForGust(String userName , String password, AdminModel admin , ArrayList<ProductsModel> products){
-        int numberInList=-1;//number gust in customer list!!
-        for(int i=0;i<admin.getAllCostumers().size();i++){
-            if(admin.getAllCostumers().get(i).getUserName().equals(userName)&&admin.getAllCostumers().get(i).getPassword().equals(password)){
-                numberInList=i;
-            }
-        }
-        if(numberInList==-1){
-            System.out.println("We do not have customer with this information !!!");
-        }
-        else{
-            for(int j=0;j<products.size();j++){
-                admin.getAllCostumers().get(numberInList).getCart().add(products.get(j));
-            }
-        }
 
-    }
 
 }
