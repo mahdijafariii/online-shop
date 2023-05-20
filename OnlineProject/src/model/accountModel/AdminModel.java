@@ -15,6 +15,7 @@ public class AdminModel extends AccountModel{
     private ArrayList<CustomerModel> allCostumers;
     private ArrayList<ChargeRequestModel> chargeRequest;
     private ArrayList<SignUpRequestModel> signUpRequest;
+    private ArrayList<DiscountCode> discountCodes;
 
 
 
@@ -25,6 +26,7 @@ public class AdminModel extends AccountModel{
         allCostumers=new ArrayList<>();
         chargeRequest=new ArrayList<>();
         signUpRequest=new ArrayList<>();
+        discountCodes = new ArrayList<>();
     }
 
     public static AdminModel getAdmin(String name,String email ,String phoneNumber , String password) {
@@ -56,5 +58,9 @@ public class AdminModel extends AccountModel{
 
     public ArrayList<SignUpRequestModel> getSignUpRequest() {
         return signUpRequest;
+    }
+
+    public ArrayList<DiscountCode> getDiscountCodes() {
+        return discountCodes;
     }
 }

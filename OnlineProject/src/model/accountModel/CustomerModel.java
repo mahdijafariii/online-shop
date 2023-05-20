@@ -54,6 +54,10 @@ public class CustomerModel extends AccountModel{
         return invoiceHistory;
     }
 
+    public ArrayList<DiscountCode> getDiscountCodes() {
+        return discountCodes;
+    }
+
     @Override
     public String toString(){
         return "User name:"+getUserName()+"  --  Full name:"+getFullName()+"  --  Email:"+getEmail()+"  --  Balance:"+getBalance();

@@ -33,47 +33,47 @@ public class InvoiceController {
         }
     }
 
-    public double calculateInvoiceWithDiscount(InvoiceModel invoice, DiscountCode discountCode) {
+    public double calculateInvoiceWithDiscountCategory(InvoiceModel invoice, DiscountCode discountCode) {
         if (discountCode.getCategory() != null) {
             ArrayList<ProductsModel> test;
             test = invoice.getListOfShoppingItem();
             double price = 0;
             for (int i = 0; i < test.size(); i++) {
-                test.get(i).getPrice();
                 if (discountCode.getCategory().name().equals(test.get(i).getTypeCategory().name())) {
-
-                } else {
-                    price = test.get(i).getPrice() + price;
+                    price = test.get(i).getPrice()*(100-discountCode.getAmountDiscount())+ price;
                 }
             }
             return price;
-
         }
-        else if (discountCode.getProduct().getName() != null) {
+        return 0;
+
+    }
+    public double calculateInvoiceWithDiscountName(InvoiceModel invoice, DiscountCode discountCode){
+        if (discountCode.getProductName() != null) {
             ArrayList<ProductsModel> test;
             test = invoice.getListOfShoppingItem();
             double price = 0;
             for (int i = 0; i < test.size(); i++) {
                 test.get(i).getPrice();
-                if (discountCode.getProduct().getName().equals(test.get(i).getName())) {
-                    price = test.get(i).getPrice() * (100 - discountCode.getAmountDiscount()) + price;
-                } else {
-                    price = test.get(i).getPrice() + price;
+                if (discountCode.getProductName().equals(test.get(i).getName())) {
+                    price = test.get(i).getPrice()*(100-discountCode.getAmountDiscount())+ price;
                 }
             }
             return price;
         }
-
-        else {
-            ArrayList<ProductsModel> test;
-            test = invoice.getListOfShoppingItem();
-            double price = 0;
-            for (int i = 0; i < test.size(); i++) {
-                test.get(i).getPrice();
-                price = test.get(i).getPrice() + price;
-            }
-
-            return price*(100-discountCode.getAmountDiscount());
+        return 0;
+    }
+    public double calculateAllDiscounts(ArrayList<Double> discounts ,InvoiceModel invoice){
+        ArrayList<ProductsModel> test;
+        test = invoice.getListOfShoppingItem();
+        double price = 0;
+        for (int i = 0; i < test.size(); i++) {
+            test.get(i).getPrice();
+            price = test.get(i).getPrice() + price;
         }
+        for(int i = 0 ; i <discounts.size() ;i ++){
+            price = price- discounts.get(i);
+        }
+        return price;
     }
 }

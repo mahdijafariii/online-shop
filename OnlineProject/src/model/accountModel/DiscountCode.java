@@ -4,18 +4,19 @@ import model.productModel.CategoryModel;
 import model.productModel.ProductsModel;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.Random;
 
 public class DiscountCode {
     double amountDiscount;
-    Time time;
+    Date time;
     int discountCodeCapacity;
     CategoryModel category;
-    ProductsModel product;
+    String productName;
     String code;
     Random random = new Random();
 
-    DiscountCode(double amountDiscount ,Time time , int discountCodeCapacity){
+     public DiscountCode(double amountDiscount ,Date time , int discountCodeCapacity){
         this.discountCodeCapacity = discountCodeCapacity;
         this.time=time;
         this.amountDiscount=amountDiscount;
@@ -29,34 +30,39 @@ public class DiscountCode {
         test.append(amountDiscount);
         this.code = test.toString();
     }
-    DiscountCode(double amountDiscount , Time time , int discountCodeCapacity , CategoryModel category){
+    public DiscountCode(double amountDiscount , Date time , int discountCodeCapacity , String category){
         this.discountCodeCapacity = discountCodeCapacity;
         this.time=time;
         this.amountDiscount=amountDiscount;
+        category.toUpperCase();
+        this.category=CategoryModel.valueOf(category);
         StringBuilder test = new StringBuilder();
         test.append("Digi");
         test.append("-");
         test.append(random.nextInt(1000));
         test.append("-");
-        test.append(category.name());
+        test.append(category);
         test.append("-");
         test.append(amountDiscount);
         this.code = test.toString();
     }
-    DiscountCode(double amountDiscount , Time time , int discountCodeCapacity , ProductsModel product){
+    public DiscountCode(double amountDiscount , Date time ,   String product,int discountCodeCapacity){
         this.discountCodeCapacity = discountCodeCapacity;
         this.time=time;
         this.amountDiscount=amountDiscount;
+        this.productName=product;
         StringBuilder test = new StringBuilder();
         test.append("Digi");
         test.append("-");
         test.append(random.nextInt(1000));
         test.append("-");
-        test.append(product.getName());
+        test.append(product);
         test.append("-");
         test.append(amountDiscount);
         this.code = test.toString();
     }
+
+
 
     public CategoryModel getCategory() {
         return category;
@@ -70,15 +76,16 @@ public class DiscountCode {
         return discountCodeCapacity;
     }
 
-    public ProductsModel getProduct() {
-        return product;
+
+    public String getProductName() {
+        return productName;
     }
 
     public String getCode() {
         return code;
     }
 
-    public Time getTime() {
+    public Date getTime() {
         return time;
     }
 
@@ -94,8 +101,7 @@ public class DiscountCode {
         this.discountCodeCapacity = discountCodeCapacity;
     }
 
-    public void setProduct(ProductsModel product) {
-        this.product = product;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
-
 }

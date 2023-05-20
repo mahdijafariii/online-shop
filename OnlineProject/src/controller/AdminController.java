@@ -2,6 +2,7 @@ package controller;
 
 import model.accountModel.AdminModel;
 import model.accountModel.CustomerModel;
+import model.accountModel.DiscountCode;
 import model.productModel.CategoryModel;
 import model.productModel.digitalProduct.PersonalComputer;
 import model.productModel.digitalProduct.SSD;
@@ -14,6 +15,8 @@ import model.productModel.vehicle.Bike;
 import model.productModel.vehicle.Vehicle;
 
 import javax.xml.stream.events.Comment;
+import java.sql.Time;
+import java.util.Date;
 
 
 public class AdminController {
@@ -269,4 +272,48 @@ public class AdminController {
             }
         }
     return -1;}
+    //*************************************************************
+    public void generateCategoryDiscount(String category , double amountOfDiscount , int year , int month , int day , int capacity){
+
+        DiscountCode discountCode = new DiscountCode(amountOfDiscount,new Date(year,month,day),capacity,category);
+        admin.getDiscountCodes().add(discountCode);
+
+    }
+    //*************************************************************
+
+    public void generateNormalDiscount( double amountOfDiscount , int year , int month , int day , int capacity){
+        DiscountCode discountCode = new DiscountCode(amountOfDiscount,new Date(year,month,day),capacity);
+        admin.getDiscountCodes().add(discountCode);
+    }
+    //*************************************************************
+
+    public void generateSpecialDiscount(String name , double amountOfDiscount , int year , int month , int day , int capacity ){
+        DiscountCode discountCode = new DiscountCode(amountOfDiscount,new Date(year,month,day),name,capacity);
+        admin.getDiscountCodes().add(discountCode);
+    }
+    //*************************************************************
+
+    public String showAllDiscounts(){
+        StringBuilder test = new StringBuilder();
+        for(int i = 0 ; i < admin.getDiscountCodes().size() ; i++){
+            test.append(admin.getDiscountCodes().get(i).toString());
+            test.append("\n");
+        }
+        return test.toString();
+    }
+    //*************************************************************
+
+    public void getDiscountWithZeroBuy(){
+        DiscountCode discountCode = new DiscountCode(10,new Date(5000,12,12),1);
+        for(int i =0 ; i<admin.getAllCostumers().size() ; i++){
+            if(admin.getAllCostumers().get(i).getInvoiceHistory().size()==0){
+                admin.getAllCostumers().get(i).getDiscountCodes().add(discountCode);
+            }
+        }
+    }
+    //*************************************************************
+
+
+
 }
+
