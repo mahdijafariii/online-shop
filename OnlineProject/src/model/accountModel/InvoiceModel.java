@@ -13,8 +13,8 @@ public class InvoiceModel {
     private final String timeInvoice;
     private double totalPrice;
     private ArrayList<ProductsModel> listOfShoppingItem;
-    public InvoiceModel(ArrayList<ProductsModel> products){
-        setListOfShoppingItem(products);
+    public InvoiceModel(CustomerModel customerModel){
+        listOfShoppingItem=customerModel.getCart();
         invoiceID++;
         idInvoice=invoiceID;
         date = new Date();
@@ -50,21 +50,8 @@ public class InvoiceModel {
         test.append("Time:"+timeInvoice+"                                                    Invoice ID:"+idInvoice+"\n");
         int countNumberInList=1;
         for(int i=0 ; i<listOfShoppingItem.size();i++){
-//            String id =listOfShoppingItem.get(i).getProductID();
-//            for(int j=0;j<listOfShoppingItem.size();j++){
-//                if(j==i){
-//                }
-//                else{
-//                    if(listOfShoppingItem.get(j).getProductID().equals(id)){
-//                        countNumberInList++;
-//                        break;
-//                    }
-//
-//                }
-//
-//            } //give us number of product
+
             test.append("Name:"+listOfShoppingItem.get(i).getName()+"     ---    ID:"+listOfShoppingItem.get(i).getProductID()+"    ---    price:"+listOfShoppingItem.get(i).getPrice()+"    ---    number:"+countNumberInList+"\n\n");
-//            countNumberInList=1;
         }
         test.append("-------------------------------------------------------------------------------------\n");
         test.append("Total price:"+totalPrice);

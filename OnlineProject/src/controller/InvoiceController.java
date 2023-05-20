@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class InvoiceController {
     public double calculateInvoice(InvoiceModel invoice){
-        ArrayList<ProductsModel> test = new ArrayList<>();
+        ArrayList<ProductsModel> test ;
         test =invoice.getListOfShoppingItem();
         double price=0;
         for(int i=0;i<test.size();i++){

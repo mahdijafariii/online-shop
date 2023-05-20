@@ -2,11 +2,9 @@ package model.productModel;
 
 import model.accountModel.OpinionRequestModel;
 
-import javax.xml.stream.events.Comment;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public abstract class ProductsModel {
+public abstract class ProductsModel implements Comparable {
     private String productID;
     private String name;
     private double price;
@@ -60,6 +58,25 @@ public abstract class ProductsModel {
         this.type=type;
         commentsOfProduct = new ArrayList<>();
     }
+
+    @Override
+    public int compareTo(Object o) {
+        ProductsModel oo =(ProductsModel) o;
+        if(this.name.compareTo(oo.name)!=0){
+            return this.name.compareTo(oo.name);
+        }
+        else if(this.averageOfScores != oo.averageOfScores){
+            return Double.compare(averageOfScores,oo.averageOfScores);
+        }
+        else if(this.price != oo.price){
+            return Double.compare(this.price,oo.price);
+        }
+        else {
+            return Integer.compare(this.countInCapacity,oo.countInCapacity);
+        }
+    }
+
+
 
     public String getProductID() {
         return productID;

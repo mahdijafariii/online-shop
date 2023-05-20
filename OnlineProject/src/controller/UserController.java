@@ -449,11 +449,10 @@ public class UserController {
     //----------------------------------------------------------finalize buy!!
     public int finalizeBuy(CustomerModel customerModel ,AdminModel admin) {
         InvoiceController invoiceController = new InvoiceController();
-        InvoiceModel test = new InvoiceModel(customerModel.getCart());
+        InvoiceModel test = new InvoiceModel(customerModel);
         test.setTotalPrice(invoiceController.calculateInvoice(test));//you should set it manual and function is in invoice controller
         int checkBalance = invoiceController.deductFromBalance(test, customerModel);//check balance manual and mines price of product from balance
         if (checkBalance == 1) {
-            customerModel.getInvoiceHistory().add(test);
             for(int i =0 ; i <admin.getProductsOfStore().size();i++){
                 for(int j=0;j<customerModel.getCart().size();j++){
                     if(admin.getProductsOfStore().get(i).getProductID().equals(customerModel.getCart().get(j).getProductID())){
@@ -469,6 +468,7 @@ public class UserController {
                     }
                 }
             }
+            customerModel.getInvoiceHistory().add(test);
             return 1;
         }
         else
@@ -551,7 +551,7 @@ public class UserController {
     public String beforeInvoice(CustomerModel customerModel){
         StringBuilder test = new StringBuilder();
         for(int i = 0 ; i <customerModel.getInvoiceHistory().size(); i++){
-            test.append((i+1)+")"+customerModel.getPurchaseHistory().get(0).toString()+"\n\n");
+            test.append((i+1)+")"+customerModel.getInvoiceHistory().get(i).toString()+"\n\n");
         }
     return test.toString();}
 

@@ -8,8 +8,9 @@ import java.util.ArrayList;
 public class CustomerModel extends AccountModel{
     private String fullName;
     private ArrayList<ProductsModel> cart ;
-    final private ArrayList<ProductsModel> purchaseHistory;
-    final private ArrayList<InvoiceModel> invoiceHistory;
+    private ArrayList<ProductsModel> purchaseHistory;
+    private ArrayList<InvoiceModel> invoiceHistory;
+    private ArrayList<DiscountCode> discountCodes;
     private double balance ;
     public CustomerModel(String name, String email, String phoneNumber, String password, String fullName){
         super(name,email,phoneNumber,password);
@@ -17,6 +18,7 @@ public class CustomerModel extends AccountModel{
         cart = new ArrayList<>();
         purchaseHistory=new ArrayList<>();
         invoiceHistory = new ArrayList<>();
+        discountCodes = new ArrayList<>();
         this.fullName=fullName;
     }
 
