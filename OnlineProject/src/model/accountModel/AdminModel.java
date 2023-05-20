@@ -18,7 +18,7 @@ public class AdminModel extends AccountModel{
 
 
 
-    public AdminModel(String name,String email ,String phoneNumber , String password){
+    private AdminModel(String name,String email ,String phoneNumber , String password){
         super(name,email,phoneNumber,password);
         productsOfStore = new ArrayList<>();
         comments =new ArrayList<>();

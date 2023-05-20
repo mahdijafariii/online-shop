@@ -149,6 +149,9 @@ public class LoginPanelView {
                     System.out.println("------------------------------Now you want to finalize your buy---------------------!!");
                     System.out.println("-------------------------------------This is your cart-------------------------------------!");
                     System.out.println(userController.seeCart(admin.getAllCostumers().get(check))+"\n\n");
+
+
+
                     int checkFinalize=userController.finalizeBuy(admin.getAllCostumers().get(check),AdminModel.getAdmin());
                     if(checkFinalize==-5){
                         System.out.println("One of the product is not in capacity!!!");

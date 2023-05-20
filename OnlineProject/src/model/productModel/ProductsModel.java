@@ -61,19 +61,16 @@ public abstract class ProductsModel implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        ProductsModel oo =(ProductsModel) o;
-        if(this.name.compareTo(oo.name)!=0){
-            return this.name.compareTo(oo.name);
-        }
-        else if(this.averageOfScores != oo.averageOfScores){
-            return Double.compare(averageOfScores,oo.averageOfScores);
-        }
-        else if(this.price != oo.price){
-            return Double.compare(this.price,oo.price);
-        }
-        else {
-            return Integer.compare(this.countInCapacity,oo.countInCapacity);
-        }
+        ProductsModel oo = (ProductsModel) o;
+            if (this.name.compareTo(oo.name) != 0) {
+                return this.name.compareTo(oo.name);
+            } else if (this.averageOfScores != oo.averageOfScores) {
+                return Double.compare(averageOfScores, oo.averageOfScores);
+            } else if (this.price != oo.price) {
+                return Double.compare(this.price, oo.price);
+            } else {
+                return Integer.compare(this.countInCapacity, oo.countInCapacity);
+            }
     }
 
 

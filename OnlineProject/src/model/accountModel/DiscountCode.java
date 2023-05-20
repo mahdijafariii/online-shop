@@ -10,6 +10,8 @@ public class DiscountCode {
     double amountDiscount;
     Time time;
     int discountCodeCapacity;
+    CategoryModel category;
+    ProductsModel product;
     String code;
     Random random = new Random();
 
@@ -56,5 +58,44 @@ public class DiscountCode {
         this.code = test.toString();
     }
 
+    public CategoryModel getCategory() {
+        return category;
+    }
+
+    public double getAmountDiscount() {
+        return amountDiscount;
+    }
+
+    public int getDiscountCodeCapacity() {
+        return discountCodeCapacity;
+    }
+
+    public ProductsModel getProduct() {
+        return product;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setAmountDiscount(double amountDiscount) {
+        this.amountDiscount = amountDiscount;
+    }
+
+    public void setCategory(CategoryModel category) {
+        this.category = category;
+    }
+
+    public void setDiscountCodeCapacity(int discountCodeCapacity) {
+        this.discountCodeCapacity = discountCodeCapacity;
+    }
+
+    public void setProduct(ProductsModel product) {
+        this.product = product;
+    }
 
 }

@@ -1,15 +1,18 @@
 package controller;
 
 import model.accountModel.AdminModel;
+import model.productModel.ProductsModel;
 
 import java.util.ArrayList;
 
 public class ProductController {
     private AdminModel admin=AdminModel.getAdmin();
     public ArrayList<String> showProduct(){
+
         ArrayList<String> showProducts=new ArrayList<>();
         StringBuilder test = new StringBuilder();
         int count=0;
+        admin.getProductsOfStore().sort(ProductsModel::compareTo);
         for(int i=0 ; i<admin.getProductsOfStore().size() ;i++){
                 test.append((i + 1));
                 test.append(")");
