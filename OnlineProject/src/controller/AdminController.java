@@ -276,7 +276,8 @@ public class AdminController {
     //*************************************************************
     public void generateCategoryDiscount(String category , double amountOfDiscount , int year , int month , int day , int capacity){
 
-        DiscountCode discountCode = new DiscountCode(amountOfDiscount,new Date(year,month,day),capacity,category);
+
+        DiscountCode discountCode = new DiscountCode(amountOfDiscount,new Date(year,month,day),capacity,category.toUpperCase());
         admin.getDiscountCodes().add(discountCode);
 
     }
@@ -297,7 +298,7 @@ public class AdminController {
     public String showAllDiscounts(){
         StringBuilder test = new StringBuilder();
         for(int i = 0 ; i < admin.getDiscountCodes().size() ; i++){
-            test.append(admin.getDiscountCodes().get(i).toString());
+            test.append((i+1)+")"+admin.getDiscountCodes().get(i).toString());
             test.append("\n");
         }
         return test.toString();
@@ -305,7 +306,7 @@ public class AdminController {
     //*************************************************************
 
     public void addDiscountWithZeroBuy(){
-        DiscountCode discountCode = new DiscountCode(10,new Date(5000, Calendar.JULY,20),1);
+        DiscountCode discountCode = new DiscountCode(10,new Date(5000,12,30),1);
         for(int i =0 ; i<admin.getAllCostumers().size() ; i++){
             if(admin.getAllCostumers().get(i).getInvoiceHistory().size()==0){
                 admin.getAllCostumers().get(i).getDiscountCodes().add(discountCode);
@@ -314,7 +315,10 @@ public class AdminController {
         admin.getDiscountCodes().add(discountCode);
     }
     //*************************************************************
-
+    public void giveDiscountToCustomer(int discount , int customer){
+        admin.getAllCostumers().get(customer-1).getDiscountCodes().add(admin.getDiscountCodes().get(discount-1));
+    }
+    //*************************************************************
 
 
 }

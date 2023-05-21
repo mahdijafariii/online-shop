@@ -26,7 +26,7 @@ public class DiscountCode {
         test.append(random.nextInt(20));
         test.append("-");
         test.append("0");
-        test.append(time.getSeconds());
+        test.append(time.getDate());
         test.append("-");
         test.append(amountDiscount);
         this.code = test.toString();
@@ -109,6 +109,6 @@ public class DiscountCode {
         this.productName = productName;
     }
     public String toString(){
-         return "code:  " + getCode() + "  --  amount:  " + amountDiscount + "  --  capacity:"+getDiscountCodeCapacity()+"  --  Special discount :"+ "category->" + getCategory() + "name->"+getProductName();
+         return "code:  " + getCode() + "  --  amount:  " + amountDiscount + "  --  capacity:"+getDiscountCodeCapacity()+"  --  Special discount :  "+ "category->  " + getCategory() + "--  name->"+getProductName();
     }
 }

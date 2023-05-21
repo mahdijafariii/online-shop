@@ -460,7 +460,6 @@ public class UserController {
                         if(admin.getProductsOfStore().get(i).getCountInCapacity()!=0) {//check balance of product in capacity
                             admin.getProductsOfStore().get(i).setCountInCapacity(admin.getProductsOfStore().get(i).getCountInCapacity() - 1);//mines balance !!
                             customerModel.getPurchaseHistory().add(customerModel.getCart().get(j));//when you want to set score it is in purchased history!!
-                            customerModel.getCart().remove(j);
                         }
                         else{
                             return -5;//one of the product is not in capacity!!
@@ -476,6 +475,23 @@ public class UserController {
         {
             return -1;
         }
+
+    }
+    //--------------------------------------------------------- calculate without discount
+    public double calculateWithoutDiscount(CustomerModel customerModel,ArrayList<String> discount ,AdminModel admin){
+
+        for(int i = 0 ;i< customerModel.getCart().size(); i++){
+            customerModel.getCart().set(i,null);
+        }
+        double count=0 ;
+        for(int j = 0 ; j<discount.size() ; j++){
+            for(int k = 0  ;k< admin.getDiscountCodes().size() ; k++){
+                if(discount.get(j).equals(admin.getDiscountCodes().get(k).getCode())){
+                    count=count+admin.getDiscountCodes().get(k).getAmountDiscount();
+                }
+            }
+        }
+      return   ((customerModel.getInvoiceHistory().get(customerModel.getInvoiceHistory().size()-1).getTotalPrice()*100)/(100-count));
 
     }
     //---------------------------------------------------------calculate discount code

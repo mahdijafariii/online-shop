@@ -94,8 +94,23 @@ public class AdminView {
 
                             }
                             break;
-                        case "discount":
+                        case "discountZeroBuy":
                             adminController.addDiscountWithZeroBuy();
+                            break;
+                        case "discountCategory":
+                            adminController.generateCategoryDiscount(splitCommand[1],Integer.parseInt(splitCommand[2]),Integer.parseInt(splitCommand[3]),Integer.parseInt(splitCommand[4]),Integer.parseInt(splitCommand[5]),Integer.parseInt(splitCommand[6]));
+                            break;
+                        case "discountNameProduct":
+                            adminController.generateSpecialDiscount(splitCommand[1],Double.parseDouble(splitCommand[2]),Integer.parseInt(splitCommand[3]),Integer.parseInt(splitCommand[4]),Integer.parseInt(splitCommand[5]),Integer.parseInt(splitCommand[6]));
+                            break;
+                        case "showAllDiscount":
+                            System.out.println(adminController.showAllDiscounts());
+                            break;
+                        case "giveDiscount":
+                            adminController.giveDiscountToCustomer(Integer.parseInt(splitCommand[1]),Integer.parseInt(splitCommand[2]));
+                            break;
+                        case "normalDiscount":
+                            adminController.generateNormalDiscount(Double.parseDouble(splitCommand[1]),Integer.parseInt(splitCommand[2]),Integer.parseInt(splitCommand[3]),Integer.parseInt(splitCommand[4]),Integer.parseInt(splitCommand[5]));
                             break;
                         case "edit":
                             adminController.editInfo(splitCommand[1], splitCommand[2], splitCommand[3]);

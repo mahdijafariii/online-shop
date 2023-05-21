@@ -163,7 +163,9 @@ public class LoginPanelView {
                                 break;
                             }
                             else{
-                                discounts.add(discount);
+
+                                    discounts.add(discount);
+
                             }
                         }
                     }
@@ -180,6 +182,7 @@ public class LoginPanelView {
                         System.out.println(admin.getAllCostumers().get(check).getInvoiceHistory().get(admin.getAllCostumers().get(check).getInvoiceHistory().size()-1).toString());
                         admin.getAllCostumers().get(check).setCart(new ArrayList<>());
                         System.out.println("Success");
+                        System.out.println("Your profit :"+ ((userController.calculateWithoutDiscount(admin.getAllCostumers().get(check),discounts,admin))-(admin.getAllCostumers().get(check).getInvoiceHistory().get(admin.getAllCostumers().get(check).getInvoiceHistory().size()-1).getTotalPrice()))+"\n\n");
                     }
                     else if(checkFinalize==-1){
                         System.out.println("You do not have enough money first please charge your account !!");
