@@ -94,6 +94,9 @@ public class AdminView {
 
                             }
                             break;
+                        case "discount":
+                            adminController.addDiscountWithZeroBuy();
+                            break;
                         case "edit":
                             adminController.editInfo(splitCommand[1], splitCommand[2], splitCommand[3]);
                             break;

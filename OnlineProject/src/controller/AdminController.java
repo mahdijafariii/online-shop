@@ -16,6 +16,7 @@ import model.productModel.vehicle.Vehicle;
 
 import javax.xml.stream.events.Comment;
 import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -303,13 +304,14 @@ public class AdminController {
     }
     //*************************************************************
 
-    public void getDiscountWithZeroBuy(){
-        DiscountCode discountCode = new DiscountCode(10,new Date(5000,12,12),1);
+    public void addDiscountWithZeroBuy(){
+        DiscountCode discountCode = new DiscountCode(10,new Date(5000, Calendar.JULY,20),1);
         for(int i =0 ; i<admin.getAllCostumers().size() ; i++){
             if(admin.getAllCostumers().get(i).getInvoiceHistory().size()==0){
                 admin.getAllCostumers().get(i).getDiscountCodes().add(discountCode);
             }
         }
+        admin.getDiscountCodes().add(discountCode);
     }
     //*************************************************************
 

@@ -51,7 +51,8 @@ public class LoginPanelView {
                         "8)Finalize buy!!\n" +
                         "9)Request for charge balance!!\n" +
                         "10)See invoices!!\n" +
-                        "11)Exit!!");
+                        "11)See discount Codes!! \n" +
+                        "12)Exit!!");
                 whatToDo = in.nextInt();
             }
 
@@ -151,8 +152,27 @@ public class LoginPanelView {
                     System.out.println(userController.seeCart(admin.getAllCostumers().get(check))+"\n\n");
 
 
+                    System.out.println("Are you have discount code ? (yes press 1 , no press two");
+                    int applyDiscount = in.nextInt();
+                    ArrayList<String> discounts = new ArrayList<>();
+                    if(applyDiscount==1){
+                        System.out.println("Enter your discount codes !!! (if you do not have code any more press 0)");
+                        while(true){
+                            String discount = in.nextLine();
+                            if(discount.equals("0")){
+                                break;
+                            }
+                            else{
+                                discounts.add(discount);
+                            }
+                        }
+                    }
 
-                    int checkFinalize=userController.finalizeBuy(admin.getAllCostumers().get(check),AdminModel.getAdmin());
+
+
+
+
+                    int checkFinalize=userController.finalizeBuy(discounts,admin.getAllCostumers().get(check),AdminModel.getAdmin());
                     if(checkFinalize==-5){
                         System.out.println("One of the product is not in capacity!!!");
                     }
@@ -196,6 +216,9 @@ public class LoginPanelView {
                     System.out.println(userController.beforeInvoice(admin.getAllCostumers().get(check)));
                     break;
                 case 11:
+                    System.out.println(userController.showDiscounts(admin.getAllCostumers().get(check)));
+                    break;
+                case 12:
                     stayInLogin=false;
                     break;
 

@@ -25,7 +25,8 @@ public class DiscountCode {
         test.append("-");
         test.append(random.nextInt(20));
         test.append("-");
-        test.append(time);
+        test.append("0");
+        test.append(time.getSeconds());
         test.append("-");
         test.append(amountDiscount);
         this.code = test.toString();
@@ -64,8 +65,11 @@ public class DiscountCode {
 
 
 
-    public CategoryModel getCategory() {
-        return category;
+    public String getCategory() {
+         if(category==null){
+             return "null";
+         }
+        return category.name();
     }
 
     public double getAmountDiscount() {
@@ -103,5 +107,8 @@ public class DiscountCode {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+    public String toString(){
+         return "code:  " + getCode() + "  --  amount:  " + amountDiscount + "  --  capacity:"+getDiscountCodeCapacity()+"  --  Special discount :"+ "category->" + getCategory() + "name->"+getProductName();
     }
 }

@@ -13,6 +13,7 @@ import model.productModel.vehicle.Bike;
 import model.productModel.vehicle.Vehicle;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -447,10 +448,10 @@ public class UserController {
         }
     }
     //----------------------------------------------------------finalize buy!!
-    public int finalizeBuy(CustomerModel customerModel ,AdminModel admin) {
+    public int finalizeBuy(ArrayList<String> discount,CustomerModel customerModel ,AdminModel admin) {
         InvoiceController invoiceController = new InvoiceController();
         InvoiceModel test = new InvoiceModel(customerModel);
-        test.setTotalPrice(invoiceController.calculateInvoice(test));//you should set it manual and function is in invoice controller
+        test.setTotalPrice(invoiceController.calculateInvoice(test,calculateDiscount(discount,admin,customerModel)));//you should set it manual and function is in invoice controller
         int checkBalance = invoiceController.deductFromBalance(test, customerModel);//check balance manual and mines price of product from balance
         if (checkBalance == 1) {
             for(int i =0 ; i <admin.getProductsOfStore().size();i++){
@@ -477,6 +478,74 @@ public class UserController {
         }
 
     }
+    //---------------------------------------------------------calculate discount code
+    public double calculateDiscount(ArrayList<String> discount , AdminModel admin,CustomerModel customer){
+
+
+        if(discount.size()==0){
+            return 0;
+        }
+        double amountDiscount =0 ;
+        for(int i = 0 ; i<discount.size() ; i++){
+            if(checkDiscount(discount.get(i),admin)){
+
+                int numDiscountInList=-1;
+                for(int k = 0 ; k <admin.getDiscountCodes().size() ; k++){
+                    if(admin.getDiscountCodes().get(k).getCode().equals(discount.get(i))){
+                        numDiscountInList=k;
+                        break;
+                    }
+                }
+                if(discount.get(i).split("-")[2].toLowerCase().equals("foods") || discount.get(i).split("-")[2].toLowerCase().equals("digital_products") ||discount.get(i).split("-")[2].toLowerCase().equals("vehicles") ||discount.get(i).split("-")[2].toLowerCase().equals("stationery")){
+                    for(int j=0 ; j<customer.getCart().size() ; j++ ){
+                        if (customer.getCart().get(j).getTypeCategory().name().equals(discount.get(i).split("-")[2])){
+                            amountDiscount=customer.getCart().get(j).getPrice()*((admin.getDiscountCodes().get(numDiscountInList).getAmountDiscount())/100)+amountDiscount;
+                        }
+                    }
+                    admin.getDiscountCodes().get(numDiscountInList).setDiscountCodeCapacity(admin.getDiscountCodes().get(numDiscountInList).getDiscountCodeCapacity()-1);
+                }
+                else if (discount.get(i).split("-")[2].startsWith("0")){
+                    for(int j=0 ; j<customer.getCart().size() ; j++ ){
+                            amountDiscount=customer.getCart().get(j).getPrice()*((admin.getDiscountCodes().get(numDiscountInList).getAmountDiscount())/100)+amountDiscount;
+                    }
+                    admin.getDiscountCodes().get(numDiscountInList).setDiscountCodeCapacity(admin.getDiscountCodes().get(numDiscountInList).getDiscountCodeCapacity()-1);
+
+                }
+                else{
+                    for(int j=0 ; j<customer.getCart().size() ; j++ ){
+                        if (customer.getCart().get(j).getName().equals(discount.get(i).split("-")[2])){
+                            amountDiscount=customer.getCart().get(j).getPrice()*((admin.getDiscountCodes().get(numDiscountInList).getAmountDiscount())/100)+amountDiscount;
+                        }
+                    }
+                    admin.getDiscountCodes().get(numDiscountInList).setDiscountCodeCapacity(admin.getDiscountCodes().get(numDiscountInList).getDiscountCodeCapacity()-1);
+                }
+            }
+        }
+        return amountDiscount;
+    }
+
+    public boolean checkDiscount(String discount , AdminModel admin){
+        int numInDiscountList=-1 ;
+        for(int i= 0 ; i <admin.getDiscountCodes().size() ; i++){
+            if(admin.getDiscountCodes().get(i).getCode().equals(discount)){
+                numInDiscountList=i;
+                break;
+            }
+        }
+        if(numInDiscountList==-1){
+            return false;
+        }
+        if(admin.getDiscountCodes().get(numInDiscountList).getDiscountCodeCapacity()==0){
+            System.out.println(admin.getDiscountCodes().get(numInDiscountList).getDiscountCodeCapacity());
+            return false;
+        }
+        if(admin.getDiscountCodes().get(numInDiscountList).getTime().before(new Date(2021,12,29))){
+            System.out.println(admin.getDiscountCodes().get(numInDiscountList).getTime());
+            return false;
+        }
+        return true;
+    }
+
 
     //---------------------------------------------------------buy product
     public int buyProductByID(CustomerModel user ,String Id,AdminModel admin,int count){
@@ -556,6 +625,15 @@ public class UserController {
     return test.toString();}
 
 
+    //----------------------------------------------------------see discounts
+    public String showDiscounts(CustomerModel customerModel){
+        StringBuilder test = new StringBuilder();
+        for (int i = 0 ; i <customerModel.getDiscountCodes().size() ; i++ ){
+            test.append(customerModel.getDiscountCodes().get(i).toString());
+            test.append("\n");
+        }
+        return test.toString();
+    }
 
     //-----------------------------------------------------------all of regex
     public boolean checkCardNumber(String cardNumber){
