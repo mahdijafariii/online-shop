@@ -4,6 +4,7 @@ import model.accountModel.AdminModel;
 import model.accountModel.CustomerModel;
 import model.accountModel.DiscountCode;
 import model.productModel.CategoryModel;
+import model.productModel.digitalProduct.DigitalProducts;
 import model.productModel.digitalProduct.PersonalComputer;
 import model.productModel.digitalProduct.SSD;
 import model.productModel.digitalProduct.Usb;
@@ -319,6 +320,40 @@ public class AdminController {
         admin.getAllCostumers().get(customer-1).getDiscountCodes().add(admin.getDiscountCodes().get(discount-1));
     }
     //*************************************************************
+    public void setDiscountInterface(String id , double amount ){
+        for(int i =  0 ; i < AdminModel.getAdmin().getProductsOfStore().size() ; i ++ ){
+            if(AdminModel.getAdmin().getProductsOfStore().get(i).getProductID().equals(id)){
+                if(AdminModel.getAdmin().getProductsOfStore().get(i) instanceof DigitalProducts){
+                    ((DigitalProducts) AdminModel.getAdmin().getProductsOfStore().get(i)).setDiscount(id,amount);
+                }
+                else if (AdminModel.getAdmin().getProductsOfStore().get(i) instanceof Pen){
+                    ((Pen) AdminModel.getAdmin().getProductsOfStore().get(i)).setDiscount(id,amount);
+                }
+                else if (AdminModel.getAdmin().getProductsOfStore().get(i) instanceof Pencil){
+                    ((Pencil) AdminModel.getAdmin().getProductsOfStore().get(i)).setDiscount(id,amount);
+                }
+            }
+        }
+    }
+    //*************************************************************
+
+
+    public void removeDiscountInterface(String id){
+        for(int i =  0 ; i < AdminModel.getAdmin().getProductsOfStore().size() ; i ++ ){
+            if(AdminModel.getAdmin().getProductsOfStore().get(i).getProductID().equals(id)){
+                if(AdminModel.getAdmin().getProductsOfStore().get(i) instanceof DigitalProducts){
+                    ((DigitalProducts) AdminModel.getAdmin().getProductsOfStore().get(i)).removeDiscount(id);
+                }
+                else if (AdminModel.getAdmin().getProductsOfStore().get(i) instanceof Pen){
+                    ((Pen) AdminModel.getAdmin().getProductsOfStore().get(i)).removeDiscount(id);
+                }
+                else if (AdminModel.getAdmin().getProductsOfStore().get(i) instanceof Pencil){
+                    ((Pencil) AdminModel.getAdmin().getProductsOfStore().get(i)).removeDiscount(id);
+                }
+            }
+        }
+
+    }
 
 
 }

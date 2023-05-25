@@ -71,7 +71,9 @@ public abstract class ProductsModel implements Comparable {
             } else {
                 return Integer.compare(this.countInCapacity, oo.countInCapacity);
             }
-    }
+        }
+
+
 
 
 

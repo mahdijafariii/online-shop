@@ -1,9 +1,12 @@
 package model.productModel.stationery;
+import model.accountModel.AdminModel;
 import model.productModel.CategoryModel;
 import model.productModel.ProductsModel;
+import model.productModel.discount;
 
-public class Pencil extends StationeryProduct{
+public class Pencil extends StationeryProduct implements discount {
     private String colorOfPen;
+    private double amountDiscount ;
      public enum typeOfPencil {
         HB,B,F,H,H2;
     }
@@ -21,6 +24,26 @@ public class Pencil extends StationeryProduct{
 
     public String getType() {
         return type.name();
+    }
+    @Override
+    public void setDiscount(String name, double amount) {
+        for(int i = 0; i< AdminModel.getAdmin().getProductsOfStore().size() ; i++ ){
+            if(AdminModel.getAdmin().getProductsOfStore().get(i).getProductID().equals(name)){
+                amountDiscount =amount;
+                AdminModel.getAdmin().getProductsOfStore().get(i).setPrice(AdminModel.getAdmin().getProductsOfStore().get(i).getPrice()*((100-amount)/100));
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void removeDiscount(String name) {
+        for(int i = 0 ; i< AdminModel.getAdmin().getProductsOfStore().size() ; i++ ){
+            if(AdminModel.getAdmin().getProductsOfStore().get(i).getProductID().equals(name)){
+                AdminModel.getAdmin().getProductsOfStore().get(i).setPrice((AdminModel.getAdmin().getProductsOfStore().get(i).getPrice()*(100))/(100-amountDiscount));
+                break;
+            }
+        }
     }
 
     @Override

@@ -112,6 +112,12 @@ public class AdminView {
                         case "normalDiscount":
                             adminController.generateNormalDiscount(Double.parseDouble(splitCommand[1]),Integer.parseInt(splitCommand[2]),Integer.parseInt(splitCommand[3]),Integer.parseInt(splitCommand[4]),Integer.parseInt(splitCommand[5]));
                             break;
+                        case "setInterfaceDiscount":
+                            adminController.setDiscountInterface(splitCommand[1],Double.parseDouble(splitCommand[2]));
+                            break;
+                        case "removeInterfaceDiscount":
+                            adminController.removeDiscountInterface(splitCommand[1]);
+                            break;
                         case "edit":
                             adminController.editInfo(splitCommand[1], splitCommand[2], splitCommand[3]);
                             break;
