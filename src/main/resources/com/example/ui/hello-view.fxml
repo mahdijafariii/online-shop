@@ -1,16 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.ui.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox alignment="CENTER" prefHeight="590.0" prefWidth="460.0" spacing="15.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.HelloController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="114.0" prefWidth="277.0" style="-fx-background-radius: 500; -fx-background-color: #1c849c;" styleClass="-fx-background-color" text="Online Shop" textAlignment="CENTER" textFill="#9c2a1c">
+         <font>
+            <Font name="Tw Cen MT Condensed" size="64.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" blendMode="LIGHTEN" prefHeight="95.0" prefWidth="406.0" text="Welcome to out store dear !!" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font size="31.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.7599999904632568" green="0.49832776188850403" blue="0.19760000705718994" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Button fx:id="SignUpButton" mnemonicParsing="false" onAction="#SignUpButtonAction" prefHeight="42.0" prefWidth="138.0" text="Sign Up ">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="40.0" prefWidth="138.0" text="Login">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="AdminButton" layoutX="171.0" layoutY="411.0" mnemonicParsing="false" onAction="#AdminButtonAction" prefHeight="40.0" prefWidth="138.0" text="Admin">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="productButton" layoutX="171.0" layoutY="391.0" mnemonicParsing="false" onAction="#productButtonAction" prefHeight="40.0" prefWidth="138.0" text="Products">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="23.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="buyPic" fitHeight="79.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wc-product-category.png" />
+         </image>
+      </ImageView>
+   </children>
 </VBox>
