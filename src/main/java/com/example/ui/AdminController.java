@@ -135,28 +135,20 @@ public class AdminController {
                         adminController.editInfo(splitCommand[1], splitCommand[2], splitCommand[3]);
                         break;
                     case "showCustomers":
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setContentText(adminController.costumers());
-                        alert.setTitle("Customers!!");
-                        alert.show();
+                        help.setText(null);
+                        help.setText(adminController.costumers());
                         break;
                     case "showChargeRequests":
-                        Alert alertCharge = new Alert(Alert.AlertType.INFORMATION);
-                        alertCharge.setContentText(adminController.costumers());
-                        alertCharge.setTitle("Charge Requests!!");
-                        alertCharge.show();
+                        help.setText(null);
+                        help.setText(adminController.listChargeRequest());
                         break;
                     case "showCommentRequests":
-                        Alert alertComment = new Alert(Alert.AlertType.INFORMATION);
-                        alertComment.setContentText(adminController.listCommentsOfProduct());
-                        alertComment.setTitle("Comment Request!!");
-                        alertComment.show();
+                        help.setText(null);
+                        help.setText(adminController.listCommentsOfProduct());
                         break;
                     case "showSignUpRequests":
-                        Alert alertSignUp = new Alert(Alert.AlertType.INFORMATION);
-                        alertSignUp.setContentText(adminController.listCommentsOfProduct());
-                        alertSignUp.setTitle("Sign Up Request!!");
-                        alertSignUp.show();
+                        help.setText(null);
+                        help.setText(adminController.listOfSignUp());
                         break;
                     case "remove":
                         adminController.removeProduct(splitCommand[1]);

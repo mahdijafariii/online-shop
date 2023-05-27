@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="590.0" prefWidth="646.0" style="-fx-background-color: #7ac17a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.LoginUserController">
+<AnchorPane prefHeight="387.0" prefWidth="590.0" style="-fx-background-color: #7ac17a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.LoginUserController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="26.0" prefHeight="95.0" prefWidth="606.0" text="Welcome to login user System !!">
          <font>
@@ -27,11 +26,13 @@
       <Button fx:id="loginInLoginSystem" layoutX="219.0" layoutY="239.0" mnemonicParsing="false" onAction="#checkUserLoginSystem" text="Login" />
       <Button fx:id="deleteFieldsOfLoginSystem" layoutX="307.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteFieldsOfLoginSystem" text="delete" />
       <Button fx:id="backFromLoginSystem" layoutX="399.0" layoutY="238.0" mnemonicParsing="false" onAction="#backFromLogin" text="back" />
+      <Label fx:id="labelWelcome" layoutX="14.0" layoutY="332.0" prefHeight="18.0" prefWidth="106.0" text="welcome dear user " textAlignment="CENTER">
+         <font>
+            <Font name="Britannic Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
-   <padding>
-      <Insets bottom="25.0" left="25.0" right="25.0" top="300.0" />
-   </padding>
 </AnchorPane>

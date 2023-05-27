@@ -43,7 +43,7 @@ public class HelloController {
         stage.setScene(scene);
         stage.setX(500);
         stage.setY(200);
-        stage.setTitle("Sign up page");
+        stage.setTitle("Admin login page");
         stage.show();
     }
 
@@ -53,14 +53,22 @@ public class HelloController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(650);
-        stage.setY(650);
-        stage.setTitle("Sign up page");
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Login page");
         stage.show();
     }
 
     @FXML
-    void SignUpButtonAction(ActionEvent event) {
+    void SignUpButtonAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sign-up-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Sign up page");
+        stage.show();
 
     }
 
