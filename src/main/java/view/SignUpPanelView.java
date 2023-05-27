@@ -1,6 +1,7 @@
 package view;
 
 import controller.SignUpController;
+import exception.InvalidFormatEmailException;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -10,7 +11,7 @@ public class SignUpPanelView {
     private final Pattern email = Pattern.compile("^[_A-Za-z0-9-+]+\\.?[_A-Za-z0-9-+]+@gmail.com$");
     private final Pattern password = Pattern.compile("(\\S){8,}");
     private final Pattern password2 = Pattern.compile("(.*[a-z])(.*[0-9])[a-z0-9#.!@$*&_]");
-    public void SignInPanelView() {
+    public void SignInPanelView() throws InvalidFormatEmailException {
         System.out.println("-------------------------Sign In Panel-------------------------");
         while(true) {
             System.out.println("what is you full name ?");

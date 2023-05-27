@@ -1,7 +1,7 @@
 package exception;
 
 public class InvalidFormatPhoneNumberException extends InvalidInputException{
-    InvalidFormatPhoneNumberException(String message) {
+    public InvalidFormatPhoneNumberException(String message) {
         super(message);
     }
 }

@@ -2,7 +2,7 @@ package exception;
 
 public class InsufficientMoneyException extends InvalidPurchaseException{
 
-    InsufficientMoneyException(String message) {
+    public InsufficientMoneyException(String message) {
         super(message);
     }
 }

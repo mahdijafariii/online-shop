@@ -1,5 +1,7 @@
 package controller;
 
+import exception.InvalidFormatEmailException;
+import exception.InvalidFormatPhoneNumberException;
 import model.accountModel.AdminModel;
 import model.accountModel.SignUpRequestModel;
 
@@ -12,7 +14,7 @@ public class SignUpController {
     private final Pattern password2 = Pattern.compile("(.*[a-z])(.*[0-9])[a-z0-9#.!@$*&_]");
     private final Pattern phoneNumberPattern = Pattern.compile("(\\S){11}");
     private AdminModel admin = AdminModel.getAdmin();
-    public int addUser(String userName,String userEmail,String userPass,String fullName,String phoneNumber){
+    public int addUser(String userName,String userEmail,String userPass,String fullName,String phoneNumber) throws InvalidFormatEmailException {
         for (int i = 0; i < admin.getAllCostumers().size(); i++) {
             if (admin.getAllCostumers().get(i).getUserName().equals(userName)) {
                 return -1;
@@ -45,18 +47,19 @@ public class SignUpController {
             return false;
     }//regex of password
 
-    public boolean checkPhoneNumber(String phoneNumber)
-    {
+    public boolean checkPhoneNumber(String phoneNumber) throws InvalidFormatPhoneNumberException {
         Matcher phoneMatcher = phoneNumberPattern.matcher(phoneNumber);
-        if (phoneMatcher.find() ) {
-            return true;
+        if (!phoneMatcher.find() ) {
+            throw new InvalidFormatPhoneNumberException("Format of phone number  is not correct !!");
         } else
-            return false;
+            return true;
     }//regex of phoneNumber
-    public boolean checkEmailRegex(String email)
-    {
+    public boolean checkEmailRegex(String email) throws InvalidFormatEmailException {
         Matcher emailMatcher=this.email.matcher(email);
-        return emailMatcher.find();
+        if(!emailMatcher.find()){
+            throw new InvalidFormatEmailException("Format of Email is not correct !! ");
+        }
+        return true;
     }//regex of email
 
 }

@@ -1,5 +1,7 @@
 package view;
 
+import exception.InvalidFormatEmailException;
+
 import java.util.Scanner;
 
 public class MainView {
@@ -7,7 +9,7 @@ public class MainView {
 
     private Scanner in=new Scanner(System.in);
 
-    public void mainPage(){
+    public void mainPage() throws InvalidFormatEmailException {
         System.out.println("Select number: \n" +
                 "1)admin panel:\n" +
                 "2)Sign In:\n" +
