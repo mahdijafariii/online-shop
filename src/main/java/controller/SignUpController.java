@@ -10,6 +10,7 @@ public class SignUpController {
     private final Pattern email = Pattern.compile("^[_A-Za-z0-9-+]+\\.?[_A-Za-z0-9-+]+@gmail.com$");
     private final Pattern password = Pattern.compile("(\\S){8,}");
     private final Pattern password2 = Pattern.compile("(.*[a-z])(.*[0-9])[a-z0-9#.!@$*&_]");
+    private final Pattern phoneNumberPattern = Pattern.compile("(\\S){11}");
     private AdminModel admin = AdminModel.getAdmin();
     public int addUser(String userName,String userEmail,String userPass,String fullName,String phoneNumber){
         for (int i = 0; i < admin.getAllCostumers().size(); i++) {
@@ -43,6 +44,15 @@ public class SignUpController {
         } else
             return false;
     }//regex of password
+
+    public boolean checkPhoneNumber(String phoneNumber)
+    {
+        Matcher phoneMatcher = phoneNumberPattern.matcher(phoneNumber);
+        if (phoneMatcher.find() ) {
+            return true;
+        } else
+            return false;
+    }//regex of phoneNumber
     public boolean checkEmailRegex(String email)
     {
         Matcher emailMatcher=this.email.matcher(email);
