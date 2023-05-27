@@ -52,7 +52,7 @@ public class AdminLoginController  {
         stage.setScene(scene);
         stage.setX(500);
         stage.setY(200);
-        stage.setTitle("Sign up page");
+        stage.setTitle("Online Shop!!");
         stage.show();
 
     }
@@ -66,9 +66,7 @@ public class AdminLoginController  {
             labelAlertAdmin.setText(null);
             labelAlertAdmin.setText("The password can not be empty !!!");
         }
-        else if(nameAdminField.getText().equals("admin") && passwordCheckAdmin.getText().equals("admin")){
-            System.out.println(nameAdminField.getText());
-            System.out.println(passwordAdminField.getText());
+        else if(nameCheckAdmin.getText().equals("admin") && passwordCheckAdmin.getText().equals("admin")){
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin-view.fxml")));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();

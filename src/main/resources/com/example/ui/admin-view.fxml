@@ -6,15 +6,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="486.0" prefWidth="730.0" style="-fx-background-color: #a4c45a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.AdminController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="35.0" prefHeight="110.0" prefWidth="466.0" style="-fx-background-color: #fc9e9e; -fx-background-radius: 150;" text="Welcome dear Admin type help too see comands!!">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="110.0" prefWidth="466.0" style="-fx-background-color: #fc9e9e; -fx-background-radius: 150;" text="Welcome dear Admin type help too see comands!!">
          <font>
             <Font name="Centaur" size="25.0" />
          </font>
       </Label>
       <TextArea id="textFieldAdmin" fx:id="TextCommandAdmin" layoutX="174.0" layoutY="243.0" prefHeight="139.0" prefWidth="414.0" style="-fx-background-color: #897070;" />
       <Button fx:id="backForAdmin" layoutX="589.0" layoutY="382.0" mnemonicParsing="false" onAction="#BackInMainFromAdmin" style="-fx-background-color: #a90000;" text="Back" />
+      <Button fx:id="saveButton" layoutX="133.0" layoutY="382.0" mnemonicParsing="false" onAction="#saveCommand" style="-fx-background-color: #a90000;" text="save" />
+      <Button fx:id="deleteCommand" layoutX="174.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteCommand" style="-fx-background-color: #a90000;" text="delete" />
+      <TextArea fx:id="help" layoutX="57.0" layoutY="138.0" prefHeight="95.0" prefWidth="649.0" style="-fx-background-color: #a4c45a; -fx-background-radius: 200; -fx-border-color: #a4c45a;" text="&#10;" />
    </children>
 </AnchorPane>
