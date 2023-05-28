@@ -16,6 +16,7 @@ public class AdminModel extends AccountModel{
     private ArrayList<ChargeRequestModel> chargeRequest;
     private ArrayList<SignUpRequestModel> signUpRequest;
     private ArrayList<DiscountCode> discountCodes;
+    private CustomerModel customerGui;
 
 
 
@@ -62,5 +63,13 @@ public class AdminModel extends AccountModel{
 
     public ArrayList<DiscountCode> getDiscountCodes() {
         return discountCodes;
+    }
+
+    public CustomerModel getCustomerGui() {
+        return customerGui;
+    }
+
+    public void setCustomerGui(CustomerModel customerGui) {
+        this.customerGui = customerGui;
     }
 }

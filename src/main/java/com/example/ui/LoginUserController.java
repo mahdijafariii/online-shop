@@ -9,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import com.example.model.accountModel.AdminModel;
@@ -55,11 +52,30 @@ public class LoginUserController implements Initializable {
     }
 
     @FXML
-    void checkUserLoginSystem(ActionEvent event) {
+    void checkUserLoginSystem(ActionEvent event) throws IOException {
         com.example.controller.AdminController adminController  = new AdminController();
         AdminModel adminModel = AdminModel.getAdmin();
         int check = adminController.checkUserNamePass(UserNameLogin.getText(),PasswordLogin.getText());
-        customerModel= adminModel.getAllCostumers().get(check);
+        if(check==-1){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("We do not have such a user with these specifications !!!");
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.show();
+        }
+        else{
+            customerModel= adminModel.getAllCostumers().get(check);
+            adminModel.setCustomerGui(customerModel);
+        }
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("after-login-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Login page!!");
+        stage.show();
+
     }
 
     @FXML
