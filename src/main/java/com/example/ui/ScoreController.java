@@ -65,10 +65,12 @@ public class ScoreController implements Initializable {
         if(check==-1){
             alert.setAlertType(Alert.AlertType.ERROR);
             saveScoreSet.setText(null);
+            alert.show();
         }
         else if (check ==-2){
             alert.setAlertType(Alert.AlertType.ERROR);
             saveScoreSet.setText(null);
+            alert.show();
         }
         else{
             alert.setAlertType(Alert.AlertType.INFORMATION);

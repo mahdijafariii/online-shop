@@ -56,7 +56,15 @@ public class AfterLoginController implements Initializable {
     private Text userNameField;
 
     @FXML
-    void chargeButtonFunction(ActionEvent event) {
+    void chargeButtonFunction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("charge-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Login");
+        stage.show();
 
     }
 
@@ -108,7 +116,15 @@ public class AfterLoginController implements Initializable {
     }
 
     @FXML
-    void scoreButtonFunction(ActionEvent event) {
+    void scoreButtonFunction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("score-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Score!");
+        stage.show();
 
     }
 
