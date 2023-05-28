@@ -73,7 +73,15 @@ public class HelloController {
     }
 
     @FXML
-    void productButtonAction(ActionEvent event) {
+    void productButtonAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("products-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Sign up page");
+        stage.show();
 
     }
 

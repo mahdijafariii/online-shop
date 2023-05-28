@@ -1,8 +1,7 @@
 package com.example.ui;
 
-import controller.UserController;
-import exception.InvalidFormatEmailException;
-import exception.InvalidFormatPhoneNumberException;
+import com.example.exception.InvalidFormatEmailException;
+import com.example.exception.InvalidFormatPhoneNumberException;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,7 +76,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     void saveSignUpInfo(ActionEvent event)  {
-        controller.SignUpController sign = new controller.SignUpController();
+        com.example.controller.SignUpController sign = new com.example.controller.SignUpController();
         try {
             if(sign.checkEmailRegex(emailTextField.getText()) | sign.checkPhoneNumber(numberTextField.getText()) | sign.checkPasswordRegex(passwordTextField.getText())){
                 int check = sign.addUser(userNameTextField.getText(),emailTextField.getText(),passwordTextField.getText(),nameTextField.getText(),nameTextField.getText());

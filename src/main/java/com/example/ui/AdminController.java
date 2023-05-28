@@ -6,11 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import model.accountModel.AdminModel;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -31,7 +29,7 @@ public class AdminController {
 
     @FXML
     void saveCommand(ActionEvent event) {
-        controller.AdminController adminController = new controller.AdminController();
+        com.example.controller.AdminController adminController = new com.example.controller.AdminController();
 
         System.out.println("Enter command ://for help enter help");
         String[] commands = TextCommandAdmin.getText().split("\n");

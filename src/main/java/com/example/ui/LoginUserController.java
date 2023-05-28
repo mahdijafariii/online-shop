@@ -1,6 +1,6 @@
 package com.example.ui;
 
-import controller.AdminController;
+import com.example.controller.AdminController;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +15,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.accountModel.AdminModel;
+import com.example.model.accountModel.AdminModel;
+import com.example.model.accountModel.CustomerModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +24,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginUserController implements Initializable {
+    CustomerModel customerModel ;
     @FXML
     private PasswordField PasswordLogin;
     @FXML
@@ -54,9 +56,10 @@ public class LoginUserController implements Initializable {
 
     @FXML
     void checkUserLoginSystem(ActionEvent event) {
-        controller.AdminController adminController  = new AdminController();
+        com.example.controller.AdminController adminController  = new AdminController();
+        AdminModel adminModel = AdminModel.getAdmin();
         int check = adminController.checkUserNamePass(UserNameLogin.getText(),PasswordLogin.getText());
-
+        customerModel= adminModel.getAllCostumers().get(check);
     }
 
     @FXML
