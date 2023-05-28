@@ -1,6 +1,7 @@
 package com.example.view;
 
 import com.example.exception.InvalidFormatEmailException;
+import com.example.exception.InvalidInputException;
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class MainView {
 
     private Scanner in=new Scanner(System.in);
 
-    public void mainPage() throws InvalidFormatEmailException {
+    public void mainPage() throws InvalidInputException {
         System.out.println("Select number: \n" +
                 "1)admin panel:\n" +
                 "2)Sign In:\n" +

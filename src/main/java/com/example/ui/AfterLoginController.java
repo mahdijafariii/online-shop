@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class AfterLoginController implements Initializable {
     private AdminModel adminModel = AdminModel.getAdmin();
     private CustomerModel customer ;
     @FXML
-    private Label balanceLabel;
+    private Text balanceField;
 
     @FXML
     private Button cartButton;
@@ -37,16 +38,13 @@ public class AfterLoginController implements Initializable {
     private Button editInfoButton;
 
     @FXML
-    private Label emailLabel;
-
-    @FXML
     private Button finalizeBuyButton;
 
     @FXML
-    private Label nameLabel;
+    private Text nameField;
 
     @FXML
-    private Label numberLabel;
+    private Text numberField;
 
     @FXML
     private Button productButton;
@@ -55,7 +53,7 @@ public class AfterLoginController implements Initializable {
     private Button scoreButton;
 
     @FXML
-    private Label userNameLabel;
+    private Text userNameField;
 
     @FXML
     void chargeButtonFunction(ActionEvent event) {
@@ -73,8 +71,15 @@ public class AfterLoginController implements Initializable {
     }
 
     @FXML
-    void editInfoButtonFunc(ActionEvent event) {
-
+    void editInfoButtonFunc(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("edit-info-user.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Edit info!!");
+        stage.show();
     }
 
     @FXML
@@ -105,11 +110,11 @@ public class AfterLoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         customer = adminModel.getCustomerGui();
-        nameLabel.setText(customer.getFullName());
-        userNameLabel.setText(customer.getUserName());
-        numberLabel.setText(customer.getPhoneNumber());
-        emailLabel.setText(customer.getEmail());
-        balanceLabel.setText(String.valueOf(customer.getBalance()));
+        System.out.println(customer.toString());
+        nameField.setText(customer.getFullName());
+        userNameField.setText(customer.getUserName());
+        numberField.setText(customer.getPhoneNumber());
+        balanceField.setText(String.valueOf(customer.getBalance()));
 
     }
 }

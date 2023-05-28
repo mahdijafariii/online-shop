@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import com.example.exception.InvalidFormatEmailException;
+import com.example.exception.InvalidFormatPhoneNumberException;
+import com.example.exception.InvalidInputException;
 import com.example.model.accountModel.*;
 import com.example.model.productModel.ProductsModel;
 import com.example.model.productModel.digitalProduct.*;
@@ -13,6 +16,7 @@ import com.example.model.productModel.vehicle.Vehicle;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +24,8 @@ public class UserController {
     private Pattern email = Pattern.compile("[_A-Za-z0-9-+]+\\.?[_A-Za-z0-9-+]+@gmail.com$");
     private Pattern password = Pattern.compile("(\\S){8,}");
     private Pattern password2 = Pattern.compile("(.*[a-z])(.*[0-9])[a-z0-9#.!@$*&_]");
+    private  Pattern phoneNumber = Pattern.compile("(\\S){11}");
+
     public boolean changeName(CustomerModel costumer,String userName , String password,String newFullName) {
         if(userName.compareTo(costumer.getUserName())==0 && password.compareTo(costumer.getPassword())==0){
             costumer.setFullName(newFullName);
@@ -28,34 +34,39 @@ public class UserController {
         else
             return false;
     }
-    public boolean changePassword(CustomerModel costumer,String userName , String password,String newPassword) {
+    public boolean changePassword(CustomerModel costumer,String userName , String password,String newPassword) throws InvalidInputException {
         if(userName.compareTo(costumer.getUserName())==0 && password.compareTo(costumer.getPassword())==0){
             if(checkPasswordRegex(newPassword)){
                 costumer.setPassword(newPassword);
                 return true;
             }
             else
-                return false;
+                throw new InvalidInputException("The format of Password is not correct !!");
         }
         else
             return false;
     }
-    public boolean changeEmail(CustomerModel costumer,String userName , String password,String newEmail) {
+    public boolean changeEmail(CustomerModel costumer,String userName , String password,String newEmail) throws InvalidFormatEmailException {
         if(userName.compareTo(costumer.getUserName())==0 && password.compareTo(costumer.getPassword())==0){
             if(checkEmailRegex(newEmail)){
                 costumer.setEmail(newEmail);
                 return true;
             }
             else
-                return false;
+                throw new InvalidFormatEmailException("The format of Email is not correct !!");
         }
         else
             return false;
     }
 
-    public void changePhoneNumber(CustomerModel costumer, String userName , String password, String newPhoneNumber) {
+    public void changePhoneNumber(CustomerModel costumer, String userName , String password, String newPhoneNumber) throws InvalidFormatPhoneNumberException {
         if(userName.compareTo(costumer.getUserName())==0 && password.compareTo(costumer.getPassword())==0){
-            costumer.setPhoneNumber(newPhoneNumber);
+            if(checkPhoneNumber(newPhoneNumber)){
+                costumer.setPhoneNumber(newPhoneNumber);
+            }
+            else{
+                throw new InvalidFormatPhoneNumberException("The phone Number pattern is not correct !!");
+            }
         }
     }
     //--------------------------------------------------------filter product as category
@@ -657,6 +668,12 @@ public class UserController {
         Matcher emailMatcher=this.email.matcher(email);
         return emailMatcher.find();
     }//regex of email
+    public boolean checkPhoneNumber(String phoneNumberNew)
+    {
+        Matcher phoneNumber=this.phoneNumber.matcher(phoneNumberNew);
+        return phoneNumber.find();
+    }//regex of email
+
 
 
 }

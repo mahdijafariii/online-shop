@@ -79,7 +79,7 @@ public class SignUpController implements Initializable {
         com.example.controller.SignUpController sign = new com.example.controller.SignUpController();
         try {
             if(sign.checkEmailRegex(emailTextField.getText()) | sign.checkPhoneNumber(numberTextField.getText()) | sign.checkPasswordRegex(passwordTextField.getText())){
-                int check = sign.addUser(userNameTextField.getText(),emailTextField.getText(),passwordTextField.getText(),nameTextField.getText(),nameTextField.getText());
+                int check = sign.addUser(userNameTextField.getText(),emailTextField.getText(),passwordTextField.getText(),nameTextField.getText(),numberTextField.getText());
                 if(check==1){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION , "Your request was sent to admin !!!");
                     alert.setTitle(null);

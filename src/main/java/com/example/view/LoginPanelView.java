@@ -2,6 +2,8 @@ package com.example.view;
 
 import com.example.controller.AdminController;
 import com.example.controller.UserController;
+import com.example.exception.InvalidFormatEmailException;
+import com.example.exception.InvalidInputException;
 import com.example.model.accountModel.AdminModel;
 import com.example.model.accountModel.CustomerModel;
 
@@ -16,7 +18,7 @@ public class LoginPanelView {
     private UserController userController = new UserController();
     private Scanner in = new Scanner(System.in);
 
-    public void loginPanel() {
+    public void loginPanel() throws InvalidInputException {
         System.out.println("--------------------------------------------------------This is our login system---------------------------------------------------------");
         int check = -2;
         String userName;
