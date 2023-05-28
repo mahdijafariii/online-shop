@@ -18,6 +18,6 @@ public class StorageEquipment extends DigitalProducts {
 
     @Override
     public String toString(){
-        return super.toString()+" --Capacity:"+capacity;
+        return super.toString()+"\nCapacity: "+capacity;
     }
 }

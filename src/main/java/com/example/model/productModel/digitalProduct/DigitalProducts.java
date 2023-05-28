@@ -54,7 +54,7 @@ public abstract class DigitalProducts extends ProductsModel implements discount 
 
     @Override
     public String toString(){
-        return super.toString()+" --Weight:"+weight+" --Dimensions:"+dimensions;
+        return super.toString()+"\nWeight: "+weight+" --Dimensions: "+dimensions;
     }
 
 }

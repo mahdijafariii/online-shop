@@ -126,7 +126,7 @@ public abstract class ProductsModel implements Comparable {
 
     @Override
     public String toString(){
-        return "Name:"+ name +" -- Price:"+price +" -- ID:"+productID+ " -- Category:"+type+" -- Score:"+averageOfScores;
+        return "Name: "+ name +" -- Price: "+price +" -- ID: "+productID+ " -- Category: "+type+"\nScore: "+averageOfScores;
     }
 }
 

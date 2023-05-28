@@ -413,11 +413,11 @@ public class UserController {
         return show.toString();}
     public String searchExactInProduct(ArrayList<ProductsModel> products,String iD){
         for(int i=0 ;i<products.size();i++){
-            if(products.get(i).getName().equals(iD)){
+            if(products.get(i).getProductID().equals(iD)){
                 return products.get(i).toString()+"\n\n";
             }
         }
-        return "We do not have product with this id!!";}
+        return "-";}
     //---------------------------------------------------------com.example.view of cart
     public String seeCart(CustomerModel user){
         StringBuilder test = new StringBuilder();

@@ -21,7 +21,7 @@ public class Pen extends StationeryProduct implements discount {
 
     @Override
     public String toString(){
-        return super.toString()+" -- Color:"+colorOfPen;
+        return super.toString()+"\nColor: "+colorOfPen;
     }
 
 

@@ -1,17 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="590.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.ProductController">
+<AnchorPane prefHeight="659.0" prefWidth="803.0" style="-fx-background-color: #32498f;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.ProductController">
    <children>
-      <VBox layoutX="575.0" layoutY="325.0" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Button fx:id="backLogin" mnemonicParsing="false" onAction="#backFromLoginToOnlineShop" text="Button" />
-         </children>
-      </VBox>
-      <TableView fx:id="tableView" layoutX="169.0" layoutY="110.0" prefHeight="200.0" prefWidth="414.0" />
+      <Button fx:id="backLogin" layoutX="761.0" layoutY="574.0" mnemonicParsing="false" onAction="#backFromLoginToOnlineShop" text="Back" textFill="#32498f">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tableView" layoutX="154.0" layoutY="59.0" prefHeight="200.0" prefWidth="495.0" />
+      <Line endX="483.0" endY="-3.814697265625E-6" layoutX="320.0" layoutY="58.0" startX="-320.0" startY="-3.814697265625E-6" />
+      <ImageView fx:id="imageSearch" fitHeight="37.0" fitWidth="33.0" layoutX="756.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Search-Button-Black-PNG-Cutout.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="seeInfoProduct" layoutX="325.0" layoutY="293.0" />
+      <Label layoutX="310.0" layoutY="268.0" prefHeight="18.0" prefWidth="182.0" text="see information of special product" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="checkSpecialProduct" layoutX="374.0" layoutY="329.0" mnemonicParsing="false" onAction="#checkSpecialProduct" text="check">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="labelInfoProducts" layoutX="152.0" layoutY="361.0" prefHeight="174.0" prefWidth="495.0" style="-fx-background-color: #32498f;" />
+      <Label layoutX="290.0" layoutY="11.0" prefHeight="50.0" prefWidth="260.0" text="Online Shop" textFill="#5e0202">
+         <font>
+            <Font name="Berlin Sans FB" size="43.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="34.0" prefHeight="18.0" prefWidth="103.0" text="Filter">
+         <font>
+            <Font name="Forte" size="22.0" />
+         </font>
+      </Label>
+      <MenuButton fx:id="filter" layoutX="14.0" layoutY="68.0" mnemonicParsing="false" text="Filters">
+        <items>
+          <MenuItem fx:id="filterDigitalProduct" mnemonicParsing="false" onAction="#filterDigitalProductFunc" text="Filter Digital Product" />
+          <MenuItem fx:id="filterFood" mnemonicParsing="false" onAction="#filterFoodFunc" text="Filter Foods" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>

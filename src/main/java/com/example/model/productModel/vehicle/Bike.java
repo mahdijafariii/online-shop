@@ -25,7 +25,7 @@ public class Bike extends VehiclesProduct{
 
     @Override
     public String toString(){
-        return super.toString()+" --Type of bike:"+type;
+        return super.toString()+"\nType of bike: "+type;
     }
 
 }

@@ -27,7 +27,7 @@ public class PersonalComputer extends DigitalProducts{
 
     @Override
     public String toString(){
-        return super.toString()+" --CPU:"+modelOfCPU+" --RAM:"+RAM;
+        return super.toString()+"\nCPU:"+modelOfCPU+" --RAM:"+RAM;
     }
 
 

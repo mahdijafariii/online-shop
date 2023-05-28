@@ -30,7 +30,7 @@ public class Food extends ProductsModel{
 
     @Override
     public String toString(){
-        return super.toString()+" --Date of production and expiration:"+dateOfProduction+" ~~ "+dateOfExpiration;
+        return super.toString()+"\nDate of production and expiration: "+dateOfProduction+" ~~ "+dateOfExpiration;
     }
 
 

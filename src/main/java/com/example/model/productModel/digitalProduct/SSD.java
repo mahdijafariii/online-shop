@@ -27,6 +27,6 @@ public class SSD extends StorageEquipment{
 
     @Override
     public String toString(){
-        return super.toString()+" --Reading and writing speed:"+readingSpeed+"~~"+writingSpeed;
+        return super.toString()+"\nReading and writing speed: "+readingSpeed+"~~"+writingSpeed;
     }
 }

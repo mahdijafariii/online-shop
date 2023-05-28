@@ -28,7 +28,7 @@ public class NoteBook extends StationeryProduct{
 
     @Override
     public String toString(){
-        return super.toString()+" --Number of leaves:"+numberOfLeaves+" --Type of leaves:"+typeOfLeaves;
+        return super.toString()+"\nNumber of leaves: "+numberOfLeaves+" --Type of leaves: "+typeOfLeaves;
     }
 
 }

@@ -20,7 +20,7 @@ public abstract class StationeryProduct extends ProductsModel {
 
     @Override
     public String toString(){
-        return super.toString()+" -- Country of developing:"+creatorCountry;
+        return super.toString()+" -- Country of developing: "+creatorCountry;
     }
 
 }

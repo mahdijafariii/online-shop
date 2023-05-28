@@ -29,7 +29,7 @@ public class Vehicle extends VehiclesProduct{
 
     @Override
     public String toString(){
-        return super.toString()+" --Automatic:"+automatic+" --Engine Volume:"+engineVolume;
+        return super.toString()+"\nAutomatic: "+automatic+" --Engine Volume: "+engineVolume;
     }
 
 }

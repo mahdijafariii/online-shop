@@ -19,7 +19,7 @@ public abstract class VehiclesProduct extends ProductsModel{
 
     @Override
     public String toString(){
-        return super.toString()+" --name of developer country:"+nameOfCreator;
+        return super.toString()+" --name of developer country: "+nameOfCreator;
     }
 
 }

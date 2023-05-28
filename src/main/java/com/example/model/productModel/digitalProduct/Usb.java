@@ -18,7 +18,7 @@ public class Usb extends StorageEquipment{
 
     @Override
     public String toString(){
-        return super.toString()+" --Usb version:"+usbVersion;
+        return super.toString()+"\nUsb version: "+usbVersion;
     }
 
 
