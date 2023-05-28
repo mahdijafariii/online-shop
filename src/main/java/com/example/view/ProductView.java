@@ -42,7 +42,7 @@ public class ProductView {
                     System.out.println("What is the number of product in list!");
                     int showProduct = in.nextInt();
                     if (admin.getProductsOfStore().size() != showProduct && showProduct > 0) {
-                        System.out.println(productController.showProductInfo(showProduct));
+                        System.out.println(productController.showProductInfo(String.valueOf(showProduct)));
                     }
                     break;
 

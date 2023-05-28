@@ -61,8 +61,15 @@ public class AfterLoginController implements Initializable {
     }
 
     @FXML
-    void commentButton(ActionEvent event) {
-
+    void commentButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("comment-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Comment");
+        stage.show();
     }
 
     @FXML

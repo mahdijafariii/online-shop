@@ -30,15 +30,30 @@ public class ProductController {
         }
 
     return showProducts;}
-    public String showProductInfo(int numberInList){
-        StringBuilder test = new StringBuilder();
-        test.append("---------------------------"+admin.getProductsOfStore().get(numberInList-1).toString()+"---------------------------\n\n");
-        test.append("---------------------------------------------------------------------------------------comment-----------------------------------------------------------------------------------------------------\n");
-        for(int j=0 ;j<admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().size();j++ ){
-            test.append((j+1)+")"+admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().get(j).getOpinion()+"----------------\n");
+    //-------------------------------------------------------------------------------------------
+    public String showProductInfo(String idProduct){
+        int numberInList=-1;
+        for(int i = 0 ; i <admin.getProductsOfStore().size() ; i ++ ){
+            if(admin.getProductsOfStore().get(i).getProductID().equals(idProduct)){
+                numberInList=i;
+                break;
+            }
         }
+        if(numberInList==-1){
+            return "-";
+        }
+        else{
+            StringBuilder test = new StringBuilder();
+            test.append("---------------------------"+admin.getProductsOfStore().get(numberInList-1).toString()+"---------------------------\n\n");
+            test.append("---------------------------------------comment---------------------------------------\n");
+            for(int j=0 ;j<admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().size();j++ ){
+                test.append((j+1)+")"+admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().get(j).getOpinion()+"----------------\n");
+            }
 
-    return test.toString();}
+            return test.toString();
+        }
+        }
+    //--------------------------------------------------------------------------------------------
     public int previousPage(int count ){
         if(count>1){
             count=count-1;
