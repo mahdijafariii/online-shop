@@ -565,27 +565,34 @@ public class UserController {
         admin.getComments().add(opinion);
     }
     //---------------------------------------------------------set score
-    public int setScore(CustomerModel user, double newScore, AdminModel admin,String id){
-        int check=-1;
-        for (int i =0;i<admin.getProductsOfStore().size();i++){
-            if(admin.getProductsOfStore().get(i).getProductID().equals(id)) {
+    public int setScore(CustomerModel user, double newScore, AdminModel admin,String id) {
+        int check = -1;
+        for (int i = 0; i < admin.getProductsOfStore().size(); i++) {
+            if (admin.getProductsOfStore().get(i).getProductID().equals(id)) {
                 check = i;
                 break;
             }
 
         }
-        if(check==-1){
+        if (check == -1) {
             return -1;//we do not have this product in our store!!
         }
-        ScoreModel score=new ScoreModel(user,newScore,admin.getProductsOfStore().get(check));
-        for(int j=0;j<user.getPurchaseHistory().size();j++){
-            if(user.getPurchaseHistory().get(j).getProductID().equals(id)){
-                double beforeScore=admin.getProductsOfStore().get(check).getAverageOfScores();
-                admin.getProductsOfStore().get(check).setAverageOfScores(((beforeScore+newScore)/2));
-                return 1;
-            }
+        else if (newScore > 10 || newScore < 0) {
+            return -3;//the input is wrong
         }
-        return -2;
+        else {
+
+
+            ScoreModel score = new ScoreModel(user, newScore, admin.getProductsOfStore().get(check));
+            for (int j = 0; j < user.getPurchaseHistory().size(); j++) {
+                if (user.getPurchaseHistory().get(j).getProductID().equals(id)) {
+                    double beforeScore = admin.getProductsOfStore().get(check).getAverageOfScores();
+                    admin.getProductsOfStore().get(check).setAverageOfScores(((beforeScore + newScore) / 2));
+                    return 1;//save scored
+                }
+            }
+            return -2;//You do not have this product in your purchased buy history!!!
+        }
     }
 //-------------------------------------------------------------charging account
     public int chargeBalance(CustomerModel user,String charge , String cardNumber,String cvv2 ,String cardPass,AdminModel admin){

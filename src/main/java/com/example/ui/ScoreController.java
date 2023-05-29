@@ -65,11 +65,25 @@ public class ScoreController implements Initializable {
         if(check==-1){
             alert.setAlertType(Alert.AlertType.ERROR);
             saveScoreSet.setText(null);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("We do not have this product in store !!!");
             alert.show();
         }
         else if (check ==-2){
             alert.setAlertType(Alert.AlertType.ERROR);
             saveScoreSet.setText(null);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("You do not have this product in your purchased buy history!!!");
+            alert.show();
+        }
+        else if (check==-3){
+            alert.setAlertType(Alert.AlertType.ERROR);
+            saveScoreSet.setText(null);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("The score can not be more than 10 or less than 0 !!!");
             alert.show();
         }
         else{
