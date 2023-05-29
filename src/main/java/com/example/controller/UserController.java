@@ -622,7 +622,7 @@ public class UserController {
         StringBuilder test = new StringBuilder();
         for (int i = 0 ; i <customerModel.getDiscountCodes().size() ; i++ ){
             test.append(customerModel.getDiscountCodes().get(i).toString());
-            test.append("\n");
+            test.append("--------------------------------\n");
         }
         return test.toString();
     }
