@@ -46,10 +46,12 @@ public class ChargeController {
 
     @FXML
     void RequestButtonField(ActionEvent event) {
-       int check=  userController.chargeBalance(customerModel,amountField.getText(),cardNumberField.getText(),cvv2Field.getText(),passwordCardField.getText(),adminModel);
+        customerModel=adminModel.getCustomerGui();
+       int check= userController.chargeBalance(customerModel,amountField.getText(),cardNumberField.getText(),cvv2Field.getText(),passwordCardField.getText(),adminModel);
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
        if(check==1){
+           alert.setAlertType(Alert.AlertType.INFORMATION);
            alert.setTitle("Success!");
            alert.setContentText("Your request was send to admin !!");
            alert.show();
@@ -74,7 +76,7 @@ public class ChargeController {
 
     @FXML
     void backChargeFunc(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("products-controller.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("after-login-controller.fxml")));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);

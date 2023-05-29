@@ -44,10 +44,10 @@ public class ProductController {
         }
         else{
             StringBuilder test = new StringBuilder();
-            test.append("---------------------------"+admin.getProductsOfStore().get(numberInList-1).toString()+"---------------------------\n\n");
+            test.append("---------------------------"+admin.getProductsOfStore().get(numberInList).toString()+"---------------------------\n\n");
             test.append("---------------------------------------comment---------------------------------------\n");
-            for(int j=0 ;j<admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().size();j++ ){
-                test.append((j+1)+")"+admin.getProductsOfStore().get(numberInList-1).getCommentsOfProduct().get(j).getOpinion()+"----------------\n");
+            for(int j=0 ;j<admin.getProductsOfStore().get(numberInList).getCommentsOfProduct().size();j++ ){
+                test.append((j+1)+")"+admin.getProductsOfStore().get(numberInList).getCommentsOfProduct().get(j).getOpinion()+"----------------\n");
             }
 
             return test.toString();

@@ -71,8 +71,8 @@ public class LoginUserController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(500);
-        stage.setY(200);
+        stage.setX(400);
+        stage.setY(130);
         stage.setTitle("Login page!!");
         stage.show();
 

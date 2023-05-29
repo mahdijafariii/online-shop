@@ -94,11 +94,9 @@ public class ScoreController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         TableColumn<ProductsModel,Double> priceColumn=new TableColumn<>("Price");
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        TableColumn<ProductsModel,Integer> quantityColumn=new TableColumn<>("amount");
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("countInCapacity"));
         TableColumn<ProductsModel,Double> averageColumn=new TableColumn<>("average Score");
         averageColumn.setCellValueFactory(new PropertyValueFactory<>("averageOfScores"));
-        tableOldPurchases.getColumns().addAll(IDColumn,nameColumn,priceColumn,quantityColumn,averageColumn);
+        tableOldPurchases.getColumns().addAll(IDColumn,nameColumn,priceColumn,averageColumn);
         ObservableList<ProductsModel> data= FXCollections.observableArrayList(customerModel.getPurchaseHistory());
         tableOldPurchases.setItems(data);
 

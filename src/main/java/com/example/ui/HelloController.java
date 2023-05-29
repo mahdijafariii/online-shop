@@ -78,8 +78,8 @@ public class HelloController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(500);
-        stage.setY(200);
+        stage.setX(410);
+        stage.setY(30);
         stage.setTitle("Sign up page");
         stage.show();
 

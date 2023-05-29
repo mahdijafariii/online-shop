@@ -48,6 +48,9 @@ public class AfterLoginController implements Initializable {
 
     @FXML
     private Button productButton;
+    @FXML
+    private Button backButtonToMainPage;
+
 
     @FXML
     private Button scoreButton;
@@ -63,7 +66,7 @@ public class AfterLoginController implements Initializable {
         stage.setScene(scene);
         stage.setX(500);
         stage.setY(200);
-        stage.setTitle("Login");
+        stage.setTitle("Charge Account");
         stage.show();
 
     }
@@ -81,7 +84,16 @@ public class AfterLoginController implements Initializable {
     }
 
     @FXML
-    void cartButton(ActionEvent event) {
+    void cartButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("cart-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Cart!");
+        stage.show();
+
 
     }
 
@@ -139,5 +151,16 @@ public class AfterLoginController implements Initializable {
         numberField.setText(customer.getPhoneNumber());
         balanceField.setText(String.valueOf(customer.getBalance()));
 
+    }
+    @FXML
+    void backButtonTooMainPageFunc(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Main page!");
+        stage.show();
     }
 }

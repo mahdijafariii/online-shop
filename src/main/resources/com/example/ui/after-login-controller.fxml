@@ -26,7 +26,7 @@
          <graphic>
             <ImageView fitHeight="83.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Screenshot%202023-05-28%20153350.png" />
+                  <Image url="@Screenshot.png" />
                </image>
             </ImageView>
          </graphic>
@@ -96,7 +96,7 @@
          <graphic>
             <ImageView fitHeight="73.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@finalize%20buy.png" />
+                  <Image url="@finalize-buy.png" />
                </image>
             </ImageView>
          </graphic>
@@ -155,5 +155,10 @@
             <Font name="Forte" size="13.0" />
          </font>
       </Text>
+      <Button fx:id="backButtonToMainPage" layoutX="782.0" layoutY="538.0" mnemonicParsing="false" onAction="#backButtonTooMainPageFunc" prefHeight="62.0" prefWidth="71.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Forte" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
