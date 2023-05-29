@@ -473,7 +473,7 @@ public class UserController {
     public double calculateDiscount(ArrayList<String> discount , AdminModel admin,CustomerModel customer) throws InvalidDiscountException {
 
 
-        if(discount.size()==0){
+        if(discount.size()==0||discount.get(0)==null){
             return 0;
         }
         double amountDiscount =0 ;
@@ -626,7 +626,7 @@ public class UserController {
         StringBuilder test = new StringBuilder();
         for (int i = 0 ; i <customerModel.getDiscountCodes().size() ; i++ ){
             test.append(customerModel.getDiscountCodes().get(i).toString());
-            test.append("--------------------------------\n");
+            test.append("\n-----------------------------------------------");
         }
         return test.toString();
     }

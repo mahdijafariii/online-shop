@@ -31,7 +31,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FinalizeBuyController implements Initializable {
-    private ArrayList<String> discounts ;
+    private ArrayList<String> discounts = new ArrayList<>(); ;
     private UserController userController = new UserController();
     private CustomerModel customer ;
     private AdminModel adminModel =AdminModel.getAdmin();
@@ -71,8 +71,31 @@ public class FinalizeBuyController implements Initializable {
     @FXML
     void addDiscountFunc(ActionEvent event) throws InvalidDiscountException {
         try {
-            userController.checkDiscount(fieldDiscount.getText(),adminModel);
-            discounts.add(fieldDiscount.getText());
+            if(!(fieldDiscount.getText()==null || fieldDiscount.getText().equals(""))){
+                userController.checkDiscount(fieldDiscount.getText(),adminModel);
+                boolean checkDiscount =true;
+                for(int i = 0 ; i<discounts.size();i++){
+                    if(fieldDiscount.getText().equals(discounts.get(i))){
+                        checkDiscount=false;
+                    }
+                }
+                if(checkDiscount){
+                    discounts.add(fieldDiscount.getText());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("The discount added !!");
+                    alert.show();
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("This discount code is repeated!!");
+                    alert.show();
+                }
+
+            }
         }
         catch (InvalidDiscountException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -114,6 +137,7 @@ public class FinalizeBuyController implements Initializable {
         if(checkFinalize==1){
             customer.setCart(new ArrayList<>());
             customer.getInvoiceHistory().get(customer.getInvoiceHistory().size()-1).setProfit(userController.calculateWithoutDiscount(customer,discounts,adminModel)-(customer.getInvoiceHistory().get(customer.getInvoiceHistory().size()-1).getTotalPrice()));
+            discounts = new ArrayList<>();
             //go to new page !!!
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("invoice-after-buy.fxml")));
             Scene scene = new Scene(root);
@@ -135,6 +159,8 @@ public class FinalizeBuyController implements Initializable {
         for(int i = 0 ; i<customer.getCart().size() ; i++){
             if(textFieldDeleteProduct.getText().equals(customer.getCart().get(i).getProductID())){
                 customer.getCart().remove(i);
+                ObservableList<ProductsModel> data= FXCollections.observableArrayList(customer.getCart());
+                cart.setItems(data);
                 break;
             }
         }

@@ -34,7 +34,7 @@ public class DiscountUserController implements Initializable {
 
     @FXML
     void backFromDiscountFunc(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login-user-controller.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AfterLoginProductController")));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);

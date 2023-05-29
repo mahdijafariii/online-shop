@@ -64,7 +64,7 @@
       <Line endX="-99.20001220703125" endY="112.0" layoutX="795.0" layoutY="92.0" startX="-99.20001220703125" startY="-3.5000076293945312" stroke="WHITE" />
       <Line endX="132.70001220703125" endY="-7.62939453125E-6" layoutX="725.0" layoutY="204.0" startX="-29.70001220703125" startY="-7.62939453125E-6" stroke="WHITE" />
       <Line endX="-99.20001220703125" endY="112.0" layoutX="957.0" layoutY="91.0" startX="-97.79998779296875" startY="-1.5000076293945312" stroke="WHITE" />
-      <Button fx:id="productButton" layoutX="79.0" layoutY="109.0" mnemonicParsing="false" onAction="#productButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+      <Button fx:id="productButton" layoutX="79.0" layoutY="114.0" mnemonicParsing="false" onAction="#productButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
          <graphic>
             <ImageView fitHeight="65.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -73,7 +73,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="commentButton" layoutX="79.0" layoutY="215.0" mnemonicParsing="false" onAction="#commentButton" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+      <Button fx:id="commentButton" layoutX="79.0" layoutY="245.0" mnemonicParsing="false" onAction="#commentButton" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
          <graphic>
             <ImageView fitHeight="83.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -82,7 +82,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="scoreButton" layoutX="79.0" layoutY="318.0" mnemonicParsing="false" onAction="#scoreButtonFunction" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+      <Button fx:id="scoreButton" layoutX="79.0" layoutY="383.0" mnemonicParsing="false" onAction="#scoreButtonFunction" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -91,7 +91,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="finalizeBuyButton" layoutX="80.0" layoutY="423.0" mnemonicParsing="false" onAction="#finalizeBuyButtonFunction" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+      <Button fx:id="finalizeBuyButton" layoutX="268.0" layoutY="308.0" mnemonicParsing="false" onAction="#finalizeBuyButtonFunction" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
          <graphic>
             <ImageView fitHeight="73.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -105,22 +105,22 @@
             <Font name="Forte" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="15.0" layoutY="251.0" text="Comment" textFill="#10b769">
+      <Label layoutX="8.0" layoutY="273.0" text="Comment" textFill="#10b769">
          <font>
             <Font name="Forte" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="354.0" text="Score" textFill="#10b769">
+      <Label layoutX="28.0" layoutY="419.0" text="Score" textFill="#10b769">
          <font>
             <Font name="Forte" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="6.0" layoutY="460.0" text="finalizr buy" textFill="#10b769">
+      <Label layoutX="188.0" layoutY="344.0" text="finalizr buy" textFill="#10b769">
          <font>
             <Font name="Forte" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="chargeButton" layoutX="79.0" layoutY="534.0" mnemonicParsing="false" onAction="#chargeButtonFunction" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+      <Button fx:id="chargeButton" layoutX="79.0" layoutY="507.0" mnemonicParsing="false" onAction="#chargeButtonFunction" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
          <graphic>
             <ImageView fitHeight="61.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -129,7 +129,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="22.0" layoutY="570.0" text="Charge " textFill="#10b769">
+      <Label layoutX="22.0" layoutY="543.0" text="Charge " textFill="#10b769">
          <font>
             <Font name="Forte" size="14.0" />
          </font>
@@ -173,7 +173,7 @@
             <Font name="Forte" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="discountButton" layoutX="268.0" layoutY="310.0" mnemonicParsing="false" onAction="#discountButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+      <Button fx:id="discountButton" layoutX="268.0" layoutY="443.0" mnemonicParsing="false" onAction="#discountButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
          <graphic>
             <ImageView fitHeight="47.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -182,16 +182,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="invoiceButton11" layoutX="268.0" layoutY="450.0" mnemonicParsing="false" onAction="#InvoiceButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
-         <graphic>
-            <ImageView fitHeight="62.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@invoice.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Label layoutX="195.0" layoutY="346.0" text="Discounts" textFill="#10b769">
+      <Label layoutX="191.0" layoutY="479.0" text="Discounts" textFill="#10b769">
          <font>
             <Font name="Forte" size="15.0" />
          </font>
