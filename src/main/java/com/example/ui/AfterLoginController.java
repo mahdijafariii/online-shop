@@ -24,6 +24,9 @@ public class AfterLoginController implements Initializable {
     private CustomerModel customer ;
     @FXML
     private Text balanceField;
+    @FXML
+    private Button invoiceButton;
+
 
     @FXML
     private Button cartButton;
@@ -161,6 +164,17 @@ public class AfterLoginController implements Initializable {
         stage.setX(500);
         stage.setY(200);
         stage.setTitle("Main page!");
+        stage.show();
+    }
+    @FXML
+    void InvoiceButtonFunc(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvoiceController")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(800);
+        stage.setY(650);
+        stage.setTitle("Invoice");
         stage.show();
     }
 }

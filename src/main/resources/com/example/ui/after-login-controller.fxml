@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="636.0" prefWidth="847.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.AfterLoginController">
    <children>
       <Line endX="422.49298095703125" endY="-7.62939453125E-6" layoutX="458.0" layoutY="74.0" startX="-458.0" startY="-7.62939453125E-6" stroke="#009405" />
@@ -160,5 +159,19 @@
             <Font name="Forte" size="19.0" />
          </font>
       </Button>
+      <Button fx:id="invoiceButton" layoutX="268.0" layoutY="171.0" mnemonicParsing="false" onAction="#InvoiceButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@invoice.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="199.0" layoutY="207.0" text="Invoice" textFill="#10b769">
+         <font>
+            <Font name="Forte" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
