@@ -1,8 +1,6 @@
 package com.example.controller;
 
-import com.example.exception.InvalidFormatEmailException;
-import com.example.exception.InvalidFormatPhoneNumberException;
-import com.example.exception.InvalidInputException;
+import com.example.exception.*;
 import com.example.model.accountModel.*;
 import com.example.model.productModel.ProductsModel;
 import com.example.model.productModel.digitalProduct.*;
@@ -424,7 +422,7 @@ public class UserController {
         }
     }
     //----------------------------------------------------------finalize buy!!
-    public int finalizeBuy(ArrayList<String> discount,CustomerModel customerModel ,AdminModel admin) {
+    public int finalizeBuy(ArrayList<String> discount,CustomerModel customerModel ,AdminModel admin) throws InsufficientMoneyException, InsufficientAmountOfProductException, InvalidDiscountException {
         InvoiceController invoiceController = new InvoiceController();
         InvoiceModel test = new InvoiceModel(customerModel);
         test.setTotalPrice(invoiceController.calculateInvoice(test,calculateDiscount(discount,admin,customerModel)));//you should set it manual and function is in invoice com.example.controller
@@ -438,18 +436,19 @@ public class UserController {
                             customerModel.getPurchaseHistory().add(customerModel.getCart().get(j));//when you want to set score it is in purchased history!!
                         }
                         else{
-                            return -5;//one of the product is not in capacity!!
+                            throw new InsufficientAmountOfProductException("One of the product is not in capacity!!!");//one of the product is not in capacity!!
                         }
 
                     }
                 }
             }
             customerModel.getInvoiceHistory().add(test);
+
             return 1;
         }
         else
         {
-            return -1;
+            throw new InsufficientMoneyException("You do not have enough money first please charge your account !!");
         }
 
     }
@@ -471,7 +470,7 @@ public class UserController {
 
     }
     //---------------------------------------------------------calculate discount code
-    public double calculateDiscount(ArrayList<String> discount , AdminModel admin,CustomerModel customer){
+    public double calculateDiscount(ArrayList<String> discount , AdminModel admin,CustomerModel customer) throws InvalidDiscountException {
 
 
         if(discount.size()==0){
@@ -479,7 +478,7 @@ public class UserController {
         }
         double amountDiscount =0 ;
         for(int i = 0 ; i<discount.size() ; i++){
-            if(checkDiscount(discount.get(i),admin)){
+            if(checkDiscount(discount.get(i),admin)==1){
 
                 int numDiscountInList=-1;
                 for(int k = 0 ; k <admin.getDiscountCodes().size() ; k++){
@@ -516,7 +515,7 @@ public class UserController {
         return amountDiscount;
     }
 
-    public boolean checkDiscount(String discount , AdminModel admin){
+    public int checkDiscount(String discount , AdminModel admin) throws InvalidDiscountException {
         int numInDiscountList=-1 ;
         for(int i= 0 ; i <admin.getDiscountCodes().size() ; i++){
             if(admin.getDiscountCodes().get(i).getCode().equals(discount)){
@@ -525,17 +524,15 @@ public class UserController {
             }
         }
         if(numInDiscountList==-1){
-            return false;
+            throw new InvalidDiscountException("You do not have this discount in your discounts!!!");//not in list of discounts!!!
         }
         if(admin.getDiscountCodes().get(numInDiscountList).getDiscountCodeCapacity()==0){
-            System.out.println(admin.getDiscountCodes().get(numInDiscountList).getDiscountCodeCapacity());
-            return false;
+            throw new InvalidDiscountException("The number of this discount code is over!!!");//capacity is 0;
         }
         if(admin.getDiscountCodes().get(numInDiscountList).getTime().before(new Date(2021,12,29))){
-            System.out.println(admin.getDiscountCodes().get(numInDiscountList).getTime());
-            return false;
+            throw new InvalidDiscountException("This discount code has expired!!!");//the time of discount is before now !!
         }
-        return true;
+        return 1;
     }
 
 

@@ -12,6 +12,7 @@ public class InvoiceModel {
     private final Date date ;
     private final String timeInvoice;
     private double totalPrice;
+    private double profit;
     private ArrayList<ProductsModel> listOfShoppingItem;
     public InvoiceModel(CustomerModel customerModel){
         listOfShoppingItem=customerModel.getCart();
@@ -41,6 +42,14 @@ public class InvoiceModel {
 
     public void setListOfShoppingItem(ArrayList<ProductsModel> listOfShoppingItem) {
         this.listOfShoppingItem = listOfShoppingItem;
+    }
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
     }
 
     @Override
