@@ -161,7 +161,7 @@
       </Button>
       <Button fx:id="invoiceButton" layoutX="268.0" layoutY="171.0" mnemonicParsing="false" onAction="#InvoiceButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
          <graphic>
-            <ImageView fitHeight="62.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@invoice.png" />
                </image>
@@ -169,6 +169,29 @@
          </graphic>
       </Button>
       <Label layoutX="199.0" layoutY="207.0" text="Invoice" textFill="#10b769">
+         <font>
+            <Font name="Forte" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="discountButton" layoutX="268.0" layoutY="310.0" mnemonicParsing="false" onAction="#discountButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@discount.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="invoiceButton11" layoutX="268.0" layoutY="450.0" mnemonicParsing="false" onAction="#InvoiceButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@invoice.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="195.0" layoutY="346.0" text="Discounts" textFill="#10b769">
          <font>
             <Font name="Forte" size="15.0" />
          </font>

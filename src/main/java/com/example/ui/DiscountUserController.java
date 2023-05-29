@@ -46,6 +46,7 @@ public class DiscountUserController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        customerModel = admin.getCustomerGui();
         labelDiscount.setText(userController.showDiscounts(customerModel));
     }
 }

@@ -33,6 +33,9 @@ public class AfterLoginController implements Initializable {
 
     @FXML
     private Button chargeButton;
+    @FXML
+    private Button discountButton;
+
 
     @FXML
     private Button commentButton;
@@ -73,6 +76,17 @@ public class AfterLoginController implements Initializable {
         stage.show();
 
     }
+    @FXML
+    void discountButtonFunc(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("discount-user-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Discount");
+        stage.show();
+    }
 
     @FXML
     void commentButton(ActionEvent event) throws IOException {
@@ -94,7 +108,7 @@ public class AfterLoginController implements Initializable {
         stage.setScene(scene);
         stage.setX(500);
         stage.setY(200);
-        stage.setTitle("Cart!");
+        stage.setTitle("Cart");
         stage.show();
 
 
@@ -108,13 +122,20 @@ public class AfterLoginController implements Initializable {
         stage.setScene(scene);
         stage.setX(500);
         stage.setY(200);
-        stage.setTitle("Edit info!!");
+        stage.setTitle("Edit info");
         stage.show();
     }
 
     @FXML
-    void finalizeBuyButtonFunction(ActionEvent event) {
-
+    void finalizeBuyButtonFunction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("finalize-buy-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Finalize buy");
+        stage.show();
     }
 
     @FXML
@@ -138,7 +159,7 @@ public class AfterLoginController implements Initializable {
         stage.setScene(scene);
         stage.setX(500);
         stage.setY(200);
-        stage.setTitle("Score!");
+        stage.setTitle("Score");
         stage.show();
 
     }
