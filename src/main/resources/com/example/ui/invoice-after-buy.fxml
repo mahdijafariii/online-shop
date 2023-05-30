@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="490.0" prefWidth="743.0" style="-fx-background-color: #62b790;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.InvoiceAfterBuy">
+   <children>
+      <Label layoutX="308.0" layoutY="64.0" text="Your Invoice">
+         <font>
+            <Font name="Bodoni MT" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="backFromInvoice" layoutX="336.0" layoutY="378.0" mnemonicParsing="false" onAction="#backFromInvoiceFunc" text="Back">
+         <font>
+            <Font name="Bodoni MT" size="20.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="fieldInvoice" layoutX="80.0" layoutY="102.0" prefHeight="200.0" prefWidth="589.0">
+         <font>
+            <Font name="Forte" size="15.0" />
+         </font>
+      </TextArea>
+   </children>
+</AnchorPane>

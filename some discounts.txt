@@ -1,0 +1,8 @@
+discountNameProduct sonata 2 2026 12 25 1
+discountNameProduct peraid 2 2026 12 25 1
+discountNameProduct cofee 2 2026 12 25 1
+discountCategory foods 20 2027 2 26 3
+discountCategory stationery 25 2027 2 26 3
+discountCategory vehicles 3 2027 2 26 3
+discountCategory Digital_products 20 2027 2 26 3
+normalDiscount 30 2026 2 24 5

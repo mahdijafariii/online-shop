@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="608.0" prefWidth="919.0" style="-fx-background-color: radial-gradient(focus-angle 135.0deg, focus-distance 0.0% , center 49.5595% 49.6212%, radius 90.1376%, #210148 0.0%, #014708 100.0%);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.FinalizeBuyController">
+   <children>
+      <Button fx:id="backFromFinalizeBuy" layoutX="836.0" layoutY="546.0" mnemonicParsing="false" onAction="#backFromFinalizeBuyFunc" prefHeight="38.0" prefWidth="49.0" style="-fx-background-color: #ffd0d0; -fx-background-radius: 100;" text="Back" textFill="#714949">
+         <font>
+            <Font name="Dubai Medium" size="14.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="discountField" layoutX="609.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" />
+      <TableView fx:id="cart" layoutX="532.0" layoutY="304.0" prefHeight="217.0" prefWidth="354.0" />
+      <Label layoutX="685.0" layoutY="265.0" text="Cart" textFill="#ffd0d0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calisto MT" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="659.0" layoutY="20.0" text="Discount" textFill="#ffd0d0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calisto MT" size="26.0" />
+         </font>
+      </Label>
+      <Line endX="-100.0" endY="473.0999755859375" layoutX="542.0" layoutY="146.0" startX="-100.0" startY="-146.0" stroke="#8e7575" />
+      <TextField fx:id="fieldDiscount" layoutX="148.0" layoutY="146.0" />
+      <TextField fx:id="textFieldDeleteProduct" layoutX="592.0" layoutY="552.0" />
+      <Label layoutX="465.0" layoutY="552.0" prefHeight="26.0" prefWidth="125.0" text="delete product:" textFill="#ffd0d0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calisto MT" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="deleteFromCartButton" layoutX="750.0" layoutY="550.0" mnemonicParsing="false" onAction="#deleteFromCartButtonFunc" prefHeight="30.0" prefWidth="49.0" style="-fx-background-color: #ffd0d0; -fx-background-radius: 100;" text="delete" textFill="#714949">
+         <font>
+            <Font name="Corbel Light" size="10.0" />
+         </font>
+      </Button>
+      <Button fx:id="addDiscount" layoutX="317.0" layoutY="145.0" mnemonicParsing="false" onAction="#addDiscountFunc" style="-fx-background-color: #218641; -fx-background-radius: 100;" text="add discount" textFill="#f3fff7" />
+      <Label layoutX="41.0" layoutY="147.0" text="set discount:" textFill="#ffd0d0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calisto MT" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="7.0" layoutY="39.0" text="user name:" textFill="#ffd0d0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calisto MT" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="249.0" layoutY="40.0" text="balance:" textFill="#ffd0d0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calisto MT" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fieldUserName" layoutX="104.0" layoutY="40.0" prefHeight="26.0" prefWidth="86.0">
+         <font>
+            <Font name="Forte" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldBalance" layoutX="317.0" layoutY="39.0" prefHeight="26.0" prefWidth="70.0" />
+      <Line endX="-100.00001525878906" endY="442.6000061035156" layoutX="338.0" layoutY="-346.0" startX="-100.0" startY="345.1000061035156" stroke="#8e7575" />
+      <Line endX="92.5" endY="251.10000610351562" layoutX="350.0" layoutY="-155.0" startX="-349.0" startY="251.10000610351562" stroke="#8e7575" />
+      <Line endX="92.5" endY="251.10000610351562" layoutX="350.0" layoutY="-32.0" startX="-349.0" startY="251.10000610351562" stroke="#8e7575" />
+      <Label layoutX="89.0" layoutY="321.0" prefHeight="26.0" prefWidth="289.0" text="If you sure press buttn" textFill="#ffd0d0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calisto MT" size="28.0" />
+         </font>
+      </Label>
+      <Button fx:id="buyButton" layoutX="159.0" layoutY="413.0" mnemonicParsing="false" onAction="#buyButtonFunc" prefHeight="66.0" prefWidth="126.0" style="-fx-background-color: #1983d4; -fx-background-radius: 100;" text="Buy" textFill="WHITE">
+         <font>
+            <Font name="Forte" size="36.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imageBuy" fitHeight="34.0" fitWidth="24.0" layoutX="21.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@buy.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="559.0" layoutY="536.0" prefHeight="26.0" prefWidth="49.0" style="-fx-rotate: 30;" text="set ID" textFill="#ffd0d0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calisto MT" size="11.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
