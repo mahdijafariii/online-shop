@@ -424,10 +424,10 @@ public class UserController {
     //----------------------------------------------------------finalize buy!!
     public int finalizeBuy(ArrayList<String> discount,CustomerModel customerModel ,AdminModel admin) throws InsufficientMoneyException, InsufficientAmountOfProductException, InvalidDiscountException {
         InvoiceController invoiceController = new InvoiceController();
+        UserController userController = new UserController();
         InvoiceModel test = new InvoiceModel(customerModel);
-        test.setTotalPrice(invoiceController.calculateInvoice(test,calculateDiscount(discount,admin,customerModel)));//you should set it manual and function is in invoice com.example.controller
-        int checkBalance = invoiceController.deductFromBalance(test, customerModel);//check balance manual and mines price of product from balance
-        if (checkBalance == 1) {
+        int checkBalanceWithDiscount = invoiceController.checkBalanceWithDiscount(test,customerModel,userController.checkCalculateDiscount(discount,admin,customerModel));
+        if (checkBalanceWithDiscount == 1) {
             for(int i =0 ; i <admin.getProductsOfStore().size();i++){
                 for(int j=0;j<customerModel.getCart().size();j++){
                     if(admin.getProductsOfStore().get(i).getProductID().equals(customerModel.getCart().get(j).getProductID())){
@@ -442,8 +442,9 @@ public class UserController {
                     }
                 }
             }
+            test.setTotalPrice(invoiceController.calculateInvoice(test,calculateDiscount(discount,admin,customerModel)));//you should set it manual and function is in invoice com.example.controller
             customerModel.getInvoiceHistory().add(test);
-
+            customerModel.setBalance(customerModel.getBalance()-customerModel.getInvoiceHistory().get(customerModel.getInvoiceHistory().size()-1).getTotalPrice());
             return 1;
         }
         else
@@ -509,6 +510,47 @@ public class UserController {
                         }
                     }
                     admin.getDiscountCodes().get(numDiscountInList).setDiscountCodeCapacity(admin.getDiscountCodes().get(numDiscountInList).getDiscountCodeCapacity()-1);
+                }
+            }
+        }
+        return amountDiscount;
+    }
+    public double checkCalculateDiscount(ArrayList<String> discount , AdminModel admin,CustomerModel customer) throws InvalidDiscountException {
+
+
+        if(discount.size()==0||discount.get(0)==null){
+            return 0;
+        }
+        double amountDiscount =0 ;
+        for(int i = 0 ; i<discount.size() ; i++){
+            if(checkDiscount(discount.get(i),admin)==1){
+
+                int numDiscountInList=-1;
+                for(int k = 0 ; k <admin.getDiscountCodes().size() ; k++){
+                    if(admin.getDiscountCodes().get(k).getCode().equals(discount.get(i))){
+                        numDiscountInList=k;
+                        break;
+                    }
+                }
+                if(discount.get(i).split("-")[2].toLowerCase().equals("foods") || discount.get(i).split("-")[2].toLowerCase().equals("digital_products") ||discount.get(i).split("-")[2].toLowerCase().equals("vehicles") ||discount.get(i).split("-")[2].toLowerCase().equals("stationery")){
+                    for(int j=0 ; j<customer.getCart().size() ; j++ ){
+                        if (customer.getCart().get(j).getTypeCategory().name().equals(discount.get(i).split("-")[2])){
+                            amountDiscount=customer.getCart().get(j).getPrice()*((admin.getDiscountCodes().get(numDiscountInList).getAmountDiscount())/100)+amountDiscount;
+                        }
+                    }
+                }
+                else if (discount.get(i).split("-")[2].startsWith("0")){
+                    for(int j=0 ; j<customer.getCart().size() ; j++ ){
+                        amountDiscount=customer.getCart().get(j).getPrice()*((admin.getDiscountCodes().get(numDiscountInList).getAmountDiscount())/100)+amountDiscount;
+                    }
+
+                }
+                else{
+                    for(int j=0 ; j<customer.getCart().size() ; j++ ){
+                        if (customer.getCart().get(j).getName().equals(discount.get(i).split("-")[2])){
+                            amountDiscount=customer.getCart().get(j).getPrice()*((admin.getDiscountCodes().get(numDiscountInList).getAmountDiscount())/100)+amountDiscount;
+                        }
+                    }
                 }
             }
         }

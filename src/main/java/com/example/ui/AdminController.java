@@ -1,5 +1,7 @@
 package com.example.ui;
 
+import com.example.model.accountModel.AdminModel;
+import com.example.model.productModel.ProductsModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +13,11 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class AdminController {
+    private AdminModel adminModel = AdminModel.getAdmin();
     @FXML
     private TextArea TextCommandAdmin;
 
@@ -101,6 +105,7 @@ public class AdminController {
                                 } else {
                                     System.out.println("please enter help and see correct command!!");
                                 }
+                                adminModel.getProductsOfStore().sort(ProductsModel::compareTo);
                                 break;
 
                         }

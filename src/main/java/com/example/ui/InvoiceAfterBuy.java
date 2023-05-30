@@ -47,8 +47,7 @@ public class InvoiceAfterBuy implements Initializable {
         customer=adminModel.getCustomerGui();
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(customer.getInvoiceHistory().get(customer.getInvoiceHistory().size()-1).toString());
-        stringBuilder.append("Success!!!");
-        stringBuilder.append("Your profit :  "+customer.getInvoiceHistory().get(customer.getInvoiceHistory().size()-1).getProfit()+"\n\n");
+        stringBuilder.append("  Success!!!");
         fieldInvoice.setText(stringBuilder.toString());
     }
 }

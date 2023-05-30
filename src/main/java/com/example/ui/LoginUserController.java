@@ -66,15 +66,16 @@ public class LoginUserController implements Initializable {
         else{
             customerModel= adminModel.getAllCostumers().get(check);
             adminModel.setCustomerGui(customerModel);
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("after-login-controller.fxml")));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setX(400);
+            stage.setY(130);
+            stage.setTitle("Login page!!");
+            stage.show();
+
         }
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("after-login-controller.fxml")));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setX(400);
-        stage.setY(130);
-        stage.setTitle("Login page!!");
-        stage.show();
 
     }
 

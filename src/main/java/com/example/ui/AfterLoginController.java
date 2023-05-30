@@ -132,8 +132,8 @@ public class AfterLoginController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(500);
-        stage.setY(200);
+        stage.setX(300);
+        stage.setY(50);
         stage.setTitle("Finalize buy");
         stage.show();
     }
@@ -144,8 +144,8 @@ public class AfterLoginController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(500);
-        stage.setY(200);
+        stage.setX(400);
+        stage.setY(100);
         stage.setTitle("Product");
         stage.show();
 
@@ -157,8 +157,8 @@ public class AfterLoginController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(500);
-        stage.setY(200);
+        stage.setX(400);
+        stage.setY(100);
         stage.setTitle("Score");
         stage.show();
 
@@ -169,7 +169,6 @@ public class AfterLoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         customer = adminModel.getCustomerGui();
-        System.out.println(customer.toString());
         nameField.setText(customer.getFullName());
         userNameField.setText(customer.getUserName());
         numberField.setText(customer.getPhoneNumber());
@@ -189,12 +188,12 @@ public class AfterLoginController implements Initializable {
     }
     @FXML
     void InvoiceButtonFunc(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvoiceController")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("invoice-controller.fxml")));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(800);
-        stage.setY(650);
+        stage.setX(400);
+        stage.setY(100);
         stage.setTitle("Invoice");
         stage.show();
     }

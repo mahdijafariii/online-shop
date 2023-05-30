@@ -49,15 +49,15 @@ public class InvoiceController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        customer=admin.getCustomerGui();
-//        StringBuilder string = new StringBuilder();
-//        for(int i = 0 ; i<customer.getInvoiceHistory().size() ; i ++){
-//            string.append(customer.getInvoiceHistory().get(i).toString());
-//            string.append("--------------------------------------------------------");
-//        }
-//        if(!(string.toString().equals("")|| string.toString()==null)){
-//            invoiceTextField.setText(string.toString());
-//        }
+        customer=admin.getCustomerGui();
+        StringBuilder string = new StringBuilder();
+        for(int i = 0 ; i<customer.getInvoiceHistory().size() ; i ++){
+            string.append(customer.getInvoiceHistory().get(i).toString());
+            string.append("\n--------------------------------------------------------");
+        }
+        if(!(string.toString().equals("")|| string.toString()==null)){
+            invoiceTextField.setText(string.toString());
+        }
 
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(labelTransition);

@@ -18,13 +18,21 @@ public class InvoiceController {
         return price-discount;
     }
 
-    public int deductFromBalance(InvoiceModel invoiceModel, CustomerModel customerModel) {
-        double newBalance;
-        if (customerModel.getBalance() > invoiceModel.getTotalPrice()) {
-            newBalance = customerModel.getBalance() - invoiceModel.getTotalPrice();
-            customerModel.setBalance(newBalance);
+//    public int deductFromBalance(InvoiceModel invoiceModel, CustomerModel customerModel) {
+//        double newBalance;
+//        if (customerModel.getBalance() > invoiceModel.getTotalPrice()) {
+//            newBalance = customerModel.getBalance() - (invoiceModel.getTotalPrice());
+//            customerModel.setBalance(newBalance);
+//            return 1;
+//        } else {
+//            return -1;
+//        }
+//    }
+    public int checkBalanceWithDiscount(InvoiceModel invoiceModel, CustomerModel customerModel,double discount){
+        if (customerModel.getBalance() > (invoiceModel.getTotalPrice()-discount)){
             return 1;
-        } else {
+        }
+        else{
             return -1;
         }
     }

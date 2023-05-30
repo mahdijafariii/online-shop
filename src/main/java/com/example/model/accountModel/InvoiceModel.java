@@ -63,6 +63,6 @@ public class InvoiceModel {
             test.append("Name:"+listOfShoppingItem.get(i).getName()+"     ---    ID:"+listOfShoppingItem.get(i).getProductID()+"    ---    price:"+listOfShoppingItem.get(i).getPrice()+"    ---    number:"+countNumberInList+"\n\n");
         }
         test.append("-------------------------------------------------------------------------------------\n");
-        test.append("Total price:"+totalPrice);
+        test.append("Total price:"+totalPrice + "     Your profit :"+profit);
     return test.toString();}
 }

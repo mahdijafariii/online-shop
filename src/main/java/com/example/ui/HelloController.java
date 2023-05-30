@@ -41,8 +41,8 @@ public class HelloController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(500);
-        stage.setY(200);
+        stage.setX(400);
+        stage.setY(100);
         stage.setTitle("Admin login page");
         stage.show();
     }
@@ -53,8 +53,8 @@ public class HelloController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.setScene(scene);
-        stage.setX(500);
-        stage.setY(200);
+        stage.setX(400);
+        stage.setY(100);
         stage.setTitle("Login page");
         stage.show();
     }
