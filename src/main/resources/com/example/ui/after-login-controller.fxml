@@ -187,5 +187,19 @@
             <Font name="Forte" size="15.0" />
          </font>
       </Label>
+      <Button fx:id="chanceButton" layoutX="469.0" layoutY="308.0" mnemonicParsing="false" onAction="#chanceButtonFunc" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: #1f0b71; -fx-background-radius: 135;">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@chance.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="382.0" layoutY="344.0" text="Wheel luck" textFill="#10b769">
+         <font>
+            <Font name="Forte" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

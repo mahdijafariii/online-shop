@@ -444,7 +444,9 @@ public class UserController {
             }
             test.setTotalPrice(invoiceController.calculateInvoice(test,calculateDiscount(discount,admin,customerModel)));//you should set it manual and function is in invoice com.example.controller
             customerModel.getInvoiceHistory().add(test);
-            customerModel.setBalance(customerModel.getBalance()-customerModel.getInvoiceHistory().get(customerModel.getInvoiceHistory().size()-1).getTotalPrice());
+            if(customerModel.getInvoiceHistory().get(customerModel.getInvoiceHistory().size()-1).getTotalPrice()>0){
+                customerModel.setBalance(customerModel.getBalance()-customerModel.getInvoiceHistory().get(customerModel.getInvoiceHistory().size()-1).getTotalPrice());
+            }
             return 1;
         }
         else
@@ -668,7 +670,7 @@ public class UserController {
         StringBuilder test = new StringBuilder();
         for (int i = 0 ; i <customerModel.getDiscountCodes().size() ; i++ ){
             test.append(customerModel.getDiscountCodes().get(i).toString());
-            test.append("\n-----------------------------------------------");
+            test.append("\n-----------------------------------------------\n");
         }
         return test.toString();
     }

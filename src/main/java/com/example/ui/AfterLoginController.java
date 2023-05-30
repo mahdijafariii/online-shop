@@ -30,6 +30,9 @@ public class AfterLoginController implements Initializable {
 
     @FXML
     private Button cartButton;
+    @FXML
+    private Button chanceButton;
+
 
     @FXML
     private Button chargeButton;
@@ -63,6 +66,18 @@ public class AfterLoginController implements Initializable {
 
     @FXML
     private Text userNameField;
+
+    @FXML
+    void chanceButtonFunc(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("wheel-of-lock-controller.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setX(500);
+        stage.setY(200);
+        stage.setTitle("Wheel luck");
+        stage.show();
+    }
 
     @FXML
     void chargeButtonFunction(ActionEvent event) throws IOException {
